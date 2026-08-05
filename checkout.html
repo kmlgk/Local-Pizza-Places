@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Ember &amp; Forno</title>
+<meta name="description" content="Review your order and check out securely with Ember & Forno. Track your delivery live once your order is placed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: { extend: {
+      colors: {
+        marinara: {50:'#fdf2f2',100:'#fbe3e3',200:'#f5c2c3',300:'#ec9598',400:'#e06569',500:'#d6383d',600:'#c1272d',700:'#9e1e23',800:'#7c171b',900:'#5c1114'},
+        olive: {50:'#f4f7f0',100:'#e4ecda',300:'#a9c18e',500:'#6e9660',600:'#5b7b4e',700:'#48613d',900:'#293a22'},
+        gold: {100:'#fbead0',300:'#f0cf90',400:'#f0bc6b',500:'#e8a33d',600:'#cc8722',800:'#8a5a11'},
+        cream: {50:'#fffdf8',100:'#fbf3e0',200:'#f3e6c8',300:'#e7d4a8'},
+        char: {50:'#f8f2ea',100:'#efe6db',600:'#3a2f27',700:'#2e2620',800:'#241e19',900:'#1b1613'}
+      },
+      fontFamily: { display: ['"Alfa Slab One"','serif'], body: ['Nunito','sans-serif'], mark: ['Kalam','cursive'] }
+    } }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Kalam:wght@400;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
+
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="header-row flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
+        <div class="relative">
+          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
+            <a href="index.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
+            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
+          </div>
+        </div>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="drinks.html" class="nav-link">Drinks</a>
+        <a href="desserts.html" class="nav-link">Desserts</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2 md:gap-3">
+        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
+          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+        </div>
+        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
+          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
+        </button>
+        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="pt-32 pb-24 lg:pt-40">
+  <div class="container mx-auto px-4 lg:px-8">
+    <p class="text-xs opacity-60 mb-3"><a href="index.html" class="hover:underline">Home</a> / <span>Checkout</span></p>
+    <h1 class="font-display text-2xl md:text-3xl mb-10">Checkout</h1>
+
+    <!-- Logged-out gate -->
+    <div id="loginGate" class="hidden max-w-md mx-auto text-center bg-white dark:bg-char-800 rounded-2xl p-8 shadow-soft">
+      <i class="fa-solid fa-lock text-3xl text-marinara-600 dark:text-gold-400 mb-4"></i>
+      <h2 class="font-extrabold text-lg mb-2">Log In to Complete Your Order</h2>
+      <p class="text-sm opacity-70 mb-6">Create a free account or log in so you can track this order live and reorder it later.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="login.html?redirect=checkout.html" class="btn-crust justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Log In</a>
+        <a href="register.html?redirect=checkout.html" class="btn-crust-outline justify-center">Create Account</a>
+      </div>
+    </div>
+
+    <!-- Empty cart -->
+    <div id="emptyGate" class="hidden max-w-md mx-auto text-center bg-white dark:bg-char-800 rounded-2xl p-8 shadow-soft">
+      <i class="fa-solid fa-pizza-slice text-3xl text-marinara-600 dark:text-gold-400 mb-4"></i>
+      <h2 class="font-extrabold text-lg mb-2">Your Cart Is Empty</h2>
+      <p class="text-sm opacity-70 mb-6">Add something delicious before checking out.</p>
+      <a href="menu.html" class="btn-crust justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Browse Menu</a>
+    </div>
+
+    <!-- Checkout form -->
+    <div id="checkoutContent" class="hidden grid lg:grid-cols-3 gap-10">
+      <form id="checkoutForm" data-validate-form class="lg:col-span-2 space-y-8">
+        <div>
+          <h2 class="font-extrabold text-lg mb-4"><i class="fa-solid fa-location-dot text-marinara-600 dark:text-gold-400 me-2"></i>Delivery Address</h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="form-field sm:col-span-2">
+              <label for="ckName">Full Name</label>
+              <input type="text" id="ckName" name="name" required minlength="2" placeholder="Jordan Smith">
+              <span class="field-error">Enter your full name.</span>
+            </div>
+            <div class="form-field sm:col-span-2">
+              <label for="ckStreet">Street Address</label>
+              <input type="text" id="ckStreet" name="street" required minlength="4" placeholder="123 Maple Avenue, Apt 2">
+              <span class="field-error">Enter a valid street address.</span>
+            </div>
+            <div class="form-field">
+              <label for="ckCity">City</label>
+              <input type="text" id="ckCity" name="city" required placeholder="Riverside">
+              <span class="field-error">Enter your city.</span>
+            </div>
+            <div class="form-field">
+              <label for="ckZip">ZIP Code</label>
+              <input type="text" id="ckZip" name="zip" required minlength="5" placeholder="97201">
+              <span class="field-error">Enter a valid ZIP code.</span>
+            </div>
+            <div class="form-field sm:col-span-2">
+              <label for="ckPhone">Phone Number</label>
+              <input type="tel" id="ckPhone" name="phone" required placeholder="(503) 555-0192">
+              <span class="field-error">Enter a valid phone number.</span>
+            </div>
+            <div class="form-field sm:col-span-2">
+              <label for="ckNotes">Delivery Notes <span class="opacity-50 font-normal">(optional)</span></label>
+              <textarea id="ckNotes" name="notes" rows="2" placeholder="Gate code, leave at door, extra napkins…"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-extrabold text-lg mb-4"><i class="fa-solid fa-credit-card text-marinara-600 dark:text-gold-400 me-2"></i>Payment Method</h2>
+          <div class="grid sm:grid-cols-2 gap-4 mb-4">
+            <label class="border-2 border-black/10 dark:border-white/15 rounded-xl p-4 flex items-center gap-3 cursor-pointer has-[:checked]:border-marinara-600 dark:has-[:checked]:border-gold-500">
+              <input type="radio" name="payMethod" value="card" checked class="accent-marinara-600">
+              <span class="font-bold text-sm"><i class="fa-solid fa-credit-card me-2"></i>Credit / Debit Card</span>
+            </label>
+            <label class="border-2 border-black/10 dark:border-white/15 rounded-xl p-4 flex items-center gap-3 cursor-pointer has-[:checked]:border-marinara-600 dark:has-[:checked]:border-gold-500">
+              <input type="radio" name="payMethod" value="cash" class="accent-marinara-600">
+              <span class="font-bold text-sm"><i class="fa-solid fa-money-bill-wave me-2"></i>Cash on Delivery</span>
+            </label>
+          </div>
+          <div id="cardFields" class="grid sm:grid-cols-3 gap-4">
+            <div class="form-field sm:col-span-3">
+              <label for="ckCard">Card Number</label>
+              <input type="text" id="ckCard" name="card" data-validate minlength="12" placeholder="4242 4242 4242 4242">
+              <span class="field-error">Enter a valid card number.</span>
+            </div>
+            <div class="form-field">
+              <label for="ckExpiry">Expiry</label>
+              <input type="text" id="ckExpiry" name="expiry" data-validate minlength="4" placeholder="MM/YY">
+              <span class="field-error">Required.</span>
+            </div>
+            <div class="form-field">
+              <label for="ckCvv">CVV</label>
+              <input type="text" id="ckCvv" name="cvv" data-validate minlength="3" placeholder="123">
+              <span class="field-error">Required.</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="placeOrderBtn" class="btn-crust w-full justify-center !py-4">
+          <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+          <i class="fa-solid fa-lock"></i> Place Order Securely
+        </button>
+      </form>
+
+      <div class="lg:sticky lg:top-40 h-fit rounded-2xl bg-white dark:bg-char-800 p-6 shadow-soft">
+        <h2 class="font-extrabold text-lg mb-4">Order Summary</h2>
+        <div id="ckItems" class="space-y-4 mb-5 max-h-80 overflow-y-auto pe-1"></div>
+        <div class="border-t border-black/10 dark:border-white/10 pt-4 space-y-2 text-sm">
+          <div class="flex justify-between"><span class="opacity-70">Subtotal</span><span id="ckSubtotal" class="font-bold">$0.00</span></div>
+          <div class="flex justify-between"><span class="opacity-70">Delivery Fee</span><span class="font-bold">$3.99</span></div>
+          <div class="flex justify-between"><span class="opacity-70">Estimated Tax</span><span id="ckTax" class="font-bold">$0.00</span></div>
+          <div class="flex justify-between font-display text-lg pt-2 border-t border-black/10 dark:border-white/10"><span>Total</span><span id="ckGrandTotal" class="text-marinara-600 dark:text-gold-400">$0.00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="zigzag-top relative bg-char-900 text-char-50 pt-16 pb-28 xl:pb-0">
+  <div class="container mx-auto px-4 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
+    <div>
+      <a href="index.html" class="flex items-center gap-2 mb-4">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-base">Ember <span class="text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900°F brick oven.</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Mon–Sun: 11:00 AM – 11:00 PM</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-location-dot w-4"></i> 214 Mill Street, Riverside</p>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Quick Links</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="about.html" class="hover:text-gold-400">About Us</a></li>
+        <li><a href="menu.html" class="hover:text-gold-400">Full Menu</a></li>
+        <li><a href="deals.html" class="hover:text-gold-400">Deals &amp; Offers</a></li>
+        <li><a href="gallery.html" class="hover:text-gold-400">Gallery</a></li>
+        <li><a href="faq.html" class="hover:text-gold-400">FAQs</a></li>
+        <li><a href="contact.html" class="hover:text-gold-400">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Your Account</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="dashboard.html" class="hover:text-gold-400">Order Dashboard</a></li>
+        <li><a href="login.html" class="hover:text-gold-400">Log In</a></li>
+        <li><a href="register.html" class="hover:text-gold-400">Create Account</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Need Help?</p>
+      <p class="text-sm text-cream-100/70 mb-2">We're here Mon–Sun, 11am–11pm.</p>
+      <a href="tel:+15035550192" class="text-sm font-bold text-gold-400">(503) 555-0192</a>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5">
+    <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream-100/60">
+      <p>© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
+      <div class="flex items-center gap-3 text-lg">
+        <i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-cc-apple-pay"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================== CART DRAWER ============================== -->
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your cart">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <p class="font-display text-base">Your Cart</p>
+    <button id="cartCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5" id="cartItems"></div>
+  <div id="cartEmpty" class="hidden flex-1 flex-col items-center justify-center text-center px-6 opacity-60">
+    <i class="fa-solid fa-pizza-slice text-4xl mb-3"></i>
+    <p class="font-bold">Your cart is empty</p>
+    <p class="text-sm">Add a wood-fired favorite from our menu.</p>
+  </div>
+  <div class="p-5 border-t border-black/10 dark:border-white/10">
+    <div class="flex items-center justify-between mb-4 font-extrabold text-lg">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <a href="checkout.html" id="cartCheckoutBtn" class="btn-crust w-full justify-center opacity-40 pointer-events-none">
+      <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+      Checkout
+    </a>
+  </div>
+</aside>
+
+<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
+      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+    </a>
+    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
+    <a href="index.html" class="nav-drawer-link"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="deals.html" class="nav-drawer-link"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="gallery.html" class="nav-drawer-link"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+  </nav>
+  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Dark Mode</span>
+      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Language / Direction</span>
+      <div class="dir-switch" role="group" aria-label="Text direction">
+        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+      </div>
+    </div>
+    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
+  </div>
+</aside>
+<script src="assets/js/main.js"></script>
+<script>
+  (function () {
+    const user = window.EF.currentUser();
+    const cart = window.EF.getCart();
+    const loginGate = document.getElementById('loginGate');
+    const emptyGate = document.getElementById('emptyGate');
+    const content = document.getElementById('checkoutContent');
+
+    if (!user) { loginGate.classList.remove('hidden'); return; }
+    if (!cart.length) { emptyGate.classList.remove('hidden'); return; }
+    content.classList.remove('hidden');
+    content.classList.add('lg:grid');
+
+    // Pre-fill name/email if known
+    document.getElementById('ckName').value = user.name || '';
+
+    function renderSummary() {
+      const cart = window.EF.getCart();
+      const itemsEl = document.getElementById('ckItems');
+      itemsEl.innerHTML = cart.map((l) => `
+        <div class="flex justify-between items-start text-sm gap-3">
+          <div class="flex-1">
+            <p class="font-bold">${l.qty}× ${l.name}</p>
+            ${l.meta ? `<p class="text-xs opacity-60">${l.meta}</p>` : ''}
+          </div>
+          <span class="font-bold shrink-0">$${(l.price * l.qty).toFixed(2)}</span>
+        </div>
+      `).join('');
+      const subtotal = window.EF.cartTotal(cart);
+      const tax = subtotal * 0.08;
+      const total = subtotal + tax + 3.99;
+      document.getElementById('ckSubtotal').textContent = '$' + subtotal.toFixed(2);
+      document.getElementById('ckTax').textContent = '$' + tax.toFixed(2);
+      document.getElementById('ckGrandTotal').textContent = '$' + total.toFixed(2);
+    }
+    renderSummary();
+
+    // Toggle card fields based on payment method
+    const cardFields = document.getElementById('cardFields');
+    document.querySelectorAll('input[name="payMethod"]').forEach((r) => {
+      r.addEventListener('change', () => {
+        const isCard = r.value === 'card' && r.checked;
+        cardFields.classList.toggle('hidden', !isCard);
+        cardFields.querySelectorAll('input').forEach((i) => {
+          if (r.value === 'card') i.toggleAttribute('required', isCard);
+        });
+      });
+    });
+
+    const form = document.getElementById('checkoutForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!window.EF.validateForm(form)) return;
+      const data = new FormData(form);
+      const cartNow = window.EF.getCart();
+      const order = window.EF.placeOrder({
+        items: cartNow,
+        address: `${data.get('street')}, ${data.get('city')}, ${data.get('zip')}`,
+        phone: data.get('phone'),
+        notes: data.get('notes')
+      });
+      window.location.href = `dashboard.html?justPlaced=${order.id}`;
+    });
+  })();
+</script>
+</body>
+</html>

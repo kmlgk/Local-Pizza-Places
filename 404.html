@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found | Ember &amp; Forno</title>
+<meta name="description" content="This page doesn't exist at Ember & Forno. Head back to the menu, browse deals, or find your way home — your pizza is still on.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          marinara: {50:'#fdf2f2',100:'#fbe3e3',200:'#f5c2c3',300:'#ec9598',400:'#e06569',500:'#d6383d',600:'#c1272d',700:'#9e1e23',800:'#7c171b',900:'#5c1114'},
+          olive: {50:'#f4f7f0',100:'#e4ecda',300:'#a9c18e',500:'#6e9660',600:'#5b7b4e',700:'#48613d',900:'#293a22'},
+          gold: {100:'#fbead0',300:'#f0cf90',400:'#f0bc6b',500:'#e8a33d',600:'#cc8722',800:'#8a5a11'},
+          cream: {50:'#fffdf8',100:'#fbf3e0',200:'#f3e6c8',300:'#e7d4a8'},
+          char: {50:'#f8f2ea',100:'#efe6db',600:'#3a2f27',700:'#2e2620',800:'#241e19',900:'#1b1613'}
+        },
+        fontFamily: {
+          display: ['"Alfa Slab One"','serif'],
+          body: ['Nunito','sans-serif'],
+          mark: ['Kalam','cursive']
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Kalam:wght@400;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  @keyframes slice-wobble {
+    0%, 100% { transform: rotate(-6deg) translateY(0); }
+    50% { transform: rotate(6deg) translateY(-10px); }
+  }
+  .wobble-slice { display: inline-block; animation: slice-wobble 2.6s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .wobble-slice { animation: none; }
+  }
+</style>
+</head>
+<body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
+
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="header-row flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
+        <div class="relative">
+          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
+            <a href="index.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
+            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
+          </div>
+        </div>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="drinks.html" class="nav-link">Drinks</a>
+        <a href="desserts.html" class="nav-link">Desserts</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2 md:gap-3">
+        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
+          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+        </div>
+        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
+          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
+        </button>
+        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================== 404 CONTENT ============================== -->
+<section class="pt-36 pb-24 lg:pt-44 lg:pb-32">
+  <div class="container mx-auto px-4 lg:px-8 max-w-xl text-center" data-aos="zoom-in">
+    <div class="wobble-slice text-7xl md:text-8xl text-marinara-600 dark:text-gold-400 mb-6" aria-hidden="true">
+      <i class="fa-solid fa-pizza-slice"></i>
+    </div>
+    <span class="badge-chalk mb-4">404 Error</span>
+    <h1 class="font-display text-2xl sm:text-3xl lg:text-4xl leading-[1.2] mb-4">This Slice Got Away From Us</h1>
+    <p class="opacity-75 mb-10 max-w-md mx-auto">The page you're looking for must have slid off the peel. It's not in the oven and it's not on the menu — but there's plenty more where that came from.</p>
+    <div class="flex flex-wrap gap-4 justify-center mb-14">
+      <a href="index.html" class="btn-crust"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-house"></i> Back to Home</a>
+      <a href="menu.html" class="btn-crust-outline"><i class="fa-solid fa-book-open"></i> Browse Menu</a>
+    </div>
+
+    <div class="rounded-2xl bg-white dark:bg-char-800 shadow-soft p-6 text-left" data-aos="fade-up">
+      <p class="font-extrabold text-sm mb-4 text-center">Or try one of our popular pages</p>
+      <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+        <li><a href="menu.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-cream-100 dark:hover:bg-char-700 font-bold"><i class="fa-solid fa-pizza-slice text-marinara-600 dark:text-gold-400 w-5"></i> Menu</a></li>
+        <li><a href="deals.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-cream-100 dark:hover:bg-char-700 font-bold"><i class="fa-solid fa-tags text-marinara-600 dark:text-gold-400 w-5"></i> Deals</a></li>
+        <li><a href="gallery.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-cream-100 dark:hover:bg-char-700 font-bold"><i class="fa-solid fa-images text-marinara-600 dark:text-gold-400 w-5"></i> Gallery</a></li>
+        <li><a href="about.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-cream-100 dark:hover:bg-char-700 font-bold"><i class="fa-solid fa-circle-info text-marinara-600 dark:text-gold-400 w-5"></i> About</a></li>
+        <li><a href="contact.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-cream-100 dark:hover:bg-char-700 font-bold"><i class="fa-solid fa-envelope text-marinara-600 dark:text-gold-400 w-5"></i> Contact</a></li>
+        <li><a href="dashboard.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-cream-100 dark:hover:bg-char-700 font-bold sm:col-span-2"><i class="fa-solid fa-gauge text-marinara-600 dark:text-gold-400 w-5"></i> Your Dashboard</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="zigzag-top relative bg-char-900 text-char-50 pt-16 pb-28 xl:pb-0">
+  <div class="container mx-auto px-4 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
+    <div>
+      <a href="index.html" class="flex items-center gap-2 mb-4">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-base">Ember <span class="text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900°F brick oven.</p>
+      <div class="flex gap-3 mb-4">
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Mon–Sun: 11:00 AM – 11:00 PM</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-location-dot w-4"></i> 214 Mill Street, Riverside</p>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Quick Links</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="about.html" class="hover:text-gold-400">About Us</a></li>
+        <li><a href="menu.html" class="hover:text-gold-400">Full Menu</a></li>
+        <li><a href="deals.html" class="hover:text-gold-400">Deals &amp; Offers</a></li>
+        <li><a href="gallery.html" class="hover:text-gold-400">Gallery</a></li>
+        <li><a href="faq.html" class="hover:text-gold-400">FAQs</a></li>
+        <li><a href="contact.html" class="hover:text-gold-400">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Menu Categories</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="menu.html#signature" class="hover:text-gold-400">Signature Pizzas</a></li>
+        <li><a href="menu.html#classic" class="hover:text-gold-400">Classic Pizzas</a></li>
+        <li><a href="menu.html#build" class="hover:text-gold-400">Build Your Own</a></li>
+        <li><a href="menu.html#sides" class="hover:text-gold-400">Sides &amp; Salads</a></li>
+        <li><a href="drinks.html" class="hover:text-gold-400">Drinks</a></li>
+        <li><a href="desserts.html" class="hover:text-gold-400">Desserts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Get Delivery Updates</p>
+      <p class="text-sm text-cream-100/70 mb-3">Join our list for weekly deals and limited-time drops.</p>
+      <form data-validate-form class="space-y-2" onsubmit="event.preventDefault(); EF.showToast('Subscribed! Check your inbox.'); this.reset();">
+        <div class="form-field !mb-0">
+          <label for="footerEmail" class="sr-only">Email address</label>
+          <input type="email" id="footerEmail" name="email" required placeholder="you@example.com" class="!bg-white/10 !border-white/15 !text-white placeholder:text-white/40">
+          <span class="field-error !text-gold-300">Enter a valid email address.</span>
+        </div>
+        <button type="submit" class="btn-crust w-full justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5">
+    <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream-100/60">
+      <p>© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
+      <div class="flex items-center gap-3 text-lg">
+        <i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-cc-apple-pay"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ============================== CART DRAWER ============================== -->
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your cart">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <p class="font-display text-base">Your Cart</p>
+    <button id="cartCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5" id="cartItems"></div>
+  <div id="cartEmpty" class="hidden flex-1 flex-col items-center justify-center text-center px-6 opacity-60">
+    <i class="fa-solid fa-pizza-slice text-4xl mb-3"></i>
+    <p class="font-bold">Your cart is empty</p>
+    <p class="text-sm">Add a wood-fired favorite from our menu.</p>
+  </div>
+  <div class="p-5 border-t border-black/10 dark:border-white/10">
+    <div class="flex items-center justify-between mb-4 font-extrabold text-lg">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <a href="checkout.html" id="cartCheckoutBtn" class="btn-crust w-full justify-center opacity-40 pointer-events-none">
+      <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+      Checkout
+    </a>
+  </div>
+</aside>
+
+<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
+      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+    </a>
+    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
+    <a href="index.html" class="nav-drawer-link"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="deals.html" class="nav-drawer-link"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="gallery.html" class="nav-drawer-link"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+  </nav>
+  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Dark Mode</span>
+      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Language / Direction</span>
+      <div class="dir-switch" role="group" aria-label="Text direction">
+        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+      </div>
+    </div>
+    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
+  </div>
+</aside>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  AOS.init({ duration: 700, once: true, disable: 'reduce' });
+</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In | Ember &amp; Forno</title>
+<meta name="description" content="Log in to your Ember & Forno account to track your order live and reorder past favorites in one tap.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: { extend: {
+      colors: {
+        marinara: {50:'#fdf2f2',100:'#fbe3e3',200:'#f5c2c3',300:'#ec9598',400:'#e06569',500:'#d6383d',600:'#c1272d',700:'#9e1e23',800:'#7c171b',900:'#5c1114'},
+        olive: {50:'#f4f7f0',100:'#e4ecda',300:'#a9c18e',500:'#6e9660',600:'#5b7b4e',700:'#48613d',900:'#293a22'},
+        gold: {100:'#fbead0',300:'#f0cf90',400:'#f0bc6b',500:'#e8a33d',600:'#cc8722',800:'#8a5a11'},
+        cream: {50:'#fffdf8',100:'#fbf3e0',200:'#f3e6c8',300:'#e7d4a8'},
+        char: {50:'#f8f2ea',100:'#efe6db',600:'#3a2f27',700:'#2e2620',800:'#241e19',900:'#1b1613'}
+      },
+      fontFamily: { display: ['"Alfa Slab One"','serif'], body: ['Nunito','sans-serif'], mark: ['Kalam','cursive'] }
+    } }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Kalam:wght@400;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
+
+<div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
+
+<header class="site-header">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="header-row flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
+        <div class="relative">
+          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
+            <a href="index.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
+            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
+          </div>
+        </div>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="drinks.html" class="nav-link">Drinks</a>
+        <a href="desserts.html" class="nav-link">Desserts</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2 md:gap-3">
+        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
+          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+        </div>
+        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
+          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
+        </button>
+        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="min-h-screen flex items-center pt-28 pb-16">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="max-w-md mx-auto bg-white dark:bg-char-800 rounded-3xl shadow-soft p-8 md:p-10">
+      <div class="text-center mb-8">
+        <span class="w-14 h-14 rounded-full bg-marinara-600 text-white flex items-center justify-center text-2xl mx-auto mb-4"><i class="fa-solid fa-fire"></i></span>
+        <h1 class="font-display text-2xl mb-2">Welcome Back</h1>
+        <p class="text-sm opacity-70">Log in to track your order and reorder your favorites.</p>
+      </div>
+
+      <div id="loginError" class="hidden mb-5 text-sm bg-marinara-50 dark:bg-marinara-900/20 text-marinara-700 dark:text-marinara-300 border border-marinara-200 dark:border-marinara-800 rounded-xl p-3"></div>
+
+      <form id="loginForm" data-validate-form class="space-y-5">
+        <div class="form-field">
+          <label for="liEmail">Email Address</label>
+          <input type="email" id="liEmail" name="email" required placeholder="you@example.com">
+          <span class="field-error">Enter a valid email address.</span>
+        </div>
+        <div class="form-field">
+          <label for="liPassword">Password</label>
+          <div class="relative">
+            <input type="password" id="liPassword" name="password" required minlength="6" placeholder="••••••••" class="!pe-11">
+            <button type="button" class="pw-toggle absolute top-1/2 -translate-y-1/2 end-3 opacity-60" data-target="liPassword" aria-label="Show password"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <span class="field-error">Password must be at least 6 characters.</span>
+        </div>
+        <div class="flex items-center justify-end text-sm">
+          <button type="button" id="forgotBtn" class="font-bold text-marinara-600 dark:text-gold-400">Forgot password?</button>
+        </div>
+        <button type="submit" class="btn-crust w-full justify-center !py-3.5"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
+      </form>
+
+      <p class="text-center text-sm opacity-70 mt-6">Don't have an account? <a href="register.html" id="registerLink" class="font-bold text-marinara-600 dark:text-gold-400">Create one</a></p>
+    </div>
+  </div>
+</main>
+
+<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
+      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+    </a>
+    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
+    <a href="index.html" class="nav-drawer-link"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="deals.html" class="nav-drawer-link"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="gallery.html" class="nav-drawer-link"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="login.html" class="nav-drawer-link js-account-link" aria-current="page"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+  </nav>
+  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Dark Mode</span>
+      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Language / Direction</span>
+      <div class="dir-switch" role="group" aria-label="Text direction">
+        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+      </div>
+    </div>
+    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
+  </div>
+</aside>
+
+<script src="assets/js/main.js"></script>
+<script>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect') || 'dashboard.html';
+    document.getElementById('registerLink').href = 'register.html?redirect=' + encodeURIComponent(redirect);
+
+    document.querySelectorAll('.pw-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.target);
+        const showing = input.type === 'text';
+        input.type = showing ? 'password' : 'text';
+        btn.querySelector('i').className = showing ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+        btn.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+      });
+    });
+
+    document.getElementById('forgotBtn').addEventListener('click', () => {
+      window.EF.showToast("Password reset instructions would be emailed to you here.");
+    });
+
+    const form = document.getElementById('loginForm');
+    const errorBox = document.getElementById('loginError');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!window.EF.validateForm(form)) return;
+      const email = document.getElementById('liEmail').value.trim();
+      const password = document.getElementById('liPassword').value;
+      const result = window.EF.loginUser(email, password);
+      if (!result.ok) {
+        errorBox.textContent = result.error;
+        errorBox.classList.remove('hidden');
+        return;
+      }
+      window.location.href = redirect;
+    });
+  })();
+</script>
+</body>
+</html>

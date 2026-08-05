@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember &amp; Forno | Wood-Fired Pizza, Baked to Order</title>
+<meta name="description" content="Ember & Forno is a local wood-fired pizzeria in Riverside — hand-stretched dough, San Marzano tomatoes, and a full menu of signature pizzas, combo deals and limited-time offers. Order online and track your delivery live.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          marinara: {50:'#fdf2f2',100:'#fbe3e3',200:'#f5c2c3',300:'#ec9598',400:'#e06569',500:'#d6383d',600:'#c1272d',700:'#9e1e23',800:'#7c171b',900:'#5c1114'},
+          olive: {50:'#f4f7f0',100:'#e4ecda',300:'#a9c18e',500:'#6e9660',600:'#5b7b4e',700:'#48613d',900:'#293a22'},
+          gold: {100:'#fbead0',300:'#f0cf90',400:'#f0bc6b',500:'#e8a33d',600:'#cc8722',800:'#8a5a11'},
+          cream: {50:'#fffdf8',100:'#fbf3e0',200:'#f3e6c8',300:'#e7d4a8'},
+          char: {50:'#f8f2ea',100:'#efe6db',600:'#3a2f27',700:'#2e2620',800:'#241e19',900:'#1b1613'}
+        },
+        fontFamily: {
+          display: ['"Alfa Slab One"','serif'],
+          body: ['Nunito','sans-serif'],
+          mark: ['Kalam','cursive']
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Kalam:wght@400;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
+
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="header-row flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
+        <div class="relative">
+          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false" aria-current="page">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
+            <a href="index.html" role="menuitem" aria-current="page" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
+            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
+          </div>
+        </div>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="drinks.html" class="nav-link">Drinks</a>
+        <a href="desserts.html" class="nav-link">Desserts</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2 md:gap-3">
+        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
+          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+        </div>
+        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
+          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
+        </button>
+        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================== HERO (split, rotating pizza) ============================== -->
+<section class="relative overflow-hidden pt-32 pb-24 lg:pt-44 lg:pb-32">
+  <!-- Layered background: gradient wash + dot texture + soft color blobs -->
+  <div class="absolute inset-0 -z-20 bg-gradient-to-br from-cream-200 via-cream-100 to-gold-100/50 dark:from-char-800 dark:via-char-900 dark:to-char-900"></div>
+  <div class="absolute inset-0 -z-10 opacity-40 dark:opacity-[0.12]" aria-hidden="true" style="background-image:radial-gradient(rgba(193,39,45,.35) 1.5px, transparent 1.5px); background-size:28px 28px;"></div>
+  <div class="absolute -top-32 -start-32 w-[26rem] h-[26rem] rounded-full bg-marinara-300/25 dark:bg-marinara-900/20 blur-3xl -z-10" aria-hidden="true"></div>
+  <div class="absolute -bottom-40 -end-24 w-[30rem] h-[30rem] rounded-full bg-gold-300/30 dark:bg-gold-800/10 blur-3xl -z-10" aria-hidden="true"></div>
+
+  <div class="container mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div data-aos="fade-up">
+      <span class="badge-chalk mb-5">🔥 Fresh out of the oven, every 90 seconds</span>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.08] mb-6">
+        Hot, Fresh &amp; <span class="relative inline-block text-marinara-600 dark:text-gold-400">Loaded<span class="absolute left-0 right-0 -bottom-1 h-3 bg-gold-300/50 dark:bg-marinara-900/40 -z-10 rounded-full"></span></span> With Flavor
+      </h1>
+      <p class="text-base sm:text-lg opacity-80 max-w-lg mb-8">
+        Hand-stretched dough, San Marzano tomatoes and a 900°F brick oven — Ember &amp; Forno bakes every pizza to order and gets it to your door while the cheese is still bubbling.
+      </p>
+      <div class="flex flex-wrap gap-4 mb-8">
+        <a href="menu.html" class="btn-crust"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-bag-shopping"></i> Order Online</a>
+        <a href="menu.html#signature" class="btn-crust-outline"><i class="fa-solid fa-book-open"></i> View Menu</a>
+      </div>
+
+      <!-- Social proof row -->
+      <div class="flex flex-wrap items-center gap-4 mb-6">
+        <div class="flex -space-x-3 rtl:space-x-reverse">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" alt="" class="w-10 h-10 rounded-full border-2 border-cream-50 dark:border-char-900 object-cover ph-img">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=100&q=80" alt="" class="w-10 h-10 rounded-full border-2 border-cream-50 dark:border-char-900 object-cover ph-img">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="" class="w-10 h-10 rounded-full border-2 border-cream-50 dark:border-char-900 object-cover ph-img">
+          <span class="w-10 h-10 rounded-full border-2 border-cream-50 dark:border-char-900 bg-marinara-600 text-white text-xs font-extrabold flex items-center justify-center">3k+</span>
+        </div>
+        <div class="text-sm">
+          <div class="flex text-gold-500 text-xs mb-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="font-extrabold">Loved by 3,100+ Riverside neighbors</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm font-extrabold opacity-90">
+        <span class="flex items-center gap-2"><i class="fa-solid fa-motorcycle text-marinara-600 dark:text-gold-400"></i> ~20 min delivery</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-wheat-awn text-olive-600 dark:text-olive-300"></i> Dough made fresh daily</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-location-crosshairs text-marinara-600 dark:text-gold-400"></i> Live order tracking</span>
+      </div>
+    </div>
+
+    <div class="relative flex justify-center" data-aos="zoom-in" data-aos-delay="150">
+      <div class="absolute inset-0 -z-10 flex items-center justify-center">
+        <div class="w-72 h-72 md:w-[26rem] md:h-[26rem] rounded-full bg-gold-400/25 blur-3xl"></div>
+      </div>
+      <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[26rem] md:h-[26rem]">
+        <div class="absolute -inset-4 sm:-inset-5 rounded-full border-2 border-dashed border-marinara-300/70 dark:border-gold-700/40 ring-spin" aria-hidden="true"></div>
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80"
+             alt="Overhead view of a fresh Ember & Forno pepperoni pizza"
+             class="pizza-spin w-full h-full object-cover rounded-full border-8 border-white dark:border-char-800 shadow-2xl ph-img">
+        <span class="steam-wisp" style="left:30%; height:60px; animation-delay:.2s"></span>
+        <span class="steam-wisp" style="left:50%; height:80px; animation-delay:1.1s"></span>
+        <span class="steam-wisp" style="left:68%; height:50px; animation-delay:2s"></span>
+
+        <div class="absolute -top-3 -end-3 sm:-end-8 bg-white dark:bg-char-800 rounded-2xl shadow-xl px-4 py-2.5 flex items-center gap-2" data-aos="fade-down" data-aos-delay="300">
+          <span class="text-gold-500"><i class="fa-solid fa-star"></i></span>
+          <span class="font-extrabold text-sm">4.9 Rated</span>
+        </div>
+
+        <div class="absolute -bottom-6 -start-6 sm:-start-12 bg-cream-50 dark:bg-char-800 rounded-2xl shadow-xl p-4 w-52" data-aos="fade-up" data-aos-delay="400">
+          <p class="font-mark text-marinara-700 dark:text-gold-400 text-lg leading-tight">Build Your Own</p>
+          <p class="text-xs opacity-70 mb-2">Pick your size, crust &amp; toppings</p>
+          <a href="menu.html#build" class="text-sm font-extrabold text-marinara-600 dark:text-gold-400 flex items-center gap-1">From $9.99 <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== STATS STRIP ============================== -->
+<section class="relative bg-char-900 text-cream-50 py-14 overflow-hidden">
+  <div class="absolute inset-0 -z-10 opacity-[0.06]" aria-hidden="true" style="background-image:radial-gradient(rgba(255,255,255,.8) 1.5px, transparent 1.5px); background-size:24px 24px;"></div>
+  <div class="container mx-auto px-4 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <div data-aos="fade-up">
+      <i class="fa-solid fa-motorcycle text-gold-400/70 text-lg mb-2"></i>
+      <p class="font-display text-2xl md:text-3xl text-gold-400"><span data-count-to="20">0</span> min</p>
+      <p class="text-xs uppercase tracking-wide opacity-70 mt-1">Avg. Delivery</p>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="100">
+      <i class="fa-solid fa-star text-gold-400/70 text-lg mb-2"></i>
+      <p class="font-display text-2xl md:text-3xl text-gold-400"><span data-count-to="4.9">0</span>★</p>
+      <p class="text-xs uppercase tracking-wide opacity-70 mt-1">3,100+ Reviews</p>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="200">
+      <i class="fa-solid fa-wheat-awn text-gold-400/70 text-lg mb-2"></i>
+      <p class="font-display text-2xl md:text-3xl text-gold-400"><span data-count-to="100">0</span>%</p>
+      <p class="text-xs uppercase tracking-wide opacity-70 mt-1">Fresh Dough Daily</p>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="300">
+      <i class="fa-solid fa-champagne-glasses text-gold-400/70 text-lg mb-2"></i>
+      <p class="font-display text-2xl md:text-3xl text-gold-400"><span data-count-to="15">0</span> yrs</p>
+      <p class="text-xs uppercase tracking-wide opacity-70 mt-1">Serving Riverside</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== WHY EMBER & FORNO ============================== -->
+<section class="py-20 lg:py-28">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="max-w-xl mx-auto text-center mb-14" data-aos="fade-up">
+      <span class="badge-chalk mb-4">Why Diners Keep Coming Back</span>
+      <h2 class="font-display text-2xl md:text-3xl mb-4">Baked Different, Every Single Pie</h2>
+      <p class="opacity-75">Six reasons Riverside orders from us more than any other pizza place in town.</p>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 lg:auto-rows-[9.5rem]">
+      <!-- Feature reason: 900°F Oven -->
+      <div class="reason-card reason-feature col-span-2 row-span-2 bg-marinara-600 flex flex-col justify-end" data-aos="fade-up">
+        <i class="fa-solid fa-fire-burner bg-icon" aria-hidden="true"></i>
+        <div class="reason-icon-badge"><i class="fa-solid fa-fire-burner"></i></div>
+        <h3 class="font-display text-lg mb-2">900°F Brick Oven</h3>
+        <p class="text-sm opacity-85 max-w-xs">Wood-fired for a smoky char and a crust that stays crisp all the way to your door.</p>
+      </div>
+      <!-- Dough Made Daily -->
+      <div class="reason-card col-span-2 bg-olive-600 flex flex-col justify-end" data-aos="fade-up" data-aos-delay="80">
+        <i class="fa-solid fa-wheat-awn bg-icon" aria-hidden="true"></i>
+        <div class="reason-icon-badge"><i class="fa-solid fa-wheat-awn"></i></div>
+        <h3 class="font-extrabold mb-1">Dough Made Daily</h3>
+        <p class="text-xs opacity-85">48-hour cold-fermented, hand-stretched every morning — never frozen.</p>
+      </div>
+      <!-- Local Ingredients -->
+      <div class="reason-card bg-gold-500 !text-char-900 flex flex-col justify-end" data-aos="fade-up" data-aos-delay="120">
+        <i class="fa-solid fa-leaf bg-icon" aria-hidden="true"></i>
+        <div class="reason-icon-badge !bg-char-900/10">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <h3 class="font-extrabold mb-1 text-sm">Local Ingredients</h3>
+        <p class="text-xs opacity-80">Riverside Farmers Market produce, imported San Marzano tomatoes.</p>
+      </div>
+      <!-- Fast Delivery -->
+      <div class="reason-card bg-char-900 flex flex-col justify-end" data-aos="fade-up" data-aos-delay="160">
+        <i class="fa-solid fa-motorcycle bg-icon" aria-hidden="true"></i>
+        <div class="reason-icon-badge"><i class="fa-solid fa-motorcycle"></i></div>
+        <h3 class="font-extrabold mb-1 text-sm">Live-Tracked Delivery</h3>
+        <p class="text-xs opacity-75">Watch it move from oven to door in real time.</p>
+      </div>
+      <!-- One-Tap Reorder -->
+      <div class="reason-card reason-light col-span-2 flex flex-col justify-end" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-rotate bg-icon" aria-hidden="true"></i>
+        <div class="reason-icon-badge"><i class="fa-solid fa-rotate"></i></div>
+        <h3 class="font-extrabold mb-1">One-Tap Reorder</h3>
+        <p class="text-xs opacity-70">Loved last week's order? Reorder your favorite from your account instantly.</p>
+      </div>
+      <!-- Weekly Deals -->
+      <div class="reason-card col-span-2 bg-gradient-to-br from-marinara-700 to-marinara-600 flex flex-col justify-end" data-aos="fade-up" data-aos-delay="240">
+        <i class="fa-solid fa-tags bg-icon" aria-hidden="true"></i>
+        <div class="reason-icon-badge"><i class="fa-solid fa-tags"></i></div>
+        <h3 class="font-extrabold mb-1">Weekly Deals</h3>
+        <p class="text-xs opacity-85">Rotating combos and limited-time offers — always a reason to order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== TODAY'S MENU HIGHLIGHTS ============================== -->
+<section class="py-20 lg:py-28 bg-cream-50 dark:bg-char-800/60">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12" data-aos="fade-up">
+      <div>
+        <span class="badge-chalk mb-4">Today's Menu Highlights</span>
+        <h2 class="font-display text-2xl md:text-3xl">Our Most-Loved Pizzas</h2>
+      </div>
+      <a href="menu.html" class="btn-crust-outline"><i class="fa-solid fa-book-open"></i> Full Menu</a>
+    </div>
+
+    <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div class="menu-card" data-aos="fade-up">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=500&q=80" loading="lazy" alt="Ember Margherita pizza with fresh basil">
+        </div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-title">Ember Margherita</h3>
+          <p class="menu-card-desc">San Marzano tomato, fresh mozzarella, basil, olive oil.</p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">$15.50</span>
+            <button class="menu-card-add" data-add-to-cart data-id="margherita" data-name="Ember Margherita" data-price="15.50" data-meta="Medium" data-img="https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=200&q=80" aria-label="Add Ember Margherita to cart"><i class="fa-solid fa-plus text-xs"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="60">
+        <div class="menu-card-img">
+          <span class="menu-card-badge">Best Seller</span>
+          <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=80" loading="lazy" alt="Smoky Pepperoni Supreme pizza">
+        </div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-title">Smoky Pepperoni Supreme</h3>
+          <p class="menu-card-desc">Double pepperoni, mozzarella, chili-honey drizzle.</p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">$17.00</span>
+            <button class="menu-card-add" data-add-to-cart data-id="pepperoni-supreme" data-name="Smoky Pepperoni Supreme" data-price="17.00" data-meta="Medium" data-img="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=200&q=80" aria-label="Add Smoky Pepperoni Supreme to cart"><i class="fa-solid fa-plus text-xs"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="120">
+        <div class="menu-card-img">
+          <img src="https://images.unsplash.com/photo-1571066811602-716837d681de?auto=format&fit=crop&w=500&q=80" loading="lazy" alt="Wild Mushroom and Truffle pizza">
+        </div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-title">Wild Mushroom &amp; Truffle</h3>
+          <p class="menu-card-desc">Cremini, wild mushroom blend, truffle oil, fontina.</p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">$18.50</span>
+            <button class="menu-card-add" data-add-to-cart data-id="mushroom-truffle" data-name="Wild Mushroom & Truffle" data-price="18.50" data-meta="Medium" data-img="https://images.unsplash.com/photo-1571066811602-716837d681de?auto=format&fit=crop&w=200&q=80" aria-label="Add Wild Mushroom & Truffle to cart"><i class="fa-solid fa-plus text-xs"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card" data-aos="fade-up" data-aos-delay="180">
+        <div class="menu-card-img">
+          <span class="menu-card-badge">Spicy</span>
+          <img src="https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?auto=format&fit=crop&w=500&q=80" loading="lazy" alt="Diavola Rossa spicy pizza">
+        </div>
+        <div class="menu-card-body">
+          <h3 class="menu-card-title">Diavola Rossa</h3>
+          <p class="menu-card-desc">Spicy soppressata, calabrian chili, mozzarella.</p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">$17.50</span>
+            <button class="menu-card-add" data-add-to-cart data-id="diavola-rossa" data-name="Diavola Rossa" data-price="17.50" data-meta="Medium" data-img="https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?auto=format&fit=crop&w=200&q=80" aria-label="Add Diavola Rossa to cart"><i class="fa-solid fa-plus text-xs"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LIMITED-TIME DEALS PREVIEW ============================== -->
+<section class="py-20 lg:py-28">
+  <div class="container mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+    <div data-aos="fade-right">
+      <span class="badge-chalk mb-4">⏳ Limited-Time</span>
+      <h2 class="font-display text-2xl md:text-3xl mb-4">The Family Feast Deal Ends Soon</h2>
+      <p class="opacity-75 mb-6 max-w-md">2 large pizzas, a full order of garlic knots and a 2-liter soda — everything you need for movie night, for one flat price.</p>
+      <div class="flex gap-3 mb-8" data-countdown="2026-08-12T23:59:59"></div>
+      <a href="deals.html" class="btn-crust"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-tags"></i> See All Deals</a>
+    </div>
+    <div class="relative rounded-3xl overflow-hidden shadow-xl" data-aos="fade-left">
+      <img src="https://images.unsplash.com/photo-1548369937-47519962c11a?auto=format&fit=crop&w=900&q=80" loading="lazy" alt="Family Feast deal: two pizzas, garlic knots and soda spread on a table" class="w-full h-80 object-cover object-top ph-img">
+      <div class="absolute top-4 start-4 bg-marinara-600 text-white font-extrabold text-sm px-4 py-2 rounded-full shadow-lg">Save $12</div>
+      <div class="absolute bottom-0 inset-x-0 bg-black/55 backdrop-blur-sm text-white p-4 flex items-center justify-between">
+        <span class="font-display text-lg">Family Feast</span>
+        <span class="font-mark text-2xl text-gold-300">$39.99</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== HOW ORDERING WORKS ============================== -->
+<section class="py-20 lg:py-28 bg-char-900 text-cream-50">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="max-w-xl mx-auto text-center mb-16" data-aos="fade-up">
+      <span class="badge-chalk mb-4">Simple, Fast, Trackable</span>
+      <h2 class="font-display text-2xl md:text-3xl">How Ordering Works</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+      <div class="text-center" data-aos="fade-up">
+        <div class="w-16 h-16 rounded-full bg-marinara-600 flex items-center justify-center mx-auto mb-4 text-xl font-display">1</div>
+        <h3 class="font-extrabold mb-2">Choose Your Pizza</h3>
+        <p class="text-sm opacity-70">Pick a signature pie or build your own from scratch.</p>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-16 h-16 rounded-full bg-marinara-600 flex items-center justify-center mx-auto mb-4 text-xl font-display">2</div>
+        <h3 class="font-extrabold mb-2">Customize &amp; Checkout</h3>
+        <p class="text-sm opacity-70">Adjust size, crust and toppings, then pay securely online.</p>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-16 h-16 rounded-full bg-marinara-600 flex items-center justify-center mx-auto mb-4 text-xl font-display">3</div>
+        <h3 class="font-extrabold mb-2">Track It Live</h3>
+        <p class="text-sm opacity-70">Watch your order move from oven to your door in your dashboard.</p>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-16 h-16 rounded-full bg-marinara-600 flex items-center justify-center mx-auto mb-4 text-xl font-display">4</div>
+        <h3 class="font-extrabold mb-2">Enjoy &amp; Reorder</h3>
+        <p class="text-sm opacity-70">Loved it? Reorder your favorite in one tap next time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== TESTIMONIALS (Swiper) ============================== -->
+<section class="py-20 lg:py-28">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="max-w-xl mx-auto text-center mb-14" data-aos="fade-up">
+      <span class="badge-chalk mb-4">Riverside's Favorite</span>
+      <h2 class="font-display text-2xl md:text-3xl">What Our Regulars Say</h2>
+    </div>
+    <div class="swiper testimonial-swiper" data-aos="fade-up">
+      <div class="swiper-wrapper pb-12">
+        <div class="swiper-slide h-auto">
+          <div class="bg-white dark:bg-char-800 rounded-2xl p-7 shadow-soft h-full flex flex-col">
+            <div class="text-gold-500 mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="opacity-80 mb-6 flex-1">"The Diavola Rossa has real heat and the crust is somehow crispy AND chewy. Delivery tracker said 19 minutes and it was spot on."</p>
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" loading="lazy" class="w-11 h-11 rounded-full object-cover ph-img" alt="Portrait of Marcus Webb">
+              <div><p class="font-extrabold text-sm">Marcus Webb</p><p class="text-xs opacity-60">Riverside Heights</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide h-auto">
+          <div class="bg-white dark:bg-char-800 rounded-2xl p-7 shadow-soft h-full flex flex-col">
+            <div class="text-gold-500 mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="opacity-80 mb-6 flex-1">"Built my own pie with extra mushrooms and jalapeños in under a minute. Reordering it now takes one tap from my dashboard — genius."</p>
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=100&q=80" loading="lazy" class="w-11 h-11 rounded-full object-cover ph-img" alt="Portrait of Priya Anand">
+              <div><p class="font-extrabold text-sm">Priya Anand</p><p class="text-xs opacity-60">Millbrook</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide h-auto">
+          <div class="bg-white dark:bg-char-800 rounded-2xl p-7 shadow-soft h-full flex flex-col">
+            <div class="text-gold-500 mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <p class="opacity-80 mb-6 flex-1">"The Family Feast deal is our Friday tradition now. Two pizzas plus garlic knots for less than we'd pay elsewhere for one."</p>
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" loading="lazy" class="w-11 h-11 rounded-full object-cover ph-img" alt="Portrait of Dana Ruiz">
+              <div><p class="font-extrabold text-sm">Dana Ruiz</p><p class="text-xs opacity-60">Old Mill District</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination !bottom-0"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ACCOUNT / DASHBOARD CTA (split) ============================== -->
+<section class="py-20 lg:py-28 bg-cream-50 dark:bg-char-800/60">
+  <div class="container mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
+    <div class="order-2 lg:order-1 rounded-3xl bg-char-900 text-cream-50 p-8" data-aos="fade-right">
+      <p class="text-xs uppercase tracking-widest text-gold-400 font-extrabold mb-4">Live Order Tracker</p>
+      <div class="status-rail">
+        <div class="status-node is-done"><div class="dot"><i class="fa-solid fa-receipt text-xs"></i></div><span class="text-[10px] opacity-70">Received</span></div>
+        <div class="status-node is-done"><div class="dot"><i class="fa-solid fa-kitchen-set text-xs"></i></div><span class="text-[10px] opacity-70">Preparing</span></div>
+        <div class="status-node is-active"><div class="dot"><i class="fa-solid fa-fire-burner text-xs"></i></div><span class="text-[10px] opacity-70">In the Oven</span></div>
+        <div class="status-node"><div class="dot"><i class="fa-solid fa-motorcycle text-xs"></i></div><span class="text-[10px] opacity-70">Delivery</span></div>
+        <div class="status-node"><div class="dot"><i class="fa-solid fa-circle-check text-xs"></i></div><span class="text-[10px] opacity-70">Delivered</span></div>
+      </div>
+      <p class="text-sm opacity-70 mt-6">This is exactly what you'll see in your account while your pizza is on its way.</p>
+    </div>
+    <div class="order-1 lg:order-2" data-aos="fade-left">
+      <span class="badge-chalk mb-4">Your Account</span>
+      <h2 class="font-display text-2xl md:text-3xl mb-4">Track Your Order, Live</h2>
+      <p class="opacity-75 mb-6 max-w-md">Create a free account to follow your pizza from the oven to your doorstep, save your addresses, and reorder any past favorite in a single tap.</p>
+      <ul class="space-y-3 mb-8 text-sm">
+        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-olive-600 dark:text-olive-300"></i> Live status from Preparing to Delivered</li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-olive-600 dark:text-olive-300"></i> Full order history saved to your account</li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-olive-600 dark:text-olive-300"></i> One-tap reorder of any past pizza</li>
+      </ul>
+      <div class="flex flex-wrap gap-4">
+        <a href="register.html" class="btn-crust"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-user-plus"></i> Create Free Account</a>
+        <a href="login.html" class="btn-crust-outline"><i class="fa-solid fa-right-to-bracket"></i> Log In</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FAQ PREVIEW ============================== -->
+<section class="py-20 lg:py-28">
+  <div class="container mx-auto px-4 lg:px-8 max-w-3xl">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <span class="badge-chalk mb-4">Good to Know</span>
+      <h2 class="font-display text-2xl md:text-3xl">Quick Questions</h2>
+    </div>
+    <div class="space-y-4" data-accordion-group="single" data-aos="fade-up">
+      <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden">
+        <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="true">
+          How long does delivery take?
+          <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+        </button>
+        <div class="accordion-panel is-open"><div class="px-5 pb-5 text-sm opacity-75">Most orders arrive within 20–30 minutes. You can follow every stage live from your account dashboard once you're logged in.</div></div>
+      </div>
+      <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden">
+        <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+          Can I build my own pizza?
+          <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+        </button>
+        <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes — head to our Menu page and use the Build Your Own tool to pick your size, crust and toppings with a live running price.</div></div>
+      </div>
+      <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden">
+        <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+          Do you cater to dietary restrictions?
+          <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+        </button>
+        <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">We offer vegetarian pies, a gluten-friendly crust option, and dairy-free cheese on request — just add a note at checkout.</div></div>
+      </div>
+    </div>
+    <div class="text-center mt-10">
+      <a href="faq.html" class="font-extrabold text-marinara-600 dark:text-gold-400">View all FAQs <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FINAL CTA ============================== -->
+<section class="py-20 bg-gradient-to-r from-marinara-700 to-marinara-600 text-white text-center">
+  <div class="container mx-auto px-4 lg:px-8" data-aos="zoom-in">
+    <h2 class="font-display text-2xl md:text-4xl mb-4">Hungry Yet?</h2>
+    <p class="opacity-90 mb-8 max-w-lg mx-auto">Order online now and get your first delivery tracked live — from the oven straight to your door.</p>
+    <a href="menu.html" class="btn-crust !bg-white !text-marinara-700 hover:!bg-gold-100"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-bag-shopping"></i> Start Your Order</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="zigzag-top relative bg-char-900 text-char-50 pt-16 pb-28 xl:pb-0">
+  <div class="container mx-auto px-4 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
+    <div>
+      <a href="index.html" class="flex items-center gap-2 mb-4">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-base">Ember <span class="text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900°F brick oven.</p>
+      <div class="flex gap-3 mb-4">
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Mon–Sun: 11:00 AM – 11:00 PM</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-location-dot w-4"></i> 214 Mill Street, Riverside</p>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Quick Links</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="about.html" class="hover:text-gold-400">About Us</a></li>
+        <li><a href="menu.html" class="hover:text-gold-400">Full Menu</a></li>
+        <li><a href="deals.html" class="hover:text-gold-400">Deals &amp; Offers</a></li>
+        <li><a href="gallery.html" class="hover:text-gold-400">Gallery</a></li>
+        <li><a href="faq.html" class="hover:text-gold-400">FAQs</a></li>
+        <li><a href="contact.html" class="hover:text-gold-400">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Menu Categories</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="menu.html#signature" class="hover:text-gold-400">Signature Pizzas</a></li>
+        <li><a href="menu.html#classic" class="hover:text-gold-400">Classic Pizzas</a></li>
+        <li><a href="menu.html#build" class="hover:text-gold-400">Build Your Own</a></li>
+        <li><a href="menu.html#sides" class="hover:text-gold-400">Sides &amp; Salads</a></li>
+        <li><a href="drinks.html" class="hover:text-gold-400">Drinks</a></li>
+        <li><a href="desserts.html" class="hover:text-gold-400">Desserts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Get Delivery Updates</p>
+      <p class="text-sm text-cream-100/70 mb-3">Join our list for weekly deals and limited-time drops.</p>
+      <form data-validate-form class="space-y-2" onsubmit="event.preventDefault(); EF.showToast('Subscribed! Check your inbox.'); this.reset();">
+        <div class="form-field !mb-0">
+          <label for="footerEmail" class="sr-only">Email address</label>
+          <input type="email" id="footerEmail" name="email" required placeholder="you@example.com" class="!bg-white/10 !border-white/15 !text-white placeholder:text-white/40">
+          <span class="field-error !text-gold-300">Enter a valid email address.</span>
+        </div>
+        <button type="submit" class="btn-crust w-full justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5">
+    <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream-100/60">
+      <p>© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
+      <div class="flex items-center gap-3 text-lg">
+        <i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-cc-apple-pay"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ============================== CART DRAWER ============================== -->
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your cart">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <p class="font-display text-base">Your Cart</p>
+    <button id="cartCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5" id="cartItems"></div>
+  <div id="cartEmpty" class="hidden flex-1 flex-col items-center justify-center text-center px-6 opacity-60">
+    <i class="fa-solid fa-pizza-slice text-4xl mb-3"></i>
+    <p class="font-bold">Your cart is empty</p>
+    <p class="text-sm">Add a wood-fired favorite from our menu.</p>
+  </div>
+  <div class="p-5 border-t border-black/10 dark:border-white/10">
+    <div class="flex items-center justify-between mb-4 font-extrabold text-lg">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <a href="checkout.html" id="cartCheckoutBtn" class="btn-crust w-full justify-center opacity-40 pointer-events-none">
+      <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+      Checkout
+    </a>
+  </div>
+</aside>
+
+<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
+      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+    </a>
+    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
+    <a href="index.html" class="nav-drawer-link" aria-current="page"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="deals.html" class="nav-drawer-link"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="gallery.html" class="nav-drawer-link"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+  </nav>
+  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Dark Mode</span>
+      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Language / Direction</span>
+      <div class="dir-switch" role="group" aria-label="Text direction">
+        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+      </div>
+    </div>
+    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
+  </div>
+</aside>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  AOS.init({ duration: 700, once: true, disable: 'reduce' });
+  new Swiper('.testimonial-swiper', {
+    loop: true,
+    spaceBetween: 24,
+    autoHeight: false,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: { 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1100: { slidesPerView: 3 } }
+  });
+</script>
+</body>
+</html>

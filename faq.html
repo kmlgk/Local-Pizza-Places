@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQs | Ember &amp; Forno</title>
+<meta name="description" content="Answers to common questions about ordering, delivery, menu and dietary options, your Ember & Forno account, live order tracking, payments and policies.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          marinara: {50:'#fdf2f2',100:'#fbe3e3',200:'#f5c2c3',300:'#ec9598',400:'#e06569',500:'#d6383d',600:'#c1272d',700:'#9e1e23',800:'#7c171b',900:'#5c1114'},
+          olive: {50:'#f4f7f0',100:'#e4ecda',300:'#a9c18e',500:'#6e9660',600:'#5b7b4e',700:'#48613d',900:'#293a22'},
+          gold: {100:'#fbead0',300:'#f0cf90',400:'#f0bc6b',500:'#e8a33d',600:'#cc8722',800:'#8a5a11'},
+          cream: {50:'#fffdf8',100:'#fbf3e0',200:'#f3e6c8',300:'#e7d4a8'},
+          char: {50:'#f8f2ea',100:'#efe6db',600:'#3a2f27',700:'#2e2620',800:'#241e19',900:'#1b1613'}
+        },
+        fontFamily: {
+          display: ['"Alfa Slab One"','serif'],
+          body: ['Nunito','sans-serif'],
+          mark: ['Kalam','cursive']
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Kalam:wght@400;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
+
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="header-row flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
+        <div class="relative">
+          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
+            <a href="index.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
+            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
+          </div>
+        </div>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="drinks.html" class="nav-link">Drinks</a>
+        <a href="desserts.html" class="nav-link">Desserts</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2 md:gap-3">
+        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
+          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+        </div>
+        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
+          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
+        </button>
+        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================== SEARCH HERO ============================== -->
+<section class="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-olive-900 text-cream-50 text-center">
+  <div class="container mx-auto px-4 lg:px-8 max-w-2xl" data-aos="fade-up">
+    <nav aria-label="Breadcrumb" class="text-xs font-bold mb-4 opacity-80 flex justify-center">
+      <ol class="flex items-center gap-2">
+        <li><a href="index.html" class="hover:text-gold-300">Home</a></li>
+        <li aria-hidden="true"><i class="fa-solid fa-chevron-right rtl:rotate-180 text-[9px]"></i></li>
+        <li aria-current="page">FAQ</li>
+      </ol>
+    </nav>
+    <span class="badge-chalk mb-4 !bg-white/15 !text-white">Frequently Asked Questions</span>
+    <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl leading-[1.15] mb-6">How Can We Help?</h1>
+    <p class="opacity-85 mb-8">Search our most common questions about ordering, the menu, your account and more.</p>
+    <div class="relative max-w-lg mx-auto">
+      <i class="fa-solid fa-magnifying-glass absolute top-1/2 -translate-y-1/2 start-5 opacity-60" aria-hidden="true"></i>
+      <label for="faqSearch" class="sr-only">Search FAQs</label>
+      <input type="search" id="faqSearch" placeholder="Try “delivery”, “gluten-free”, “payment”…" class="w-full rounded-full py-4 ps-12 pe-5 text-char-900 bg-white dark:bg-cream-50 shadow-xl focus:outline-none focus:ring-4 focus:ring-gold-400/40">
+    </div>
+  </div>
+</section>
+
+<!-- ============================== GROUP QUICK NAV ============================== -->
+<section class="py-8 border-b border-black/5 dark:border-white/10 sticky top-[var(--header-h,0px)] bg-cream-100/90 dark:bg-char-900/90 backdrop-blur z-30">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="flex flex-wrap justify-center gap-3 text-sm font-extrabold">
+      <a href="#group-ordering" class="px-4 py-2 rounded-full bg-white dark:bg-char-800 shadow-soft hover:bg-marinara-50 dark:hover:bg-char-700"><i class="fa-solid fa-motorcycle me-2 text-marinara-600 dark:text-gold-400"></i>Ordering &amp; Delivery</a>
+      <a href="#group-menu" class="px-4 py-2 rounded-full bg-white dark:bg-char-800 shadow-soft hover:bg-marinara-50 dark:hover:bg-char-700"><i class="fa-solid fa-pizza-slice me-2 text-marinara-600 dark:text-gold-400"></i>Menu &amp; Dietary</a>
+      <a href="#group-account" class="px-4 py-2 rounded-full bg-white dark:bg-char-800 shadow-soft hover:bg-marinara-50 dark:hover:bg-char-700"><i class="fa-solid fa-user me-2 text-marinara-600 dark:text-gold-400"></i>Account &amp; Tracking</a>
+      <a href="#group-payments" class="px-4 py-2 rounded-full bg-white dark:bg-char-800 shadow-soft hover:bg-marinara-50 dark:hover:bg-char-700"><i class="fa-solid fa-credit-card me-2 text-marinara-600 dark:text-gold-400"></i>Payments &amp; Policies</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FAQ GROUPS ============================== -->
+<section class="py-16 lg:py-24">
+  <div class="container mx-auto px-4 lg:px-8 max-w-3xl space-y-16">
+
+    <div id="faqEmpty" class="hidden text-center py-16">
+      <i class="fa-solid fa-magnifying-glass text-4xl opacity-30 mb-4"></i>
+      <p class="font-extrabold text-lg mb-2">No matching questions</p>
+      <p class="opacity-70 mb-6">Try different words, or reach out and we'll answer directly.</p>
+      <a href="contact.html" class="btn-crust-outline"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+    </div>
+
+    <!-- GROUP: Ordering & Delivery -->
+    <div id="group-ordering" data-faq-group>
+      <div class="mb-6" data-aos="fade-up">
+        <span class="badge-chalk mb-3">Ordering &amp; Delivery</span>
+        <h2 class="font-display text-2xl">Ordering &amp; Delivery</h2>
+      </div>
+      <div class="space-y-4" data-accordion-group="single">
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            How do I track my order after I place it?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Once you check out, log in to your account and open your dashboard — you'll see a live status rail moving through Received, Preparing, In the Oven, Out for Delivery and Delivered, updated in real time.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Can I edit or cancel an order after checkout?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">You can request changes or a cancellation by calling us at (503) 555-0192 within a few minutes of ordering. Once your pizza enters the oven, we usually can't stop the bake, but we'll always try to accommodate you.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            How long does delivery usually take?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Most orders arrive within 20–30 minutes of placing them, and you can watch every stage live from your dashboard once you're logged in.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            What if my order arrives cold or incorrect?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Contact us right away through the Contact page or by phone — we'll re-fire a fresh pizza or issue a refund, no questions asked. We stand behind every order that leaves our oven.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Do you deliver outside of Riverside?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">We currently deliver within a 5-mile radius of 214 Mill Street. Enter your address at checkout and we'll let you know instantly if you're in range.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Can I schedule an order for later instead of ASAP?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes — at checkout choose "Schedule for later" and pick a time up to 5 days ahead. We'll start baking right on time so it arrives hot.</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GROUP: Menu & Dietary -->
+    <div id="group-menu" data-faq-group>
+      <div class="mb-6" data-aos="fade-up">
+        <span class="badge-chalk mb-3">Menu &amp; Dietary</span>
+        <h2 class="font-display text-2xl">Menu &amp; Dietary</h2>
+      </div>
+      <div class="space-y-4" data-accordion-group="single">
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Do you offer gluten-friendly or dairy-free options?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes — every pizza can be made on a gluten-friendly crust or with dairy-free cheese for a small upcharge. Note that our kitchen isn't fully gluten-free, so trace cross-contact is possible.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            How does the Build Your Own Pizza pricing work?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Every build starts from a base price for your chosen size and crust, then each topping adds a flat fee shown live as you tap — the running total updates instantly so there are never surprises at checkout.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Are your ingredients really locally sourced?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Most of our produce comes from the Riverside Farmers Market, just a few miles from our oven. Our San Marzano tomatoes are imported, since true San Marzanos only grow near Naples.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Do you list allergens for each pizza?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes, every item on the Menu page lists common allergens. If you have a severe allergy, please also add a note at checkout so our kitchen can take extra care.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            What sizes are available?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Every pizza on our menu comes in Small (10"), Medium (12") and Large (16"), so you can choose the size that fits your table.</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GROUP: Your Account & Tracking -->
+    <div id="group-account" data-faq-group>
+      <div class="mb-6" data-aos="fade-up">
+        <span class="badge-chalk mb-3">Your Account &amp; Tracking</span>
+        <h2 class="font-display text-2xl">Your Account &amp; Tracking</h2>
+      </div>
+      <div class="space-y-4" data-accordion-group="single">
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Do I need an account to order?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">No, guest checkout is available. Creating a free account is optional but lets you track orders live, save addresses and reorder favorites in one tap.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            How do I save an address for faster reorders?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Once logged in, add or edit addresses from your dashboard's Addresses tab. Your default address is filled in automatically the next time you check out.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            How does one-tap reorder work?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Open your order history in the dashboard, find a past order, and tap Reorder — the exact same pizzas, sizes and toppings are added straight to your cart.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            I forgot my password — what do I do?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">On the Login page, select "Forgot password" and follow the prompts. If you still need help, our team can verify your account manually — just contact us.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            What do the tracking stages actually mean?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Received means we've got your order, Preparing is prep and topping, In the Oven is the 90-second wood-fired bake, Out for Delivery means a rider has it, and Delivered confirms it's at your door.</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GROUP: Payments & Policies -->
+    <div id="group-payments" data-faq-group>
+      <div class="mb-6" data-aos="fade-up">
+        <span class="badge-chalk mb-3">Payments &amp; Policies</span>
+        <h2 class="font-display text-2xl">Payments &amp; Policies</h2>
+      </div>
+      <div class="space-y-4" data-accordion-group="single">
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Is my payment information stored securely?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes — we never store full card numbers on our servers. Payments are processed through an encrypted, PCI-compliant checkout, the same standard used by major card networks.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            What payment methods do you accept?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">We accept Visa, Mastercard, American Express and Apple Pay online, plus cash or card on delivery if you'd prefer to pay at the door.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Can I use a coupon or deal code at checkout?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes — browse current offers on our Deals page, then enter the matching code at checkout to apply the discount before you pay.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            What's your refund policy?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">If we get your order wrong or it doesn't meet our standards, we'll refund it in full or send a fresh pizza — whichever you prefer. Just reach out within 24 hours of delivery.</div></div>
+        </div>
+
+        <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
+          <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
+            Is tipping included, or should I add one separately?
+            <i class="fa-solid fa-chevron-down accordion-chevron"></i>
+          </button>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Tips are never automatically included. You'll see an optional tip step at checkout, and 100% of it goes straight to your delivery rider.</div></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================== STILL HAVE QUESTIONS CTA ============================== -->
+<section class="py-20 bg-gradient-to-r from-marinara-700 to-marinara-600 text-white text-center">
+  <div class="container mx-auto px-4 lg:px-8" data-aos="zoom-in">
+    <h2 class="font-display text-2xl md:text-4xl mb-4">Still Have Questions?</h2>
+    <p class="opacity-90 mb-8 max-w-lg mx-auto">Our team is happy to help with anything not covered above — usually within one business day.</p>
+    <a href="contact.html" class="btn-crust !bg-white !text-marinara-700 hover:!bg-gold-100"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-envelope"></i> Contact Us</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="zigzag-top relative bg-char-900 text-char-50 pt-16 pb-28 xl:pb-0">
+  <div class="container mx-auto px-4 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
+    <div>
+      <a href="index.html" class="flex items-center gap-2 mb-4">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-base">Ember <span class="text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900°F brick oven.</p>
+      <div class="flex gap-3 mb-4">
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Mon–Sun: 11:00 AM – 11:00 PM</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-location-dot w-4"></i> 214 Mill Street, Riverside</p>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Quick Links</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="about.html" class="hover:text-gold-400">About Us</a></li>
+        <li><a href="menu.html" class="hover:text-gold-400">Full Menu</a></li>
+        <li><a href="deals.html" class="hover:text-gold-400">Deals &amp; Offers</a></li>
+        <li><a href="gallery.html" class="hover:text-gold-400">Gallery</a></li>
+        <li><a href="faq.html" class="hover:text-gold-400">FAQs</a></li>
+        <li><a href="contact.html" class="hover:text-gold-400">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Menu Categories</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="menu.html#signature" class="hover:text-gold-400">Signature Pizzas</a></li>
+        <li><a href="menu.html#classic" class="hover:text-gold-400">Classic Pizzas</a></li>
+        <li><a href="menu.html#build" class="hover:text-gold-400">Build Your Own</a></li>
+        <li><a href="menu.html#sides" class="hover:text-gold-400">Sides &amp; Salads</a></li>
+        <li><a href="drinks.html" class="hover:text-gold-400">Drinks</a></li>
+        <li><a href="desserts.html" class="hover:text-gold-400">Desserts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Get Delivery Updates</p>
+      <p class="text-sm text-cream-100/70 mb-3">Join our list for weekly deals and limited-time drops.</p>
+      <form data-validate-form class="space-y-2" onsubmit="event.preventDefault(); EF.showToast('Subscribed! Check your inbox.'); this.reset();">
+        <div class="form-field !mb-0">
+          <label for="footerEmail" class="sr-only">Email address</label>
+          <input type="email" id="footerEmail" name="email" required placeholder="you@example.com" class="!bg-white/10 !border-white/15 !text-white placeholder:text-white/40">
+          <span class="field-error !text-gold-300">Enter a valid email address.</span>
+        </div>
+        <button type="submit" class="btn-crust w-full justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5">
+    <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream-100/60">
+      <p>© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
+      <div class="flex items-center gap-3 text-lg">
+        <i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-cc-apple-pay"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ============================== CART DRAWER ============================== -->
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your cart">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <p class="font-display text-base">Your Cart</p>
+    <button id="cartCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5" id="cartItems"></div>
+  <div id="cartEmpty" class="hidden flex-1 flex-col items-center justify-center text-center px-6 opacity-60">
+    <i class="fa-solid fa-pizza-slice text-4xl mb-3"></i>
+    <p class="font-bold">Your cart is empty</p>
+    <p class="text-sm">Add a wood-fired favorite from our menu.</p>
+  </div>
+  <div class="p-5 border-t border-black/10 dark:border-white/10">
+    <div class="flex items-center justify-between mb-4 font-extrabold text-lg">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <a href="checkout.html" id="cartCheckoutBtn" class="btn-crust w-full justify-center opacity-40 pointer-events-none">
+      <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+      Checkout
+    </a>
+  </div>
+</aside>
+
+<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
+      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+    </a>
+    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
+    <a href="index.html" class="nav-drawer-link"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="deals.html" class="nav-drawer-link"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="gallery.html" class="nav-drawer-link"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="faq.html" class="nav-drawer-link" aria-current="page"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+  </nav>
+  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Dark Mode</span>
+      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Language / Direction</span>
+      <div class="dir-switch" role="group" aria-label="Text direction">
+        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+      </div>
+    </div>
+    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
+  </div>
+</aside>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  AOS.init({ duration: 700, once: true, disable: 'reduce' });
+
+  (function () {
+    var input = document.getElementById('faqSearch');
+    var groups = Array.prototype.slice.call(document.querySelectorAll('[data-faq-group]'));
+    var emptyState = document.getElementById('faqEmpty');
+    if (!input) return;
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      var totalVisible = 0;
+      groups.forEach(function (group) {
+        var items = Array.prototype.slice.call(group.querySelectorAll('[data-faq-item]'));
+        var visibleInGroup = 0;
+        items.forEach(function (item) {
+          var text = item.textContent.toLowerCase();
+          var match = !q || text.indexOf(q) !== -1;
+          item.classList.toggle('hidden', !match);
+          if (match) { visibleInGroup++; totalVisible++; }
+        });
+        group.classList.toggle('hidden', visibleInGroup === 0);
+      });
+      emptyState.classList.toggle('hidden', totalVisible !== 0 || q === '');
+    });
+  })();
+</script>
+</body>
+</html>

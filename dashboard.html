@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account | Ember &amp; Forno</title>
+<meta name="description" content="Track your Ember & Forno order live from oven to doorstep, and reorder any past favorite in one tap.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: { extend: {
+      colors: {
+        marinara: {50:'#fdf2f2',100:'#fbe3e3',200:'#f5c2c3',300:'#ec9598',400:'#e06569',500:'#d6383d',600:'#c1272d',700:'#9e1e23',800:'#7c171b',900:'#5c1114'},
+        olive: {50:'#f4f7f0',100:'#e4ecda',300:'#a9c18e',500:'#6e9660',600:'#5b7b4e',700:'#48613d',900:'#293a22'},
+        gold: {100:'#fbead0',300:'#f0cf90',400:'#f0bc6b',500:'#e8a33d',600:'#cc8722',800:'#8a5a11'},
+        cream: {50:'#fffdf8',100:'#fbf3e0',200:'#f3e6c8',300:'#e7d4a8'},
+        char: {50:'#f8f2ea',100:'#efe6db',600:'#3a2f27',700:'#2e2620',800:'#241e19',900:'#1b1613'}
+      },
+      fontFamily: { display: ['"Alfa Slab One"','serif'], body: ['Nunito','sans-serif'], mark: ['Kalam','cursive'] }
+    } }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Kalam:wght@400;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .stat-tile{background:#fff;border-radius:1.25rem;padding:1.25rem;box-shadow:var(--shadow-soft);}
+  .dark .stat-tile{background:var(--char-800);}
+  .order-history-card{background:#fff;border-radius:1.25rem;padding:1.25rem;box-shadow:var(--shadow-soft);}
+  .dark .order-history-card{background:var(--char-800);}
+  .status-pill{font-size:.68rem;font-weight:800;padding:.25rem .65rem;border-radius:9999px;text-transform:uppercase;letter-spacing:.03em;}
+</style>
+</head>
+<body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
+
+<div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="header-row flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
+        <div class="relative">
+          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
+            <a href="index.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
+            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
+          </div>
+        </div>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="drinks.html" class="nav-link">Drinks</a>
+        <a href="desserts.html" class="nav-link">Desserts</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2 md:gap-3">
+        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
+          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+        </div>
+        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
+          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
+        </button>
+        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="pt-32 pb-24 lg:pt-40">
+  <div class="container mx-auto px-4 lg:px-8">
+
+    <!-- Logged-out gate -->
+    <div id="loginGate" class="hidden max-w-md mx-auto text-center bg-white dark:bg-char-800 rounded-2xl p-8 shadow-soft">
+      <i class="fa-solid fa-lock text-3xl text-marinara-600 dark:text-gold-400 mb-4"></i>
+      <h1 class="font-extrabold text-lg mb-2">Log In to View Your Account</h1>
+      <p class="text-sm opacity-70 mb-6">Track live orders and reorder past favorites once you're logged in.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="login.html?redirect=dashboard.html" class="btn-crust justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Log In</a>
+        <a href="register.html?redirect=dashboard.html" class="btn-crust-outline justify-center">Create Account</a>
+      </div>
+    </div>
+
+    <!-- Dashboard content -->
+    <div id="dashContent" class="hidden">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-10">
+        <div>
+          <p class="text-xs opacity-60 mb-1">Welcome back</p>
+          <h1 class="font-display text-2xl md:text-3xl" id="welcomeName">Friend</h1>
+        </div>
+        <div class="flex gap-3">
+          <a href="menu.html" class="btn-crust-outline !py-2.5 !px-5 text-sm"><i class="fa-solid fa-plus"></i> New Order</a>
+          <button id="logoutBtn" class="btn-crust-outline !py-2.5 !px-5 text-sm"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+        </div>
+      </div>
+
+      <!-- Stat tiles -->
+      <div class="grid sm:grid-cols-3 gap-5 mb-10">
+        <div class="stat-tile">
+          <p class="text-xs opacity-60 mb-1">Total Orders</p>
+          <p class="font-display text-2xl text-marinara-600 dark:text-gold-400" id="statTotalOrders">0</p>
+        </div>
+        <div class="stat-tile">
+          <p class="text-xs opacity-60 mb-1">Favorite Item</p>
+          <p class="font-extrabold text-base" id="statFavorite">—</p>
+        </div>
+        <div class="stat-tile">
+          <p class="text-xs opacity-60 mb-1">Member Since</p>
+          <p class="font-extrabold text-base" id="statMemberSince">—</p>
+        </div>
+      </div>
+
+      <!-- Active order tracker -->
+      <div class="mb-12">
+        <h2 class="font-extrabold text-lg mb-4"><i class="fa-solid fa-location-crosshairs text-marinara-600 dark:text-gold-400 me-2"></i>Live Order Tracker</h2>
+
+        <div id="noActiveOrder" class="hidden bg-white dark:bg-char-800 rounded-2xl p-10 text-center shadow-soft">
+          <i class="fa-solid fa-pizza-slice text-3xl opacity-40 mb-3"></i>
+          <p class="font-bold mb-1">No active orders right now</p>
+          <p class="text-sm opacity-60 mb-5">Place an order and its live status will show up here.</p>
+          <a href="menu.html" class="btn-crust justify-center inline-flex"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Order Now</a>
+        </div>
+
+        <div id="activeOrderCard" class="hidden bg-char-900 text-cream-50 rounded-3xl p-6 md:p-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-gold-400 font-extrabold mb-1">Order <span id="activeOrderId"></span></p>
+              <p class="text-sm opacity-70" id="activeOrderMeta"></p>
+            </div>
+            <span id="activeStageLabel" class="status-pill bg-marinara-600 text-white"></span>
+          </div>
+
+          <div class="status-rail mb-4" id="activeStatusRail"></div>
+          <p class="text-center text-sm opacity-70 mb-8" id="activeEta"></p>
+
+          <div class="grid md:grid-cols-2 gap-6 pt-6 border-t border-white/10">
+            <div>
+              <p class="text-xs uppercase tracking-wide opacity-60 mb-2">Items</p>
+              <ul class="text-sm space-y-1" id="activeOrderItems"></ul>
+            </div>
+            <div>
+              <p class="text-xs uppercase tracking-wide opacity-60 mb-2">Delivering To</p>
+              <p class="text-sm" id="activeOrderAddress"></p>
+              <p class="font-display text-lg text-gold-400 mt-3" id="activeOrderTotal"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order history -->
+      <div>
+        <h2 class="font-extrabold text-lg mb-4"><i class="fa-solid fa-clock-rotate-left text-marinara-600 dark:text-gold-400 me-2"></i>Order History</h2>
+        <div id="historyEmpty" class="hidden bg-white dark:bg-char-800 rounded-2xl p-10 text-center shadow-soft opacity-70">
+          Your past orders will appear here.
+        </div>
+        <div id="historyList" class="space-y-4"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ============================== CART DRAWER ============================== -->
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your cart">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <p class="font-display text-base">Your Cart</p>
+    <button id="cartCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5" id="cartItems"></div>
+  <div id="cartEmpty" class="hidden flex-1 flex-col items-center justify-center text-center px-6 opacity-60">
+    <i class="fa-solid fa-pizza-slice text-4xl mb-3"></i>
+    <p class="font-bold">Your cart is empty</p>
+    <p class="text-sm">Add a wood-fired favorite from our menu.</p>
+  </div>
+  <div class="p-5 border-t border-black/10 dark:border-white/10">
+    <div class="flex items-center justify-between mb-4 font-extrabold text-lg">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <a href="checkout.html" id="cartCheckoutBtn" class="btn-crust w-full justify-center opacity-40 pointer-events-none">
+      <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+      Checkout
+    </a>
+  </div>
+</aside>
+
+<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
+      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+    </a>
+    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
+    <a href="index.html" class="nav-drawer-link"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="deals.html" class="nav-drawer-link"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="gallery.html" class="nav-drawer-link"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="login.html" class="nav-drawer-link js-account-link" aria-current="page"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+  </nav>
+  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Dark Mode</span>
+      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Language / Direction</span>
+      <div class="dir-switch" role="group" aria-label="Text direction">
+        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+      </div>
+    </div>
+    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
+  </div>
+</aside>
+<script src="assets/js/main.js"></script>
+<script>
+  (function () {
+    const user = window.EF.currentUser();
+    const loginGate = document.getElementById('loginGate');
+    const content = document.getElementById('dashContent');
+    if (!user) { loginGate.classList.remove('hidden'); return; }
+    content.classList.remove('hidden');
+
+    document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      window.EF.logoutUser();
+      window.location.href = 'index.html';
+    });
+
+    const STAGES = window.EF.STAGES;
+
+    function renderStatusRail(container, order) {
+      const idx = window.EF.getStageIndex(order);
+      container.innerHTML = STAGES.map((s, i) => `
+        <div class="status-node ${i < idx ? 'is-done' : i === idx ? 'is-active' : ''}">
+          <div class="dot"><i class="fa-solid ${s.icon} text-xs"></i></div>
+          <span class="text-[10px] opacity-70">${s.label}</span>
+        </div>
+      `).join('');
+      return idx;
+    }
+
+    function money(n) { return '$' + n.toFixed(2); }
+
+    function renderActiveOrder() {
+      const orders = window.EF.getOrders();
+      const active = orders.find((o) => window.EF.getStageIndex(o) < STAGES.length - 1);
+      const noActive = document.getElementById('noActiveOrder');
+      const card = document.getElementById('activeOrderCard');
+
+      if (!active) {
+        noActive.classList.remove('hidden');
+        card.classList.add('hidden');
+        return;
+      }
+      noActive.classList.add('hidden');
+      card.classList.remove('hidden');
+
+      const idx = renderStatusRail(document.getElementById('activeStatusRail'), active);
+      document.getElementById('activeOrderId').textContent = '#' + active.id;
+      document.getElementById('activeOrderMeta').textContent = new Date(active.placedAt).toLocaleString([], { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' });
+      document.getElementById('activeStageLabel').textContent = STAGES[idx].label;
+      document.getElementById('activeOrderItems').innerHTML = active.items.map((l) => `<li>${l.qty}× ${l.name}</li>`).join('');
+      document.getElementById('activeOrderAddress').textContent = active.address;
+      document.getElementById('activeOrderTotal').textContent = money(window.EF.cartTotal(active.items));
+
+      const nextStage = STAGES[idx + 1];
+      const etaEl = document.getElementById('activeEta');
+      if (nextStage) {
+        const remainingMs = Math.max(0, active.placedAt + nextStage.at - Date.now());
+        const remainingMin = Math.ceil(remainingMs / 60000);
+        etaEl.textContent = `Next: "${nextStage.label}" in about ${remainingMin < 1 ? 'under a minute' : remainingMin + ' min'}`;
+      } else {
+        etaEl.textContent = 'Delivered — enjoy!';
+      }
+    }
+
+    function renderHistory() {
+      const orders = window.EF.getOrders();
+      const list = document.getElementById('historyList');
+      const empty = document.getElementById('historyEmpty');
+      const statTotal = document.getElementById('statTotalOrders');
+      const statFav = document.getElementById('statFavorite');
+      const statMember = document.getElementById('statMemberSince');
+
+      statTotal.textContent = orders.length;
+      statMember.textContent = user.createdAt ? new Date(user.createdAt).toLocaleDateString([], { month: 'short', year: 'numeric' }) : 'Today';
+
+      if (!orders.length) {
+        empty.classList.remove('hidden');
+        list.innerHTML = '';
+        statFav.textContent = '—';
+        return;
+      }
+      empty.classList.add('hidden');
+
+      const freq = {};
+      orders.forEach((o) => o.items.forEach((l) => { freq[l.name] = (freq[l.name] || 0) + l.qty; }));
+      const favorite = Object.entries(freq).sort((a, b) => b[1] - a[1])[0];
+      statFav.textContent = favorite ? favorite[0] : '—';
+
+      list.innerHTML = orders.map((o) => {
+        const idx = window.EF.getStageIndex(o);
+        const stage = STAGES[idx];
+        const isDelivered = idx === STAGES.length - 1;
+        const pillClass = isDelivered ? 'bg-olive-600 text-white' : 'bg-marinara-600 text-white';
+        return `
+        <div class="order-history-card flex flex-wrap items-center gap-4">
+          <div class="flex-1 min-w-[180px]">
+            <div class="flex items-center gap-2 mb-1">
+              <p class="font-extrabold text-sm">#${o.id}</p>
+              <span class="status-pill ${pillClass}">${stage.label}</span>
+            </div>
+            <p class="text-xs opacity-60">${new Date(o.placedAt).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })} · ${o.items.reduce((s, l) => s + l.qty, 0)} items</p>
+            <p class="text-xs opacity-70 mt-1 truncate max-w-md">${o.items.map((l) => l.name).join(', ')}</p>
+          </div>
+          <p class="font-extrabold">${money(window.EF.cartTotal(o.items))}</p>
+          <button class="btn-crust-outline !py-2 !px-4 text-xs shrink-0" data-reorder="${o.id}"><i class="fa-solid fa-rotate"></i> Reorder</button>
+        </div>`;
+      }).join('');
+
+      list.querySelectorAll('[data-reorder]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          window.EF.reorder(btn.dataset.reorder);
+          window.location.href = 'checkout.html';
+        });
+      });
+    }
+
+    function refresh() {
+      renderActiveOrder();
+      renderHistory();
+    }
+    refresh();
+    setInterval(refresh, 4000);
+
+    // Confirmation toast when arriving straight from checkout
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('justPlaced')) {
+      window.EF.showToast('Order placed! Tracking it live below.');
+      history.replaceState(null, '', 'dashboard.html');
+    }
+  })();
+</script>
+</body>
+</html>

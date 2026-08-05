@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Ember &amp; Forno</title>
+<meta name="description" content="A look inside Ember & Forno — our wood-fired oven, fresh ingredients, signature pizzas, the dining room, and the team behind every pie.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: { extend: {
+      colors: {
+        marinara: {50:'#fdf2f2',100:'#fbe3e3',200:'#f5c2c3',300:'#ec9598',400:'#e06569',500:'#d6383d',600:'#c1272d',700:'#9e1e23',800:'#7c171b',900:'#5c1114'},
+        olive: {50:'#f4f7f0',100:'#e4ecda',300:'#a9c18e',500:'#6e9660',600:'#5b7b4e',700:'#48613d',900:'#293a22'},
+        gold: {100:'#fbead0',300:'#f0cf90',400:'#f0bc6b',500:'#e8a33d',600:'#cc8722',800:'#8a5a11'},
+        cream: {50:'#fffdf8',100:'#fbf3e0',200:'#f3e6c8',300:'#e7d4a8'},
+        char: {50:'#f8f2ea',100:'#efe6db',600:'#3a2f27',700:'#2e2620',800:'#241e19',900:'#1b1613'}
+      },
+      fontFamily: { display: ['"Alfa Slab One"','serif'], body: ['Nunito','sans-serif'], mark: ['Kalam','cursive'] }
+    } }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Kalam:wght@400;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .gallery-filter-btn{padding:.6rem 1.15rem;border-radius:9999px;font-weight:800;font-size:.85rem;background:var(--cream-200);white-space:nowrap;}
+  .dark .gallery-filter-btn{background:var(--char-700);}
+  .gallery-filter-btn[aria-selected="true"]{background:var(--red-600);color:#fff;}
+  .dark .gallery-filter-btn[aria-selected="true"]{background:var(--gold-500);color:var(--char-900);}
+  .gallery-tile{position:relative;border-radius:1rem;overflow:hidden;aspect-ratio:4/5;display:block;}
+  .gallery-tile img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease;}
+  .gallery-tile:hover img{transform:scale(1.08);}
+  .gallery-tile .cap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:.9rem;background:linear-gradient(to top, rgba(0,0,0,.75), transparent 60%);opacity:0;transition:opacity .3s ease;}
+  .gallery-tile:hover .cap{opacity:1;}
+  .gallery-tile .cat-chip{position:absolute;top:.6rem;left:.6rem;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:.2rem .55rem;border-radius:9999px;background:rgba(27,22,19,.65);color:#fff;}
+  [dir="rtl"] .gallery-tile .cat-chip{left:auto;right:.6rem;}
+  .gallery-pagination{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.5rem;margin-top:2.5rem;}
+  .gallery-page-btn{min-width:2.5rem;height:2.5rem;padding:0 .5rem;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;background:var(--cream-200);transition:background .2s ease;}
+  .dark .gallery-page-btn{background:var(--char-700);}
+  .gallery-page-btn[aria-current="true"]{background:var(--red-600);color:#fff;}
+  .dark .gallery-page-btn[aria-current="true"]{background:var(--gold-500);color:var(--char-900);}
+  .gallery-page-btn:disabled{opacity:.35;cursor:not-allowed;}
+</style>
+</head>
+<body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
+
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="header-row flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
+        <div class="relative">
+          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
+            <a href="index.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
+            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
+          </div>
+        </div>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="deals.html" class="nav-link">Deals</a>
+        <a href="drinks.html" class="nav-link">Drinks</a>
+        <a href="desserts.html" class="nav-link">Desserts</a>
+        <a href="gallery.html" class="nav-link" aria-current="page">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2 md:gap-3">
+        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
+          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+        </div>
+        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
+          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
+        </button>
+        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================== HERO ============================== -->
+<section class="relative pt-32 pb-14 lg:pt-40 lg:pb-16 text-white text-center overflow-hidden">
+  <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover ph-img">
+  <div class="absolute inset-0 bg-char-900/75"></div>
+  <div class="relative container mx-auto px-4 lg:px-8" data-aos="fade-up">
+    <p class="text-xs opacity-80 mb-3"><a href="index.html" class="hover:underline">Home</a> / <span>Gallery</span></p>
+    <span class="badge-chalk mb-4">A Look Inside</span>
+    <h1 class="font-display text-3xl md:text-4xl mb-3">Our Gallery</h1>
+    <p class="opacity-85 max-w-xl mx-auto">From the brick oven to the dining room — a peek at what goes into every order.</p>
+  </div>
+</section>
+
+<!-- ============================== BY THE NUMBERS ============================== -->
+<section class="py-12 lg:py-14 bg-char-900 text-cream-50">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+      <div data-aos="fade-up">
+        <p class="font-display text-2xl md:text-3xl text-gold-400 mb-1">15,000+</p>
+        <p class="text-xs md:text-sm opacity-70">Pizzas Baked This Year</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="60">
+        <p class="font-display text-2xl md:text-3xl text-gold-400 mb-1">12</p>
+        <p class="text-xs md:text-sm opacity-70">Years in Riverside</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="120">
+        <p class="font-display text-2xl md:text-3xl text-gold-400 mb-1">4.9<i class="fa-solid fa-star text-lg align-top"></i></p>
+        <p class="text-xs md:text-sm opacity-70">Average Customer Rating</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="180">
+        <p class="font-display text-2xl md:text-3xl text-gold-400 mb-1">3rd</p>
+        <p class="text-xs md:text-sm opacity-70">Generation Family Recipe</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FILTER + GRID ============================== -->
+<section class="py-14 lg:py-20">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="flex flex-wrap gap-3 justify-center mb-12" data-aos="fade-up" role="tablist" aria-label="Filter gallery by category">
+      <button class="gallery-filter-btn" data-gallery-filter="all" aria-selected="true" role="tab"><i class="fa-solid fa-grip me-2"></i>All <span data-filter-count>24</span></button>
+      <button class="gallery-filter-btn" data-gallery-filter="pizzas" aria-selected="false" role="tab"><i class="fa-solid fa-pizza-slice me-2"></i>Pizzas <span data-filter-count>4</span></button>
+      <button class="gallery-filter-btn" data-gallery-filter="kitchen" aria-selected="false" role="tab"><i class="fa-solid fa-fire-burner me-2"></i>Kitchen &amp; Oven <span data-filter-count>4</span></button>
+      <button class="gallery-filter-btn" data-gallery-filter="ingredients" aria-selected="false" role="tab"><i class="fa-solid fa-wheat-awn me-2"></i>Ingredients <span data-filter-count>4</span></button>
+      <button class="gallery-filter-btn" data-gallery-filter="space" aria-selected="false" role="tab"><i class="fa-solid fa-store me-2"></i>The Space <span data-filter-count>4</span></button>
+      <button class="gallery-filter-btn" data-gallery-filter="team" aria-selected="false" role="tab"><i class="fa-solid fa-people-group me-2"></i>Our Team <span data-filter-count>4</span></button>
+      <button class="gallery-filter-btn" data-gallery-filter="community" aria-selected="false" role="tab"><i class="fa-solid fa-heart me-2"></i>Community &amp; Events <span data-filter-count>4</span></button>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="galleryGrid">
+
+      <!-- Pizzas -->
+      <a href="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="pizzas" data-gallery="ef-gallery" data-title="Overhead pepperoni pizza, fresh from the oven" data-aos="fade-up">
+        <span class="cat-chip">Pizzas</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80" alt="Overhead view of a fresh pepperoni pizza">
+        <span class="cap"><span class="text-white font-bold text-sm">Fresh Out of the Oven</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="pizzas" data-gallery="ef-gallery" data-title="Ember Margherita with fresh basil" data-aos="fade-up" data-aos-delay="60">
+        <span class="cat-chip">Pizzas</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=500&q=80" alt="Ember Margherita pizza with fresh basil">
+        <span class="cap"><span class="text-white font-bold text-sm">Ember Margherita</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="pizzas" data-gallery="ef-gallery" data-title="Diavola Rossa, spicy soppressata pizza" data-aos="fade-up" data-aos-delay="120">
+        <span class="cat-chip">Pizzas</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?auto=format&fit=crop&w=500&q=80" alt="Diavola Rossa spicy pizza">
+        <span class="cap"><span class="text-white font-bold text-sm">Diavola Rossa</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="pizzas" data-gallery="ef-gallery" data-title="Cheese pull, sliced pizza" data-aos="fade-up" data-aos-delay="180">
+        <span class="cat-chip">Pizzas</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?auto=format&fit=crop&w=500&q=80" alt="Cheese pull on a freshly cut pizza slice">
+        <span class="cap"><span class="text-white font-bold text-sm">Straight From the Peel</span></span>
+      </a>
+
+      <!-- Kitchen & Oven -->
+      <a href="https://images.unsplash.com/photo-1594179047519-f347310d3322?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="kitchen" data-gallery="ef-gallery" data-title="Hand-stretching dough in the kitchen" data-aos="fade-up">
+        <span class="cat-chip">Kitchen</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1594179047519-f347310d3322?auto=format&fit=crop&w=500&q=80" alt="Chef hand-stretching pizza dough">
+        <span class="cap"><span class="text-white font-bold text-sm">Hand-Stretched Daily</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1573821663912-6df460f9c684?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="kitchen" data-gallery="ef-gallery" data-title="Pizza fresh off the wood-fired oven" data-aos="fade-up" data-aos-delay="60">
+        <span class="cat-chip">Kitchen</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1573821663912-6df460f9c684?auto=format&fit=crop&w=500&q=80" alt="Pizza fresh from the wood-fired brick oven">
+        <span class="cap"><span class="text-white font-bold text-sm">90 Seconds at 900°F</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="kitchen" data-gallery="ef-gallery" data-title="Cheese pull on a fully topped pizza" data-aos="fade-up" data-aos-delay="120">
+        <span class="cat-chip">Kitchen</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=500&q=80" alt="Fully topped pizza with melted cheese">
+        <span class="cap"><span class="text-white font-bold text-sm">Fully Loaded</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="kitchen" data-gallery="ef-gallery" data-title="Fresh basil Margherita, ready for the oven" data-aos="fade-up" data-aos-delay="180">
+        <span class="cat-chip">Kitchen</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?auto=format&fit=crop&w=500&q=80" alt="Fresh basil Margherita pizza ready for the oven">
+        <span class="cap"><span class="text-white font-bold text-sm">Ready for the Oven</span></span>
+      </a>
+
+      <!-- Ingredients -->
+      <a href="https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="ingredients" data-gallery="ef-gallery" data-title="San Marzano tomatoes on the vine" data-aos="fade-up">
+        <span class="cat-chip">Ingredients</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=500&q=80" alt="Fresh tomatoes on the vine">
+        <span class="cap"><span class="text-white font-bold text-sm">San Marzano Tomatoes</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="ingredients" data-gallery="ef-gallery" data-title="Fresh-baked dough loaves" data-aos="fade-up" data-aos-delay="60">
+        <span class="cat-chip">Ingredients</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=500&q=80" alt="Fresh-baked dough loaves with wheat">
+        <span class="cap"><span class="text-white font-bold text-sm">48-Hour Cold Ferment</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="ingredients" data-gallery="ef-gallery" data-title="Cold-pressed olive oil with fresh herbs" data-aos="fade-up" data-aos-delay="120">
+        <span class="cat-chip">Ingredients</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=500&q=80" alt="Cold-pressed olive oil with fresh herbs">
+        <span class="cap"><span class="text-white font-bold text-sm">Cold-Pressed Olive Oil</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="ingredients" data-gallery="ef-gallery" data-title="Spice table with fresh garlic and tomato" data-aos="fade-up" data-aos-delay="180">
+        <span class="cat-chip">Ingredients</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80" alt="Spice table with fresh garlic and tomato">
+        <span class="cap"><span class="text-white font-bold text-sm">The Spice Table</span></span>
+      </a>
+
+      <!-- The Space -->
+      <a href="https://images.unsplash.com/photo-1543007631-283050bb3e8c?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="space" data-gallery="ef-gallery" data-title="Ember & Forno dining room and bar" data-aos="fade-up">
+        <span class="cat-chip">The Space</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1543007631-283050bb3e8c?auto=format&fit=crop&w=500&q=80" alt="Restaurant dining room and bar area">
+        <span class="cap"><span class="text-white font-bold text-sm">The Dining Room</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="space" data-gallery="ef-gallery" data-title="Warm evening lighting inside the restaurant" data-aos="fade-up" data-aos-delay="60">
+        <span class="cat-chip">The Space</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?auto=format&fit=crop&w=500&q=80" alt="Warm evening lighting inside the restaurant">
+        <span class="cap"><span class="text-white font-bold text-sm">Evening Glow</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="space" data-gallery="ef-gallery" data-title="Table set for dinner at Ember & Forno" data-aos="fade-up" data-aos-delay="120">
+        <span class="cat-chip">The Space</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=80" alt="Table set for dinner">
+        <span class="cap"><span class="text-white font-bold text-sm">Table for Two</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="space" data-gallery="ef-gallery" data-title="Bar counter seating at Ember & Forno" data-aos="fade-up" data-aos-delay="180">
+        <span class="cat-chip">The Space</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=80" alt="Bar counter seating">
+        <span class="cap"><span class="text-white font-bold text-sm">The Bar</span></span>
+      </a>
+
+      <!-- Our Team -->
+      <a href="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="team" data-gallery="ef-gallery" data-title="Marco Bellandi, Head Pizzaiolo & Co-Founder" data-aos="fade-up">
+        <span class="cat-chip">Our Team</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=500&q=80" alt="Portrait of Marco Bellandi, Head Pizzaiolo and co-founder">
+        <span class="cap"><span class="text-white font-bold text-sm">Marco, Head Pizzaiolo</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1607631568010-a87245c0daf8?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="team" data-gallery="ef-gallery" data-title="Theo Okafor, Co-Founder & Oven Master" data-aos="fade-up" data-aos-delay="60">
+        <span class="cat-chip">Our Team</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1607631568010-a87245c0daf8?auto=format&fit=crop&w=500&q=80" alt="Portrait of Theo Okafor, co-founder and oven master">
+        <span class="cap"><span class="text-white font-bold text-sm">Theo, Oven Master</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="team" data-gallery="ef-gallery" data-title="Renata Cruz, Kitchen Manager" data-aos="fade-up" data-aos-delay="120">
+        <span class="cat-chip">Our Team</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=500&q=80" alt="Portrait of Renata Cruz, kitchen manager">
+        <span class="cap"><span class="text-white font-bold text-sm">Renata, Kitchen Manager</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1618077360395-f3068be8e001?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="team" data-gallery="ef-gallery" data-title="Jamal Fischer, Delivery Lead" data-aos="fade-up" data-aos-delay="180">
+        <span class="cat-chip">Our Team</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?auto=format&fit=crop&w=500&q=80" alt="Portrait of Jamal Fischer, Delivery Lead">
+        <span class="cap"><span class="text-white font-bold text-sm">Jamal, Delivery Lead</span></span>
+      </a>
+
+      <!-- Community & Events -->
+      <a href="https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="community" data-gallery="ef-gallery" data-title="Delivery rider carrying a hot pizza order through Riverside" data-aos="fade-up">
+        <span class="cat-chip">Community</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=500&q=80" alt="Delivery rider carrying a hot pizza order through Riverside">
+        <span class="cap"><span class="text-white font-bold text-sm">Fast, Friendly Delivery</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="community" data-gallery="ef-gallery" data-title="Our delivery zone across Riverside" data-aos="fade-up" data-aos-delay="60">
+        <span class="cat-chip">Community</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=500&q=80" alt="Map showing our delivery zone across Riverside">
+        <span class="cap"><span class="text-white font-bold text-sm">We Deliver All Over Riverside</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="community" data-gallery="ef-gallery" data-title="Build-a-Face pizza kit for kids" data-aos="fade-up" data-aos-delay="120">
+        <span class="cat-chip">Community</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=500&q=80" alt="Build-a-Face pizza kit for kids">
+        <span class="cap"><span class="text-white font-bold text-sm">Family Pizza Nights</span></span>
+      </a>
+      <a href="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1400&q=85" class="gallery-tile glightbox" data-type="image" data-gallery-item data-category="community" data-gallery="ef-gallery" data-title="Game Day spread: pizzas, wings and drinks" data-aos="fade-up" data-aos-delay="180">
+        <span class="cat-chip">Community</span>
+        <img class="ph-img" loading="lazy" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=500&q=80" alt="Game Day spread: pizzas, wings and drinks">
+        <span class="cap"><span class="text-white font-bold text-sm">Game Day at Ember &amp; Forno</span></span>
+      </a>
+
+    </div>
+
+    <!-- ============================== PAGINATION ============================== -->
+    <div class="gallery-pagination" id="galleryPagination" data-aos="fade-up"></div>
+  </div>
+</section>
+
+<!-- ============================== PRIVATE EVENTS & BUYOUTS ============================== -->
+<section class="py-16 lg:py-20 bg-cream-50 dark:bg-char-800/60">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="relative rounded-3xl overflow-hidden h-72 lg:h-96 shadow-soft" data-aos="fade-right">
+        <img src="https://images.unsplash.com/photo-1543007631-283050bb3e8c?auto=format&fit=crop&w=900&q=85" loading="lazy" alt="Ember & Forno dining room set up for a private event" class="w-full h-full object-cover ph-img">
+      </div>
+      <div data-aos="fade-left">
+        <span class="badge-chalk mb-4">Book the Space</span>
+        <h2 class="font-display text-2xl md:text-3xl mb-4">Private Events &amp; Buyouts</h2>
+        <p class="opacity-75 mb-6 max-w-md">Birthdays, office parties, rehearsal dinners — our dining room and bar seat up to 60 guests for a full buyout, or reserve our communal table for smaller groups. We'll build a custom pizza-and-pairings menu for the night.</p>
+        <div class="grid grid-cols-2 gap-4 mb-8 max-w-sm">
+          <div class="flex items-center gap-2 text-sm font-bold"><i class="fa-solid fa-people-group text-marinara-600 dark:text-gold-400"></i> Up to 60 Guests</div>
+          <div class="flex items-center gap-2 text-sm font-bold"><i class="fa-solid fa-pizza-slice text-marinara-600 dark:text-gold-400"></i> Custom Menus</div>
+          <div class="flex items-center gap-2 text-sm font-bold"><i class="fa-solid fa-champagne-glasses text-marinara-600 dark:text-gold-400"></i> Full Bar Service</div>
+          <div class="flex items-center gap-2 text-sm font-bold"><i class="fa-solid fa-calendar-check text-marinara-600 dark:text-gold-400"></i> 7 Days a Week</div>
+        </div>
+        <a href="contact.html" class="btn-crust"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-envelope"></i> Inquire About Your Event</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== INSTAGRAM CTA ============================== -->
+<section class="py-16 bg-gradient-to-r from-marinara-700 to-marinara-600 text-white text-center">
+  <div class="container mx-auto px-4 lg:px-8" data-aos="zoom-in">
+    <i class="fa-brands fa-instagram text-3xl mb-4"></i>
+    <h2 class="font-display text-xl md:text-2xl mb-3">Tag Us in Your Pizza Night</h2>
+    <p class="opacity-90 mb-6 max-w-md mx-auto">Share your Ember &amp; Forno order with <span class="font-extrabold">@emberandforno</span> — we repost our favorites every Friday.</p>
+    <a href="menu.html" class="btn-crust !bg-white !text-marinara-700 hover:!bg-gold-100"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-bag-shopping"></i> Start an Order</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="zigzag-top relative bg-char-900 text-char-50 pt-16 pb-28 xl:pb-0">
+  <div class="container mx-auto px-4 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
+    <div>
+      <a href="index.html" class="flex items-center gap-2 mb-4">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-base">Ember <span class="text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900°F brick oven.</p>
+      <div class="flex gap-3 mb-4">
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Mon–Sun: 11:00 AM – 11:00 PM</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-location-dot w-4"></i> 214 Mill Street, Riverside</p>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Quick Links</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="about.html" class="hover:text-gold-400">About Us</a></li>
+        <li><a href="menu.html" class="hover:text-gold-400">Full Menu</a></li>
+        <li><a href="deals.html" class="hover:text-gold-400">Deals &amp; Offers</a></li>
+        <li><a href="gallery.html" class="hover:text-gold-400">Gallery</a></li>
+        <li><a href="faq.html" class="hover:text-gold-400">FAQs</a></li>
+        <li><a href="contact.html" class="hover:text-gold-400">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Menu Categories</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="menu.html#signature" class="hover:text-gold-400">Signature Pizzas</a></li>
+        <li><a href="menu.html#classic" class="hover:text-gold-400">Classic Pizzas</a></li>
+        <li><a href="menu.html#build" class="hover:text-gold-400">Build Your Own</a></li>
+        <li><a href="menu.html#sides" class="hover:text-gold-400">Sides &amp; Salads</a></li>
+        <li><a href="drinks.html" class="hover:text-gold-400">Drinks</a></li>
+        <li><a href="desserts.html" class="hover:text-gold-400">Desserts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Get Delivery Updates</p>
+      <p class="text-sm text-cream-100/70 mb-3">Join our list for weekly deals and limited-time drops.</p>
+      <form data-validate-form class="space-y-2" onsubmit="event.preventDefault(); EF.showToast('Subscribed! Check your inbox.'); this.reset();">
+        <div class="form-field !mb-0">
+          <label for="footerEmail" class="sr-only">Email address</label>
+          <input type="email" id="footerEmail" name="email" required placeholder="you@example.com" class="!bg-white/10 !border-white/15 !text-white placeholder:text-white/40">
+          <span class="field-error !text-gold-300">Enter a valid email address.</span>
+        </div>
+        <button type="submit" class="btn-crust w-full justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5">
+    <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream-100/60">
+      <p>© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
+      <div class="flex items-center gap-3 text-lg">
+        <i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-cc-apple-pay"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ============================== CART DRAWER ============================== -->
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your cart">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <p class="font-display text-base">Your Cart</p>
+    <button id="cartCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5" id="cartItems"></div>
+  <div id="cartEmpty" class="hidden flex-1 flex-col items-center justify-center text-center px-6 opacity-60">
+    <i class="fa-solid fa-pizza-slice text-4xl mb-3"></i>
+    <p class="font-bold">Your cart is empty</p>
+    <p class="text-sm">Add a wood-fired favorite from our menu.</p>
+  </div>
+  <div class="p-5 border-t border-black/10 dark:border-white/10">
+    <div class="flex items-center justify-between mb-4 font-extrabold text-lg">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <a href="checkout.html" id="cartCheckoutBtn" class="btn-crust w-full justify-center opacity-40 pointer-events-none">
+      <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+      Checkout
+    </a>
+  </div>
+</aside>
+
+<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
+      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+    </a>
+    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
+    <a href="index.html" class="nav-drawer-link"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="deals.html" class="nav-drawer-link"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="gallery.html" class="nav-drawer-link" aria-current="page"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+  </nav>
+  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Dark Mode</span>
+      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Language / Direction</span>
+      <div class="dir-switch" role="group" aria-label="Text direction">
+        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+      </div>
+    </div>
+    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
+  </div>
+</aside>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  AOS.init({ duration: 700, once: true, disable: 'reduce' });
+  const lightbox = GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+
+  /* Gallery category filter + pagination (4x2 = 8 tiles per page) */
+  (function () {
+    const PAGE_SIZE = 8;
+    const buttons = document.querySelectorAll('[data-gallery-filter]');
+    const tiles = Array.from(document.querySelectorAll('[data-gallery-item]'));
+    const pagination = document.getElementById('galleryPagination');
+    const grid = document.getElementById('galleryGrid');
+    let activeFilter = 'all';
+    let currentPage = 1;
+
+    function matching() {
+      return tiles.filter((t) => activeFilter === 'all' || t.dataset.category === activeFilter);
+    }
+
+    function render() {
+      const matched = matching();
+      const pageCount = Math.max(1, Math.ceil(matched.length / PAGE_SIZE));
+      currentPage = Math.min(currentPage, pageCount);
+      const start = (currentPage - 1) * PAGE_SIZE;
+      const end = start + PAGE_SIZE;
+
+      tiles.forEach((tile) => { tile.style.display = 'none'; });
+      matched.slice(start, end).forEach((tile) => { tile.style.display = ''; });
+
+      pagination.innerHTML = '';
+      if (pageCount <= 1) return;
+
+      const prev = document.createElement('button');
+      prev.className = 'gallery-page-btn';
+      prev.setAttribute('aria-label', 'Previous page');
+      prev.innerHTML = '<i class="fa-solid fa-chevron-left rtl:rotate-180"></i>';
+      prev.disabled = currentPage === 1;
+      prev.addEventListener('click', () => { currentPage--; render(); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      pagination.appendChild(prev);
+
+      for (let i = 1; i <= pageCount; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'gallery-page-btn';
+        btn.textContent = String(i);
+        btn.setAttribute('aria-current', String(i === currentPage));
+        btn.addEventListener('click', () => { currentPage = i; render(); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+        pagination.appendChild(btn);
+      }
+
+      const next = document.createElement('button');
+      next.className = 'gallery-page-btn';
+      next.setAttribute('aria-label', 'Next page');
+      next.innerHTML = '<i class="fa-solid fa-chevron-right rtl:rotate-180"></i>';
+      next.disabled = currentPage === pageCount;
+      next.addEventListener('click', () => { currentPage++; render(); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      pagination.appendChild(next);
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => b.setAttribute('aria-selected', 'false'));
+        btn.setAttribute('aria-selected', 'true');
+        activeFilter = btn.dataset.galleryFilter;
+        currentPage = 1;
+        render();
+      });
+    });
+
+    render();
+  })();
+</script>
+</body>
+</html>

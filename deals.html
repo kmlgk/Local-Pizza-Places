@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deals &amp; Limited-Time Offers | Ember &amp; Forno</title>
+<meta name="description" content="Combo deals and limited-time offers from Ember & Forno wood-fired pizzeria — Family Feast, Date Night Duo, Game Day Bundle, plus everyday specials like Tuesday Two-Topping and the Lunch Combo.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: { extend: {
+      colors: {
+        marinara: {50:'#fdf2f2',100:'#fbe3e3',200:'#f5c2c3',300:'#ec9598',400:'#e06569',500:'#d6383d',600:'#c1272d',700:'#9e1e23',800:'#7c171b',900:'#5c1114'},
+        olive: {50:'#f4f7f0',100:'#e4ecda',300:'#a9c18e',500:'#6e9660',600:'#5b7b4e',700:'#48613d',900:'#293a22'},
+        gold: {100:'#fbead0',300:'#f0cf90',400:'#f0bc6b',500:'#e8a33d',600:'#cc8722',800:'#8a5a11'},
+        cream: {50:'#fffdf8',100:'#fbf3e0',200:'#f3e6c8',300:'#e7d4a8'},
+        char: {50:'#f8f2ea',100:'#efe6db',600:'#3a2f27',700:'#2e2620',800:'#241e19',900:'#1b1613'}
+      },
+      fontFamily: { display: ['"Alfa Slab One"','serif'], body: ['Nunito','sans-serif'], mark: ['Kalam','cursive'] }
+    } }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Kalam:wght@400;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
+
+<a href="#main" class="skip-link">Skip to content</a>
+<div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="header-row flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
+        <div class="relative">
+          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
+            <a href="index.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
+            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
+          </div>
+        </div>
+        <a href="menu.html" class="nav-link">Menu</a>
+        <a href="deals.html" class="nav-link" aria-current="page">Deals</a>
+        <a href="drinks.html" class="nav-link">Drinks</a>
+        <a href="desserts.html" class="nav-link">Desserts</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2 md:gap-3">
+        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
+          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+        </div>
+        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
+          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
+        </button>
+        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================== HERO ============================== -->
+<section class="pt-32 pb-14 lg:pt-40 lg:pb-16 text-center bg-gradient-to-b from-gold-100/70 dark:from-char-800/70 to-cream-100 dark:to-char-900">
+  <div class="container mx-auto px-4 lg:px-8" data-aos="fade-up">
+    <span class="badge-chalk mb-4">⏳ Here Today, Gone When the Timer Hits Zero</span>
+    <h1 class="font-display text-3xl md:text-4xl mb-4">Deals &amp; Limited-Time Offers</h1>
+    <p class="opacity-75 max-w-lg mx-auto">Combo bundles built for real cravings, plus a few deals that show up on the same day every week.</p>
+  </div>
+</section>
+
+<!-- ============================== HOW DEALS WORK ============================== -->
+<section class="py-12 lg:py-14 bg-char-900 text-cream-50">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="grid sm:grid-cols-3 gap-8 text-center">
+      <div data-aos="fade-up">
+        <div class="w-14 h-14 rounded-full bg-marinara-600 flex items-center justify-center mx-auto mb-4 text-lg font-display">1</div>
+        <h3 class="font-extrabold mb-1">Pick Your Combo</h3>
+        <p class="text-sm opacity-70">Choose a limited-time bundle or one of our everyday specials — no promo code needed.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="100">
+        <div class="w-14 h-14 rounded-full bg-marinara-600 flex items-center justify-center mx-auto mb-4 text-lg font-display">2</div>
+        <h3 class="font-extrabold mb-1">We Fire It Together</h3>
+        <p class="text-sm opacity-70">Every item in your combo goes in the oven on the same ticket, so it all arrives hot at once.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <div class="w-14 h-14 rounded-full bg-marinara-600 flex items-center justify-center mx-auto mb-4 text-lg font-display">3</div>
+        <h3 class="font-extrabold mb-1">Track It Live</h3>
+        <p class="text-sm opacity-70">Log in to watch your combo move from the oven to your door from your account dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LIMITED-TIME COMBOS ============================== -->
+<section id="combos" class="scroll-mt-32 py-14 lg:py-20">
+  <div class="container mx-auto px-4 lg:px-8">
+    <h2 class="font-display text-xl md:text-2xl mb-8" data-aos="fade-up">Limited-Time Combos</h2>
+    <div class="grid lg:grid-cols-3 gap-8">
+
+      <!-- Family Feast -->
+      <div class="rounded-3xl overflow-hidden bg-white dark:bg-char-800 shadow-soft flex flex-col" data-aos="fade-up">
+        <div class="relative h-48">
+          <img src="https://images.unsplash.com/photo-1548369937-47519962c11a?auto=format&fit=crop&w=700&q=80" loading="lazy" alt="Family Feast combo: two pizzas, garlic knots and soda" class="w-full h-full object-cover object-top ph-img">
+          <span class="absolute top-3 start-3 bg-marinara-600 text-white font-extrabold text-xs px-3 py-1.5 rounded-full">Save $12</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="font-display text-lg mb-2">Family Feast</h3>
+          <p class="text-sm opacity-70 mb-4 flex-1">2 large pizzas of your choice, a full order of garlic knots, and a 2-liter soda.</p>
+          <div class="flex gap-2 mb-5" data-countdown="2026-08-12T23:59:59"></div>
+          <div class="flex items-center justify-between">
+            <span class="font-mark text-2xl text-marinara-600 dark:text-gold-400">$39.99</span>
+            <button class="btn-crust !py-2.5 !px-5 text-sm" data-add-to-cart data-id="deal-family-feast" data-name="Family Feast Combo" data-price="39.99" data-meta="2 Large Pizzas + Garlic Knots + 2L Soda" data-img="https://images.unsplash.com/photo-1548369937-47519962c11a?auto=format&fit=crop&w=200&q=80"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date Night Duo -->
+      <div class="rounded-3xl overflow-hidden bg-white dark:bg-char-800 shadow-soft flex flex-col" data-aos="fade-up" data-aos-delay="100">
+        <div class="relative h-48">
+          <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=700&q=80" loading="lazy" alt="Date Night Duo combo: pizza, desserts and wine" class="w-full h-full object-cover object-top ph-img">
+          <span class="absolute top-3 start-3 bg-marinara-600 text-white font-extrabold text-xs px-3 py-1.5 rounded-full">Save $9</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="font-display text-lg mb-2">Date Night Duo</h3>
+          <p class="text-sm opacity-70 mb-4 flex-1">1 signature pizza, 2 tiramisu cups, and a bottle of house wine.</p>
+          <div class="flex gap-2 mb-5" data-countdown="2026-08-09T23:59:59"></div>
+          <div class="flex items-center justify-between">
+            <span class="font-mark text-2xl text-marinara-600 dark:text-gold-400">$34.99</span>
+            <button class="btn-crust !py-2.5 !px-5 text-sm" data-add-to-cart data-id="deal-date-night" data-name="Date Night Duo Combo" data-price="34.99" data-meta="Signature Pizza + 2 Desserts + Wine" data-img="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=200&q=80"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Day Bundle -->
+      <div class="rounded-3xl overflow-hidden bg-white dark:bg-char-800 shadow-soft flex flex-col" data-aos="fade-up" data-aos-delay="200">
+        <div class="relative h-48">
+          <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=700&q=80" loading="lazy" alt="Game Day Bundle: three pizzas, wings and drinks" class="w-full h-full object-cover object-top ph-img">
+          <span class="absolute top-3 start-3 bg-marinara-600 text-white font-extrabold text-xs px-3 py-1.5 rounded-full">Save $15</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="font-display text-lg mb-2">Game Day Bundle</h3>
+          <p class="text-sm opacity-70 mb-4 flex-1">3 medium pizzas, a side of crispy calamari, and 4 craft root beers.</p>
+          <div class="flex gap-2 mb-5" data-countdown="2026-08-20T23:59:59"></div>
+          <div class="flex items-center justify-between">
+            <span class="font-mark text-2xl text-marinara-600 dark:text-gold-400">$54.99</span>
+            <button class="btn-crust !py-2.5 !px-5 text-sm" data-add-to-cart data-id="deal-game-day" data-name="Game Day Bundle" data-price="54.99" data-meta="3 Medium Pizzas + Calamari + 4 Root Beers" data-img="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=200&q=80"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== VALUE BREAKDOWN ============================== -->
+<section class="py-14 lg:py-20 bg-cream-50 dark:bg-char-800/60">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="max-w-xl mx-auto text-center mb-10" data-aos="fade-up">
+      <span class="badge-chalk mb-3">Do the Math</span>
+      <h2 class="font-display text-xl md:text-2xl">What You're Actually Saving</h2>
+      <p class="opacity-70 text-sm mt-2">Here's the Family Feast, itemized — same food, ordered separately.</p>
+    </div>
+    <div class="max-w-lg mx-auto bg-white dark:bg-char-900 rounded-3xl shadow-soft overflow-hidden" data-aos="zoom-in">
+      <div class="p-6 sm:p-8">
+        <ul class="divide-y divide-black/5 dark:divide-white/10 text-sm">
+          <li class="flex items-center justify-between py-3">
+            <span class="opacity-75">2 Large Pizzas, à la carte (~$21 each)</span>
+            <span class="font-bold">$42.00</span>
+          </li>
+          <li class="flex items-center justify-between py-3">
+            <span class="opacity-75">Garlic Knots (6)</span>
+            <span class="font-bold">$6.50</span>
+          </li>
+          <li class="flex items-center justify-between py-3">
+            <span class="opacity-75">2-Liter Soda</span>
+            <span class="font-bold">$3.50</span>
+          </li>
+          <li class="flex items-center justify-between py-3 font-extrabold">
+            <span>À La Carte Total</span>
+            <span>$52.00</span>
+          </li>
+        </ul>
+        <div class="flex items-center justify-between py-4 mt-2 border-t-2 border-dashed border-marinara-300 dark:border-gold-700/50">
+          <span class="font-display text-base">Family Feast Price</span>
+          <span class="font-mark text-3xl text-marinara-600 dark:text-gold-400">$39.99</span>
+        </div>
+      </div>
+      <div class="bg-olive-600 text-white text-center py-3 font-extrabold text-sm">
+        <i class="fa-solid fa-piggy-bank me-2"></i> You Save $12.01 — Every Time
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== EVERYDAY DEALS (different card treatment) ============================== -->
+<section id="everyday" class="scroll-mt-32 py-14 lg:py-20 bg-cream-50 dark:bg-char-800/60">
+  <div class="container mx-auto px-4 lg:px-8">
+    <h2 class="font-display text-xl md:text-2xl mb-8" data-aos="fade-up">Every Week, Same Day</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="flex items-center gap-5 bg-white dark:bg-char-900 rounded-2xl p-6 shadow-soft" data-aos="fade-right">
+        <div class="shrink-0 w-16 h-16 rounded-2xl bg-marinara-600 text-white flex flex-col items-center justify-center font-display text-xs leading-tight">
+          <span class="text-[10px]">EVERY</span><span class="text-sm">TUE</span>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-extrabold mb-1">Tuesday Two-Topping Special</h3>
+          <p class="text-xs opacity-70 mb-2">Any medium pizza, your choice of two toppings.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-mark text-xl text-marinara-600 dark:text-gold-400">$11.99</span>
+            <button class="btn-crust-outline !py-2 !px-4 text-xs" data-add-to-cart data-id="deal-tuesday" data-name="Tuesday Two-Topping Special" data-price="11.99" data-meta="Medium, 2 toppings of your choice" data-img="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=200&q=80">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-5 bg-white dark:bg-char-900 rounded-2xl p-6 shadow-soft" data-aos="fade-left">
+        <div class="shrink-0 w-16 h-16 rounded-2xl bg-olive-600 text-white flex flex-col items-center justify-center font-display text-xs leading-tight text-center">
+          <span class="text-[10px]">MON–FRI</span><span class="text-sm">11–2</span>
+        </div>
+        <div class="flex-1">
+          <h3 class="font-extrabold mb-1">Lunch Slice &amp; Salad Combo</h3>
+          <p class="text-xs opacity-70 mb-2">2 slices, a side Caesar salad, and a fountain drink.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-mark text-xl text-marinara-600 dark:text-gold-400">$9.99</span>
+            <button class="btn-crust-outline !py-2 !px-4 text-xs" data-add-to-cart data-id="deal-lunch-combo" data-name="Lunch Slice & Salad Combo" data-price="9.99" data-meta="2 Slices + Salad + Drink" data-img="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=200&q=80">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LOYALTY REWARDS TEASER ============================== -->
+<section class="py-14 lg:py-20">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-10 items-center rounded-3xl bg-gradient-to-br from-marinara-700 to-marinara-600 text-white p-8 sm:p-10" data-aos="fade-up">
+      <div>
+        <span class="inline-block bg-white/15 text-xs font-extrabold px-3 py-1.5 rounded-full mb-4">Ember Rewards</span>
+        <h2 class="font-display text-xl md:text-2xl mb-3">Order 5 Times, Get a Free Pizza</h2>
+        <p class="opacity-90 text-sm mb-6 max-w-md">Every order placed through your account counts toward your next free medium pizza — deals and combos included. No card to carry, it's all tracked in your dashboard.</p>
+        <a href="register.html" class="btn-crust !bg-white !text-marinara-700 hover:!bg-gold-100"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-user-plus"></i> Join Free</a>
+      </div>
+      <div class="bg-white/10 rounded-2xl p-6" data-aos="fade-left" data-aos-delay="100">
+        <div class="flex items-center justify-between mb-3 text-sm font-bold">
+          <span>Your Progress</span>
+          <span>2 / 5 Orders</span>
+        </div>
+        <div class="w-full h-3 rounded-full bg-white/20 overflow-hidden mb-4">
+          <div class="h-full bg-gold-400 rounded-full" style="width:40%"></div>
+        </div>
+        <div class="grid grid-cols-5 gap-2">
+          <span class="aspect-square rounded-lg bg-gold-400 flex items-center justify-center text-char-900"><i class="fa-solid fa-check text-xs"></i></span>
+          <span class="aspect-square rounded-lg bg-gold-400 flex items-center justify-center text-char-900"><i class="fa-solid fa-check text-xs"></i></span>
+          <span class="aspect-square rounded-lg bg-white/15 flex items-center justify-center"><i class="fa-solid fa-pizza-slice text-xs opacity-50"></i></span>
+          <span class="aspect-square rounded-lg bg-white/15 flex items-center justify-center"><i class="fa-solid fa-pizza-slice text-xs opacity-50"></i></span>
+          <span class="aspect-square rounded-lg bg-white/15 flex items-center justify-center"><i class="fa-solid fa-gift text-xs opacity-50"></i></span>
+        </div>
+        <p class="text-xs opacity-70 mt-3">Example progress shown — your real count appears on your dashboard once you're logged in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== UPCOMING DEAL TEASER ============================== -->
+<section class="py-14 lg:py-20 bg-cream-50 dark:bg-char-800/60">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="max-w-3xl mx-auto rounded-3xl overflow-hidden shadow-soft grid sm:grid-cols-2 bg-white dark:bg-char-900" data-aos="fade-up">
+      <div class="relative h-48 sm:h-full">
+        <img src="https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=600&q=80" loading="lazy" alt="Preview of the upcoming Fall Harvest Feast pizza" class="w-full h-full object-cover object-top ph-img">
+        <span class="absolute top-3 start-3 bg-gold-500 text-char-900 text-xs font-extrabold px-3 py-1.5 rounded-full">Coming Soon</span>
+      </div>
+      <div class="p-6 sm:p-8 flex flex-col justify-center">
+        <p class="font-mark text-marinara-600 dark:text-gold-400 text-lg mb-1">Next Up on the Board</p>
+        <h3 class="font-display text-xl mb-3">Fall Harvest Feast</h3>
+        <p class="text-sm opacity-70 mb-5">Roasted squash, sage, caramelized onion and brown-butter drizzle — a limited-run seasonal pizza plus a spiced-cider pairing.</p>
+        <div class="flex gap-2 mb-5" data-countdown="2026-09-01T00:00:00"></div>
+        <a href="#dealsNewsletter" class="btn-crust-outline self-start"><i class="fa-solid fa-bell"></i> Get Notified</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== WEEKLY DEAL CALENDAR ============================== -->
+<section class="py-14 lg:py-20">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="text-center mb-10" data-aos="fade-up">
+      <span class="badge-chalk mb-3">Plan Your Week</span>
+      <h2 class="font-display text-xl md:text-2xl">This Week's Deal Calendar</h2>
+      <p class="opacity-70 text-sm mt-2 max-w-lg mx-auto">Something's always running. Here's what's live each day — today's is highlighted for you.</p>
+    </div>
+    <div class="deal-week-strip" data-aos="fade-up" id="dealWeekStrip">
+      <a href="#everyday" class="deal-day" data-weekday="0">
+        <span class="deal-day-name">Sun</span>
+        <i class="fa-solid fa-football deal-day-icon"></i>
+        <span class="deal-day-label">Game Day Bundle</span>
+        <span class="deal-day-price">$54.99</span>
+      </a>
+      <a href="#everyday" class="deal-day" data-weekday="1">
+        <span class="deal-day-name">Mon</span>
+        <i class="fa-solid fa-mug-saucer deal-day-icon"></i>
+        <span class="deal-day-label">Lunch Combo, 11–2</span>
+        <span class="deal-day-price">$9.99</span>
+      </a>
+      <a href="#everyday" class="deal-day" data-weekday="2">
+        <span class="deal-day-name">Tue</span>
+        <i class="fa-solid fa-fire deal-day-icon"></i>
+        <span class="deal-day-label">Two-Topping Special</span>
+        <span class="deal-day-price">$11.99</span>
+      </a>
+      <a href="#everyday" class="deal-day" data-weekday="3">
+        <span class="deal-day-name">Wed</span>
+        <i class="fa-solid fa-mug-saucer deal-day-icon"></i>
+        <span class="deal-day-label">Lunch Combo, 11–2</span>
+        <span class="deal-day-price">$9.99</span>
+      </a>
+      <a href="#everyday" class="deal-day" data-weekday="4">
+        <span class="deal-day-name">Thu</span>
+        <i class="fa-solid fa-mug-saucer deal-day-icon"></i>
+        <span class="deal-day-label">Lunch Combo, 11–2</span>
+        <span class="deal-day-price">$9.99</span>
+      </a>
+      <a href="#combos" class="deal-day" data-weekday="5">
+        <span class="deal-day-name">Fri</span>
+        <i class="fa-solid fa-champagne-glasses deal-day-icon"></i>
+        <span class="deal-day-label">Date Night Duo</span>
+        <span class="deal-day-price">$34.99</span>
+      </a>
+      <a href="#combos" class="deal-day" data-weekday="6">
+        <span class="deal-day-name">Sat</span>
+        <i class="fa-solid fa-people-roof deal-day-icon"></i>
+        <span class="deal-day-label">Family Feast</span>
+        <span class="deal-day-price">$39.99</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== NEWSLETTER CTA ============================== -->
+<section id="dealsNewsletter" class="scroll-mt-32 py-16 text-center">
+  <div class="container mx-auto px-4 lg:px-8 max-w-md" data-aos="zoom-in">
+    <h2 class="font-display text-xl md:text-2xl mb-3">Never Miss a Deal</h2>
+    <p class="opacity-75 mb-6 text-sm">New combos drop most Fridays. We'll email you before the countdown starts.</p>
+    <form data-validate-form class="flex flex-col sm:flex-row gap-3" onsubmit="event.preventDefault(); if(EF.validateForm(this)){EF.showToast('Subscribed! We will let you know about new deals.'); this.reset();}">
+      <div class="form-field !mb-0 flex-1">
+        <label for="dealsEmail" class="sr-only">Email address</label>
+        <input type="email" id="dealsEmail" name="email" required placeholder="you@example.com">
+        <span class="field-error">Enter a valid email address.</span>
+      </div>
+      <button type="submit" class="btn-crust justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Notify Me</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="zigzag-top relative bg-char-900 text-char-50 pt-16 pb-28 xl:pb-0">
+  <div class="container mx-auto px-4 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12">
+    <div>
+      <a href="index.html" class="flex items-center gap-2 mb-4">
+        <span class="w-10 h-10 rounded-full bg-marinara-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
+        <span class="font-display text-base">Ember <span class="text-gold-400">&amp;</span> Forno</span>
+      </a>
+      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900°F brick oven.</p>
+      <div class="flex gap-3 mb-4">
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Mon–Sun: 11:00 AM – 11:00 PM</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-location-dot w-4"></i> 214 Mill Street, Riverside</p>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Quick Links</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="about.html" class="hover:text-gold-400">About Us</a></li>
+        <li><a href="menu.html" class="hover:text-gold-400">Full Menu</a></li>
+        <li><a href="deals.html" class="hover:text-gold-400">Deals &amp; Offers</a></li>
+        <li><a href="gallery.html" class="hover:text-gold-400">Gallery</a></li>
+        <li><a href="faq.html" class="hover:text-gold-400">FAQs</a></li>
+        <li><a href="contact.html" class="hover:text-gold-400">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Menu Categories</p>
+      <ul class="space-y-2 text-sm text-cream-100/70">
+        <li><a href="menu.html#signature" class="hover:text-gold-400">Signature Pizzas</a></li>
+        <li><a href="menu.html#classic" class="hover:text-gold-400">Classic Pizzas</a></li>
+        <li><a href="menu.html#build" class="hover:text-gold-400">Build Your Own</a></li>
+        <li><a href="menu.html#sides" class="hover:text-gold-400">Sides &amp; Salads</a></li>
+        <li><a href="drinks.html" class="hover:text-gold-400">Drinks</a></li>
+        <li><a href="desserts.html" class="hover:text-gold-400">Desserts</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-display text-sm mb-4">Get Delivery Updates</p>
+      <p class="text-sm text-cream-100/70 mb-3">Join our list for weekly deals and limited-time drops.</p>
+      <form data-validate-form class="space-y-2" onsubmit="event.preventDefault(); EF.showToast('Subscribed! Check your inbox.'); this.reset();">
+        <div class="form-field !mb-0">
+          <label for="footerEmail" class="sr-only">Email address</label>
+          <input type="email" id="footerEmail" name="email" required placeholder="you@example.com" class="!bg-white/10 !border-white/15 !text-white placeholder:text-white/40">
+          <span class="field-error !text-gold-300">Enter a valid email address.</span>
+        </div>
+        <button type="submit" class="btn-crust w-full justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5">
+    <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream-100/60">
+      <p>© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
+      <div class="flex items-center gap-3 text-lg">
+        <i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-cc-apple-pay"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- ============================== CART DRAWER ============================== -->
+<div class="cart-backdrop" id="cartBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your cart">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <p class="font-display text-base">Your Cart</p>
+    <button id="cartCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5" id="cartItems"></div>
+  <div id="cartEmpty" class="hidden flex-1 flex-col items-center justify-center text-center px-6 opacity-60">
+    <i class="fa-solid fa-pizza-slice text-4xl mb-3"></i>
+    <p class="font-bold">Your cart is empty</p>
+    <p class="text-sm">Add a wood-fired favorite from our menu.</p>
+  </div>
+  <div class="p-5 border-t border-black/10 dark:border-white/10">
+    <div class="flex items-center justify-between mb-4 font-extrabold text-lg">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <a href="checkout.html" id="cartCheckoutBtn" class="btn-crust w-full justify-center opacity-40 pointer-events-none">
+      <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+      Checkout
+    </a>
+  </div>
+</aside>
+
+<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
+      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+    </a>
+    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
+    <a href="index.html" class="nav-drawer-link"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="deals.html" class="nav-drawer-link" aria-current="page"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="gallery.html" class="nav-drawer-link"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+  </nav>
+  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Dark Mode</span>
+      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-bold">Language / Direction</span>
+      <div class="dir-switch" role="group" aria-label="Text direction">
+        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
+        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
+      </div>
+    </div>
+    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
+  </div>
+</aside>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  AOS.init({ duration: 700, once: true, disable: 'reduce' });
+
+  (function () {
+    const todayIdx = new Date().getDay();
+    const cell = document.querySelector('#dealWeekStrip [data-weekday="' + todayIdx + '"]');
+    if (cell) cell.classList.add('is-today');
+  })();
+</script>
+</body>
+</html>
