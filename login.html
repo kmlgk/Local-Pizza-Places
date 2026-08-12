@@ -31,52 +31,20 @@
 
 <div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
 
-<header class="site-header">
-  <div class="container mx-auto px-4 lg:px-8">
-    <div class="header-row flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
-        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
-        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
-      </a>
-      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
-        <div class="relative">
-          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
-          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
-            <a href="index.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
-            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
-          </div>
-        </div>
-        <a href="menu.html" class="nav-link">Menu</a>
-        <a href="deals.html" class="nav-link">Deals</a>
-        <a href="drinks.html" class="nav-link">Drinks</a>
-        <a href="desserts.html" class="nav-link">Desserts</a>
-        <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </nav>
-      <div class="flex items-center gap-2 md:gap-3">
-        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
-          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-        </div>
-        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
-        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
-          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
-        </button>
-        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
+<div class="fixed top-0 inset-x-0 z-30 flex items-center justify-end gap-2 px-4 sm:px-6 lg:px-8 py-4">
+  <button class="theme-switch" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+  <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
+  <a href="index.html" class="back-to-site-btn"><i class="fa-solid fa-arrow-left rtl:rotate-180"></i> <span class="hidden sm:inline">Back to Site</span></a>
+</div>
 
-<main id="main" class="min-h-screen flex items-center pt-28 pb-16">
+<main id="main" class="min-h-screen flex items-center py-16">
   <div class="container mx-auto px-4 lg:px-8">
     <div class="max-w-md mx-auto bg-white dark:bg-char-800 rounded-3xl shadow-soft p-8 md:p-10">
       <div class="text-center mb-8">
-        <span class="w-14 h-14 rounded-full bg-marinara-600 text-white flex items-center justify-center text-2xl mx-auto mb-4"><i class="fa-solid fa-fire"></i></span>
+        <a href="index.html" class="inline-flex items-center gap-2 mb-6" aria-label="Ember & Forno home">
+          <span class="w-11 h-11 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
+          <span class="font-display text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
+        </a>
         <h1 class="font-display text-2xl mb-2">Welcome Back</h1>
         <p class="text-sm opacity-70">Log in to track your order and reorder your favorites.</p>
       </div>
@@ -107,45 +75,6 @@
     </div>
   </div>
 </main>
-
-<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
-<div class="nav-backdrop" id="navBackdrop"></div>
-<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
-  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
-    <a href="index.html" class="flex items-center gap-2">
-      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
-      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
-    </a>
-    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
-    <a href="index.html" class="nav-drawer-link"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="deals.html" class="nav-drawer-link"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="gallery.html" class="nav-drawer-link"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="login.html" class="nav-drawer-link js-account-link" aria-current="page"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-  </nav>
-  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
-    <div class="flex items-center justify-between">
-      <span class="text-sm font-bold">Dark Mode</span>
-      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-    </div>
-    <div class="flex items-center justify-between">
-      <span class="text-sm font-bold">Language / Direction</span>
-      <div class="dir-switch" role="group" aria-label="Text direction">
-        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-      </div>
-    </div>
-    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
-  </div>
-</aside>
 
 <script src="assets/js/main.js"></script>
 <script>

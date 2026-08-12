@@ -27,228 +27,365 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <style>
+  :root{ --dash-accent: var(--red-600); }
+  .dark{ --dash-accent: var(--gold-500); }
+
   .stat-tile{background:#fff;border-radius:1.25rem;padding:1.25rem;box-shadow:var(--shadow-soft);}
   .dark .stat-tile{background:var(--char-800);}
   .order-history-card{background:#fff;border-radius:1.25rem;padding:1.25rem;box-shadow:var(--shadow-soft);}
   .dark .order-history-card{background:var(--char-800);}
   .status-pill{font-size:.68rem;font-weight:800;padding:.25rem .65rem;border-radius:9999px;text-transform:uppercase;letter-spacing:.03em;}
+  .settings-field p:first-child{font-size:.72rem; opacity:.6; margin-bottom:.2rem;}
+  .settings-field p:last-child{font-weight:800;}
+
+  /* App shell: dark sidebar + light content, independent of site theme toggle */
+  .dash-sidebar{background:var(--char-900); color:var(--cream-100); flex-shrink:0;}
+  .dash-logo-lockup{display:flex; align-items:center; gap:.65rem; padding:1.5rem 1.25rem;}
+  .dash-logo-lockup .mark{width:2.5rem; height:2.5rem; border-radius:.75rem; background:var(--red-600); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Alfa Slab One',serif; font-size:1.1rem; flex-shrink:0;}
+  .dash-logo-lockup .name{font-family:'Alfa Slab One',serif; font-size:.85rem; line-height:1.1; color:#fff;}
+  .dash-logo-lockup .tag{font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; opacity:.55; color:var(--cream-100);}
+
+  .dash-sidebar-link{
+    display:flex; align-items:center; gap:.7rem; padding:.8rem 1rem; border-radius:.9rem;
+    font-weight:700; font-size:.88rem; white-space:nowrap; color:var(--cream-100); opacity:.6;
+    background:transparent; transition:background .2s ease, opacity .2s ease, color .2s ease;
+  }
+  .dash-sidebar-link i{width:1.1rem; text-align:center;}
+  .dash-sidebar-link:hover{opacity:1; background:rgba(255,255,255,.06);}
+  .dash-sidebar-link.is-active{opacity:1; background:var(--red-600); color:#fff;}
+  .dark .dash-sidebar-link.is-active{background:var(--gold-500); color:var(--char-900);}
+
+  .dash-mobile-tabs{background:var(--char-900); border-radius:1.1rem; padding:.4rem;}
+  .dash-mobile-tabs .dash-sidebar-link{padding:.65rem .9rem;}
+
+  .dash-topbar{background:#fff; border-bottom:1px solid rgba(27,22,19,.08);}
+  .dark .dash-topbar{background:var(--char-800); border-bottom-color:rgba(239,230,219,.08);}
+  .dash-icon-btn{width:2.5rem; height:2.5rem; border-radius:9999px; display:inline-flex; align-items:center; justify-content:center; background:var(--cream-200); color:inherit; transition:background .2s ease;}
+  .dark .dash-icon-btn{background:var(--char-700);}
+  .dash-icon-btn:hover{background:var(--gold-300);}
+  .dark .dash-icon-btn:hover{background:var(--char-600);}
+  .dash-back-btn{display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.1rem; border-radius:9999px; font-weight:800; font-size:.85rem; border:2px solid rgba(27,22,19,.15); color:inherit; white-space:nowrap;}
+  .dark .dash-back-btn{border-color:rgba(239,230,219,.18);}
+  .dash-back-btn:hover{background:var(--cream-200);}
+  .dark .dash-back-btn:hover{background:var(--char-700);}
+  .dash-logout-btn{display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.2rem; border-radius:9999px; font-weight:800; font-size:.85rem; background:var(--red-600); color:#fff; white-space:nowrap; transition:transform .2s ease;}
+  .dark .dash-logout-btn{background:var(--gold-500); color:var(--char-900);}
+  .dash-logout-btn:hover{transform:translateY(-1px);}
+
+  /* Streak ring */
+  .streak-ring{--pct:0; width:60px; height:60px; border-radius:50%; flex-shrink:0; position:relative; display:flex; align-items:center; justify-content:center; background:conic-gradient(var(--dash-accent) calc(var(--pct)*1%), var(--cream-200) 0);}
+  .dark .streak-ring{background:conic-gradient(var(--dash-accent) calc(var(--pct)*1%), var(--char-700) 0);}
+  .streak-ring::before{content:''; position:absolute; inset:5px; border-radius:50%; background:#fff;}
+  .dark .streak-ring::before{background:var(--char-800);}
+  .streak-ring span{position:relative; font-weight:800; font-size:1.05rem; color:var(--dash-accent);}
+
+  /* Bar chart */
+  .chart-bars{display:flex; align-items:flex-end; gap:1rem; height:170px;}
+  .chart-bar-col{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:.4rem;}
+  .chart-bar-value{font-size:.72rem; font-weight:800; opacity:.7;}
+  .chart-bar{width:100%; max-width:34px; border-radius:7px 7px 3px 3px; background:var(--cream-200); transition:height .6s ease;}
+  .dark .chart-bar{background:var(--char-700);}
+  .chart-bar.is-current{background:var(--dash-accent);}
+  .chart-bar-label{font-size:.68rem; opacity:.5;}
+
+  /* Trend line chart */
+  .trend-svg{width:100%; height:150px; color:var(--char-900); overflow:visible;}
+  .dark .trend-svg{color:var(--cream-100);}
+  .trend-labels{display:flex; justify-content:space-between; font-size:.68rem; opacity:.5; margin-top:.5rem; padding:0 22px;}
 </style>
 </head>
 <body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
 
 <div id="page-loader"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i><span class="sr-only">Loading Ember &amp; Forno</span></div>
 
-<!-- ============================== HEADER ============================== -->
-<header class="site-header">
-  <div class="container mx-auto px-4 lg:px-8">
-    <div class="header-row flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2 shrink-0" aria-label="Ember & Forno home">
-        <span class="w-10 h-10 rounded-full bg-marinara-600 text-white flex items-center justify-center text-lg shadow-md"><i class="fa-solid fa-fire"></i></span>
-        <span class="font-display text-sm md:text-base leading-none">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
-      </a>
-      <nav class="hidden xl:flex items-center gap-5" aria-label="Primary">
-        <div class="relative">
-          <button id="homeMenuBtn" class="nav-link flex items-center gap-1" aria-haspopup="true" aria-expanded="false">Home <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
-          <div id="homeMenuPanel" class="hidden absolute top-full start-0 mt-3 w-44 rounded-xl bg-cream-50 dark:bg-char-800 shadow-xl border border-black/5 dark:border-white/10 py-2 z-50" role="menu">
-            <a href="index.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 1</a>
-            <a href="home-2.html" role="menuitem" class="block px-4 py-2 text-sm font-bold hover:bg-marinara-50 dark:hover:bg-char-700">Home 2</a>
-          </div>
+<!-- ============================== DASHBOARD APP SHELL ============================== -->
+<div id="dashContent" class="hidden lg:flex min-h-screen">
+  <!-- Static sidebar menu (5 items, dark app shell) -->
+  <aside class="dash-sidebar hidden lg:flex lg:flex-col lg:w-64 lg:sticky lg:top-0 lg:h-screen">
+    <div class="dash-logo-lockup">
+      <span class="mark">E</span>
+      <div>
+        <p class="name">Ember &amp; Forno</p>
+        <p class="tag">Pizza Kitchen</p>
+      </div>
+    </div>
+    <nav class="flex-1 px-3 space-y-1" aria-label="Account">
+      <button type="button" class="dash-sidebar-link is-active" data-tab="overview"><i class="fa-solid fa-gauge-high"></i> Overview</button>
+      <a href="menu.html" class="dash-sidebar-link"><i class="fa-solid fa-plus"></i> New Order</a>
+      <button type="button" class="dash-sidebar-link" data-tab="orders"><i class="fa-solid fa-clock-rotate-left"></i> Order History</button>
+      <button type="button" class="dash-sidebar-link" data-tab="rewards"><i class="fa-solid fa-star"></i> Rewards</button>
+      <button type="button" class="dash-sidebar-link" data-tab="settings"><i class="fa-solid fa-gear"></i> Account Settings</button>
+    </nav>
+  </aside>
+
+  <div class="flex-1 min-w-0">
+    <!-- Top bar -->
+    <header class="dash-topbar sticky top-0 z-20">
+      <div class="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4">
+        <a href="index.html" class="flex items-center gap-2 lg:hidden" aria-label="Ember & Forno home">
+          <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center shadow-md"><i class="fa-solid fa-fire"></i></span>
+        </a>
+        <div class="flex items-center gap-2 ms-auto">
+          <button class="theme-switch" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
+          <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
+          <a href="index.html" class="dash-back-btn"><i class="fa-solid fa-arrow-left rtl:rotate-180"></i> <span class="hidden sm:inline">Back to Site</span></a>
+          <button id="logoutBtn" class="dash-logout-btn"><i class="fa-solid fa-right-from-bracket"></i> <span class="hidden sm:inline">Log Out</span></button>
         </div>
-        <a href="menu.html" class="nav-link">Menu</a>
-        <a href="deals.html" class="nav-link">Deals</a>
-        <a href="drinks.html" class="nav-link">Drinks</a>
-        <a href="desserts.html" class="nav-link">Desserts</a>
-        <a href="gallery.html" class="nav-link">Gallery</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+    </header>
+
+    <main class="px-4 sm:px-6 lg:px-10 py-8">
+      <!-- Mobile tab strip (sidebar collapsed below lg) -->
+      <nav class="dash-mobile-tabs flex gap-2 overflow-x-auto mb-8 lg:hidden" aria-label="Account">
+        <button type="button" class="dash-sidebar-link is-active" data-tab="overview"><i class="fa-solid fa-gauge-high"></i> Overview</button>
+        <a href="menu.html" class="dash-sidebar-link"><i class="fa-solid fa-plus"></i> New Order</a>
+        <button type="button" class="dash-sidebar-link" data-tab="orders"><i class="fa-solid fa-clock-rotate-left"></i> Order History</button>
+        <button type="button" class="dash-sidebar-link" data-tab="rewards"><i class="fa-solid fa-star"></i> Rewards</button>
+        <button type="button" class="dash-sidebar-link" data-tab="settings"><i class="fa-solid fa-gear"></i> Account Settings</button>
       </nav>
-      <div class="flex items-center gap-2 md:gap-3">
-        <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
-          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-        </div>
-        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
-        <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
-          <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
-        </button>
-        <button id="navMenuBtn" class="xl:hidden w-10 h-10 rounded-full flex items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-haspopup="true" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</header>
 
-<main id="main" class="pt-32 pb-24 lg:pt-40">
-  <div class="container mx-auto px-4 lg:px-8">
-
-    <!-- Logged-out gate -->
-    <div id="loginGate" class="hidden max-w-md mx-auto text-center bg-white dark:bg-char-800 rounded-2xl p-8 shadow-soft">
-      <i class="fa-solid fa-lock text-3xl text-marinara-600 dark:text-gold-400 mb-4"></i>
-      <h1 class="font-extrabold text-lg mb-2">Log In to View Your Account</h1>
-      <p class="text-sm opacity-70 mb-6">Track live orders and reorder past favorites once you're logged in.</p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="login.html?redirect=dashboard.html" class="btn-crust justify-center"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Log In</a>
-        <a href="register.html?redirect=dashboard.html" class="btn-crust-outline justify-center">Create Account</a>
-      </div>
-    </div>
-
-    <!-- Dashboard content -->
-    <div id="dashContent" class="hidden">
-      <div class="flex flex-wrap items-center justify-between gap-4 mb-10">
+      <!-- Welcome row -->
+      <div class="flex flex-wrap items-center gap-4 mb-8">
+        <span class="w-14 h-14 rounded-full bg-char-900 text-white dark:bg-gold-500 dark:text-char-900 flex items-center justify-center font-display text-base" id="welcomeAvatar">JB</span>
         <div>
-          <p class="text-xs opacity-60 mb-1">Welcome back</p>
+          <p class="text-xs opacity-60 mb-1 flex items-center gap-2">Welcome back, <span id="demoBadge" class="hidden text-[10px] uppercase tracking-wide font-extrabold px-2 py-0.5 rounded-full bg-gold-300 text-char-900">Demo data</span></p>
           <h1 class="font-display text-2xl md:text-3xl" id="welcomeName">Friend</h1>
         </div>
-        <div class="flex gap-3">
-          <a href="menu.html" class="btn-crust-outline !py-2.5 !px-5 text-sm"><i class="fa-solid fa-plus"></i> New Order</a>
-          <button id="logoutBtn" class="btn-crust-outline !py-2.5 !px-5 text-sm"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
-        </div>
       </div>
 
-      <!-- Stat tiles -->
-      <div class="grid sm:grid-cols-3 gap-5 mb-10">
-        <div class="stat-tile">
-          <p class="text-xs opacity-60 mb-1">Total Orders</p>
-          <p class="font-display text-2xl text-marinara-600 dark:text-gold-400" id="statTotalOrders">0</p>
-        </div>
-        <div class="stat-tile">
-          <p class="text-xs opacity-60 mb-1">Favorite Item</p>
-          <p class="font-extrabold text-base" id="statFavorite">—</p>
-        </div>
-        <div class="stat-tile">
-          <p class="text-xs opacity-60 mb-1">Member Since</p>
-          <p class="font-extrabold text-base" id="statMemberSince">—</p>
-        </div>
-      </div>
-
-      <!-- Active order tracker -->
-      <div class="mb-12">
-        <h2 class="font-extrabold text-lg mb-4"><i class="fa-solid fa-location-crosshairs text-marinara-600 dark:text-gold-400 me-2"></i>Live Order Tracker</h2>
-
-        <div id="noActiveOrder" class="hidden bg-white dark:bg-char-800 rounded-2xl p-10 text-center shadow-soft">
-          <i class="fa-solid fa-pizza-slice text-3xl opacity-40 mb-3"></i>
-          <p class="font-bold mb-1">No active orders right now</p>
-          <p class="text-sm opacity-60 mb-5">Place an order and its live status will show up here.</p>
-          <a href="menu.html" class="btn-crust justify-center inline-flex"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Order Now</a>
-        </div>
-
-        <div id="activeOrderCard" class="hidden bg-char-900 text-cream-50 rounded-3xl p-6 md:p-8">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
-            <div>
-              <p class="text-xs uppercase tracking-widest text-gold-400 font-extrabold mb-1">Order <span id="activeOrderId"></span></p>
-              <p class="text-sm opacity-70" id="activeOrderMeta"></p>
+      <!-- Panel: Overview -->
+      <section id="tab-overview" class="dash-panel">
+        <!-- Stat tiles -->
+        <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-10">
+          <div class="stat-tile">
+            <p class="text-xs opacity-60 mb-3 uppercase tracking-wide">Current Streak</p>
+            <div class="flex items-center gap-4">
+              <div class="streak-ring" id="streakRing"><span id="streakRingValue">0</span></div>
+              <div>
+                <p class="font-extrabold text-base">Day streak</p>
+                <p class="text-xs opacity-60" id="streakBest">Best: 0 days</p>
+              </div>
             </div>
-            <span id="activeStageLabel" class="status-pill bg-marinara-600 text-white"></span>
+            <p class="text-xs text-marinara-600 dark:text-gold-400 font-bold mt-3" id="streakHint"><i class="fa-solid fa-triangle-exclamation"></i> Order today to keep it alive.</p>
           </div>
 
-          <div class="status-rail mb-4" id="activeStatusRail"></div>
-          <p class="text-center text-sm opacity-70 mb-8" id="activeEta"></p>
-
-          <div class="grid md:grid-cols-2 gap-6 pt-6 border-t border-white/10">
-            <div>
-              <p class="text-xs uppercase tracking-wide opacity-60 mb-2">Items</p>
-              <ul class="text-sm space-y-1" id="activeOrderItems"></ul>
+          <div class="stat-tile">
+            <p class="text-xs opacity-60 mb-1 uppercase tracking-wide">Rewards</p>
+            <p class="font-display text-lg" id="ovTierName">Bronze Crust</p>
+            <p class="text-xs opacity-60 mb-3" id="ovTierNext">5 orders to next reward</p>
+            <div class="h-2.5 rounded-full bg-cream-200 dark:bg-char-700 overflow-hidden">
+              <div class="h-full rounded-full bg-marinara-600 dark:bg-gold-500" id="ovProgressBar" style="width:0%"></div>
             </div>
+          </div>
+
+          <div class="stat-tile">
+            <p class="text-xs opacity-60 mb-1 uppercase tracking-wide">This Month</p>
+            <p class="font-display text-2xl text-marinara-600 dark:text-gold-400" id="statThisMonth">0</p>
+            <p class="text-xs opacity-60">Orders placed</p>
+          </div>
+
+          <div class="stat-tile flex flex-col justify-between">
+            <p class="text-xs opacity-60 mb-3 uppercase tracking-wide">Today</p>
+            <a href="menu.html" id="todayCta" class="btn-crust justify-center !py-2.5 text-sm"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Order Now</a>
+          </div>
+        </div>
+
+        <!-- Weekly bar chart -->
+        <div class="bg-white dark:bg-char-800 rounded-2xl p-6 shadow-soft mb-8">
+          <div class="flex items-start justify-between mb-6 gap-3">
             <div>
-              <p class="text-xs uppercase tracking-wide opacity-60 mb-2">Delivering To</p>
-              <p class="text-sm" id="activeOrderAddress"></p>
-              <p class="font-display text-lg text-gold-400 mt-3" id="activeOrderTotal"></p>
+              <h3 class="font-extrabold text-base flex items-center gap-2"><i class="fa-solid fa-fire text-marinara-600 dark:text-gold-400"></i> Orders — Last 6 Weeks</h3>
+              <p class="text-xs opacity-60 mt-1" id="chartSubline">Weekly order volume</p>
+            </div>
+            <span class="text-xs opacity-50 shrink-0">Sample data</span>
+          </div>
+          <div class="chart-bars" id="weeklyChart"></div>
+        </div>
+
+        <!-- Spending trend chart -->
+        <div class="bg-white dark:bg-char-800 rounded-2xl p-6 shadow-soft mb-10">
+          <div class="flex items-start justify-between mb-4 gap-3">
+            <h3 class="font-extrabold text-base">Spending Trend — Last 6 Months</h3>
+            <span class="text-xs opacity-50 shrink-0">Sample data</span>
+          </div>
+          <div id="trendChart"></div>
+        </div>
+
+        <!-- Active order tracker -->
+        <div>
+          <h2 class="font-extrabold text-lg mb-4"><i class="fa-solid fa-location-crosshairs text-marinara-600 dark:text-gold-400 me-2"></i>Live Order Tracker</h2>
+
+          <div id="noActiveOrder" class="hidden bg-white dark:bg-char-800 rounded-2xl p-10 text-center shadow-soft">
+            <i class="fa-solid fa-pizza-slice text-3xl opacity-40 mb-3"></i>
+            <p class="font-bold mb-1">No active orders right now</p>
+            <p class="text-sm opacity-60 mb-5">Place an order and its live status will show up here.</p>
+            <a href="menu.html" class="btn-crust justify-center inline-flex"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>Order Now</a>
+          </div>
+
+          <div id="activeOrderCard" class="hidden bg-char-900 text-cream-50 rounded-3xl p-6 md:p-8">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
+              <div>
+                <p class="text-xs uppercase tracking-widest text-gold-400 font-extrabold mb-1">Order <span id="activeOrderId"></span></p>
+                <p class="text-sm opacity-70" id="activeOrderMeta"></p>
+              </div>
+              <span id="activeStageLabel" class="status-pill bg-marinara-600 text-white"></span>
+            </div>
+
+            <div class="status-rail mb-4" id="activeStatusRail"></div>
+            <p class="text-center text-sm opacity-70 mb-8" id="activeEta"></p>
+
+            <div class="grid md:grid-cols-2 gap-6 pt-6 border-t border-white/10">
+              <div>
+                <p class="text-xs uppercase tracking-wide opacity-60 mb-2">Items</p>
+                <ul class="text-sm space-y-1" id="activeOrderItems"></ul>
+              </div>
+              <div>
+                <p class="text-xs uppercase tracking-wide opacity-60 mb-2">Delivering To</p>
+                <p class="text-sm" id="activeOrderAddress"></p>
+                <p class="font-display text-lg text-gold-400 mt-3" id="activeOrderTotal"></p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Order history -->
-      <div>
+      <!-- Panel: Order History -->
+      <section id="tab-orders" class="dash-panel hidden">
         <h2 class="font-extrabold text-lg mb-4"><i class="fa-solid fa-clock-rotate-left text-marinara-600 dark:text-gold-400 me-2"></i>Order History</h2>
         <div id="historyEmpty" class="hidden bg-white dark:bg-char-800 rounded-2xl p-10 text-center shadow-soft opacity-70">
           Your past orders will appear here.
         </div>
         <div id="historyList" class="space-y-4"></div>
-      </div>
-    </div>
-  </div>
-</main>
+      </section>
 
-<!-- ============================== CART DRAWER ============================== -->
-<div class="cart-backdrop" id="cartBackdrop"></div>
-<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your cart">
-  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
-    <p class="font-display text-base">Your Cart</p>
-    <button id="cartCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close cart"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-  <div class="flex-1 overflow-y-auto px-5" id="cartItems"></div>
-  <div id="cartEmpty" class="hidden flex-1 flex-col items-center justify-center text-center px-6 opacity-60">
-    <i class="fa-solid fa-pizza-slice text-4xl mb-3"></i>
-    <p class="font-bold">Your cart is empty</p>
-    <p class="text-sm">Add a wood-fired favorite from our menu.</p>
-  </div>
-  <div class="p-5 border-t border-black/10 dark:border-white/10">
-    <div class="flex items-center justify-between mb-4 font-extrabold text-lg">
-      <span>Subtotal</span>
-      <span id="cartTotal">$0.00</span>
-    </div>
-    <a href="checkout.html" id="cartCheckoutBtn" class="btn-crust w-full justify-center opacity-40 pointer-events-none">
-      <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
-      Checkout
-    </a>
-  </div>
-</aside>
+      <!-- Panel: Rewards -->
+      <section id="tab-rewards" class="dash-panel hidden">
+        <h2 class="font-extrabold text-lg mb-4"><i class="fa-solid fa-star text-marinara-600 dark:text-gold-400 me-2"></i>Rewards</h2>
 
-<!-- ============================== NAV DRAWER (standard mobile/tablet menu) ============================== -->
-<div class="nav-backdrop" id="navBackdrop"></div>
-<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true" aria-label="Site menu">
-  <div class="flex items-center justify-between p-5 border-b border-black/10 dark:border-white/10">
-    <a href="index.html" class="flex items-center gap-2">
-      <span class="w-9 h-9 rounded-full bg-marinara-600 text-white flex items-center justify-center"><i class="fa-solid fa-fire text-sm"></i></span>
-      <span class="font-display text-sm">Ember <span class="text-marinara-600 dark:text-gold-400">&amp;</span> Forno</span>
-    </a>
-    <button id="navCloseBtn" class="w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+        <div class="grid sm:grid-cols-3 gap-5 mb-6">
+          <div class="stat-tile">
+            <p class="text-xs opacity-60 mb-1">Loyalty Tier</p>
+            <p class="font-display text-lg" id="rewardTierName">Bronze Crust</p>
+          </div>
+          <div class="stat-tile">
+            <p class="text-xs opacity-60 mb-1">Total Orders</p>
+            <p class="font-display text-2xl text-marinara-600 dark:text-gold-400" id="statTotalOrders">0</p>
+          </div>
+          <div class="stat-tile">
+            <p class="text-xs opacity-60 mb-1">Member Since</p>
+            <p class="font-extrabold text-base" id="statMemberSince">—</p>
+          </div>
+        </div>
+
+        <div class="stat-tile mb-8">
+          <p class="text-xs opacity-60 mb-2">Progress to next reward</p>
+          <div class="h-3 rounded-full bg-cream-200 dark:bg-char-700 overflow-hidden">
+            <div class="h-full rounded-full bg-marinara-600 dark:bg-gold-500" id="rewardProgressBar" style="width:0%"></div>
+          </div>
+          <p class="text-xs opacity-60 mt-2" id="rewardTierNext">5 orders to next reward</p>
+          <p class="text-xs opacity-60 mt-3">Favorite pick: <span class="font-extrabold" id="statFavorite">—</span></p>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-5">
+          <div class="bg-white dark:bg-char-800 rounded-2xl p-5 shadow-soft">
+            <i class="fa-solid fa-medal text-marinara-600 dark:text-gold-400 mb-2"></i>
+            <p class="font-extrabold text-sm mb-1">Bronze Crust</p>
+            <p class="text-xs opacity-70">5% off every 5th order</p>
+          </div>
+          <div class="bg-white dark:bg-char-800 rounded-2xl p-5 shadow-soft">
+            <i class="fa-solid fa-award text-marinara-600 dark:text-gold-400 mb-2"></i>
+            <p class="font-extrabold text-sm mb-1">Silver Crust</p>
+            <p class="text-xs opacity-70">Free garlic knots on every order</p>
+          </div>
+          <div class="bg-white dark:bg-char-800 rounded-2xl p-5 shadow-soft">
+            <i class="fa-solid fa-crown text-marinara-600 dark:text-gold-400 mb-2"></i>
+            <p class="font-extrabold text-sm mb-1">Gold Crust</p>
+            <p class="text-xs opacity-70">Free delivery + a birthday pizza</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel: Account Settings (static demo data) -->
+      <section id="tab-settings" class="dash-panel hidden">
+        <h2 class="font-extrabold text-lg mb-4"><i class="fa-solid fa-gear text-marinara-600 dark:text-gold-400 me-2"></i>Account Settings</h2>
+        <div class="bg-white dark:bg-char-800 rounded-2xl p-6 md:p-8 shadow-soft max-w-2xl">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="settings-field">
+              <p>Full Name</p>
+              <p>Jamie Rivera</p>
+            </div>
+            <div class="settings-field">
+              <p>Email</p>
+              <p>jamie.rivera@example.com</p>
+            </div>
+            <div class="settings-field">
+              <p>Phone</p>
+              <p>(503) 555-0142</p>
+            </div>
+            <div class="settings-field">
+              <p>Delivery Address</p>
+              <p>482 Maple Street, Riverside</p>
+            </div>
+            <div class="settings-field">
+              <p>Saved Payment</p>
+              <p>Visa •••• 4242</p>
+            </div>
+            <div class="settings-field">
+              <p>Notifications</p>
+              <p>Order updates via SMS</p>
+            </div>
+          </div>
+          <div class="pt-6 mt-6 border-t border-black/10 dark:border-white/10">
+            <button type="button" class="btn-crust-outline !py-2.5 !px-5 text-sm"><i class="fa-solid fa-pen"></i> Edit Details</button>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
-  <nav class="flex-1 px-5 pt-2" aria-label="Mobile">
-    <a href="index.html" class="nav-drawer-link"><span><i class="fa-solid fa-house"></i> Home 1</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="home-2.html" class="nav-drawer-link"><span><i class="fa-solid fa-store"></i> Home 2</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="menu.html" class="nav-drawer-link"><span><i class="fa-solid fa-pizza-slice"></i> Menu</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="deals.html" class="nav-drawer-link"><span><i class="fa-solid fa-tags"></i> Deals</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="drinks.html" class="nav-drawer-link"><span><i class="fa-solid fa-mug-hot"></i> Drinks</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="desserts.html" class="nav-drawer-link"><span><i class="fa-solid fa-cake-candles"></i> Desserts</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="gallery.html" class="nav-drawer-link"><span><i class="fa-solid fa-images"></i> Gallery</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="login.html" class="nav-drawer-link js-account-link" aria-current="page"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-  </nav>
-  <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
-    <div class="flex items-center justify-between">
-      <span class="text-sm font-bold">Dark Mode</span>
-      <button class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-    </div>
-    <div class="flex items-center justify-between">
-      <span class="text-sm font-bold">Language / Direction</span>
-      <div class="dir-switch" role="group" aria-label="Text direction">
-        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-      </div>
-    </div>
-    <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
-  </div>
-</aside>
+</div>
+
 <script src="assets/js/main.js"></script>
 <script>
   (function () {
-    const user = window.EF.currentUser();
-    const loginGate = document.getElementById('loginGate');
-    const content = document.getElementById('dashContent');
-    if (!user) { loginGate.classList.remove('hidden'); return; }
-    content.classList.remove('hidden');
+    // No real session? Fall back to a dummy demo account + dummy orders so the
+    // dashboard always renders populated stats instead of gating on login.
+    const DUMMY_USER = { name: 'Jordan Blake', email: 'jordan.blake@example.com', createdAt: Date.now() - 1000 * 60 * 60 * 24 * 182 };
+    const DUMMY_ORDERS = [
+      { id: 'DEMO1006', placedAt: Date.now() - 90 * 1000, address: '482 Maple Street, Riverside', items: [{ lineId: 'a', name: 'Pepperoni Feast', qty: 1, price: 16.5 }, { lineId: 'b', name: 'Garlic Knots', qty: 2, price: 6 }] },
+      { id: 'DEMO1005', placedAt: Date.now() - 1 * 86400000, address: '482 Maple Street, Riverside', items: [{ lineId: 'c', name: 'Margherita', qty: 1, price: 14 }] },
+      { id: 'DEMO1004', placedAt: Date.now() - 2 * 86400000, address: '482 Maple Street, Riverside', items: [{ lineId: 'd', name: 'Pepperoni Feast', qty: 1, price: 16.5 }] },
+      { id: 'DEMO1003', placedAt: Date.now() - 3 * 86400000, address: '482 Maple Street, Riverside', items: [{ lineId: 'e', name: 'Veggie Supreme', qty: 1, price: 15 }] },
+      { id: 'DEMO1002', placedAt: Date.now() - 4 * 86400000, address: '482 Maple Street, Riverside', items: [{ lineId: 'f', name: 'Pepperoni Feast', qty: 1, price: 16.5 }] },
+      { id: 'DEMO1001', placedAt: Date.now() - 5 * 86400000, address: '482 Maple Street, Riverside', items: [{ lineId: 'g', name: 'BBQ Chicken', qty: 1, price: 17 }] },
+    ];
 
-    document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-      window.EF.logoutUser();
-      window.location.href = 'index.html';
-    });
+    const realUser = window.EF.currentUser();
+    const isDemo = !realUser;
+    const user = realUser || DUMMY_USER;
+    const content = document.getElementById('dashContent');
+    content.classList.remove('hidden');
+    document.getElementById('demoBadge').classList.toggle('hidden', !isDemo);
+
+    const firstName = user.name.split(' ')[0];
+    document.getElementById('welcomeName').textContent = firstName;
+    document.getElementById('welcomeAvatar').textContent = user.name.split(' ').map((n) => n[0]).slice(0, 2).join('').toUpperCase();
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (isDemo) {
+      logoutBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> <span class="hidden sm:inline">Log In</span>';
+      logoutBtn.addEventListener('click', () => { window.location.href = 'login.html?redirect=dashboard.html'; });
+    } else {
+      logoutBtn.addEventListener('click', () => {
+        window.EF.logoutUser();
+        window.location.href = 'index.html';
+      });
+    }
+
+    function getOrders() {
+      if (!isDemo) return window.EF.getOrders();
+      const real = window.EF.getOrders();
+      return real.length ? real : DUMMY_ORDERS;
+    }
 
     const STAGES = window.EF.STAGES;
 
@@ -266,7 +403,7 @@
     function money(n) { return '$' + n.toFixed(2); }
 
     function renderActiveOrder() {
-      const orders = window.EF.getOrders();
+      const orders = getOrders();
       const active = orders.find((o) => window.EF.getStageIndex(o) < STAGES.length - 1);
       const noActive = document.getElementById('noActiveOrder');
       const card = document.getElementById('activeOrderCard');
@@ -299,7 +436,7 @@
     }
 
     function renderHistory() {
-      const orders = window.EF.getOrders();
+      const orders = getOrders();
       const list = document.getElementById('historyList');
       const empty = document.getElementById('historyEmpty');
       const statTotal = document.getElementById('statTotalOrders');
@@ -344,18 +481,153 @@
 
       list.querySelectorAll('[data-reorder]').forEach((btn) => {
         btn.addEventListener('click', () => {
+          if (btn.dataset.reorder.indexOf('DEMO') === 0) { window.location.href = 'menu.html'; return; }
           window.EF.reorder(btn.dataset.reorder);
           window.location.href = 'checkout.html';
         });
       });
     }
 
+    /* ---------------------------- Streak, rewards, this-month, today (real data) ---------------------------- */
+    function computeStreak(orders) {
+      const days = new Set(orders.map((o) => new Date(o.placedAt).toDateString()));
+      const countFrom = (start) => {
+        let n = 0;
+        const cur = new Date(start);
+        while (days.has(cur.toDateString())) { n++; cur.setDate(cur.getDate() - 1); }
+        return n;
+      };
+      const today = new Date();
+      let current = countFrom(today);
+      if (current === 0) {
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+        current = countFrom(yesterday);
+      }
+      const sortedDays = [...days].map((d) => new Date(d).getTime()).sort((a, b) => a - b);
+      let best = 0, run = 0, prev = null;
+      sortedDays.forEach((t) => {
+        run = prev !== null && t - prev === 86400000 ? run + 1 : 1;
+        best = Math.max(best, run);
+        prev = t;
+      });
+      return { current, best: Math.max(best, current) };
+    }
+
+    function renderStreak(orders) {
+      const { current, best } = computeStreak(orders);
+      const goal = Math.max(best, 7);
+      const pct = goal ? Math.round((current / goal) * 100) : 0;
+      document.getElementById('streakRing').style.setProperty('--pct', pct);
+      document.getElementById('streakRingValue').textContent = current;
+      document.getElementById('streakBest').textContent = `Best: ${best} day${best === 1 ? '' : 's'}`;
+      document.getElementById('streakHint').style.visibility = current === 0 ? 'hidden' : 'visible';
+    }
+
+    const TIERS = [
+      { name: 'Bronze Crust', min: 0 },
+      { name: 'Silver Crust', min: 5 },
+      { name: 'Gold Crust', min: 15 },
+    ];
+    function renderRewards(orders) {
+      const total = orders.length;
+      let tier = TIERS[0], next = TIERS[1];
+      for (let i = TIERS.length - 1; i >= 0; i--) {
+        if (total >= TIERS[i].min) { tier = TIERS[i]; next = TIERS[i + 1] || null; break; }
+      }
+      const span = next ? next.min - tier.min : 1;
+      const progress = next ? total - tier.min : 1;
+      const pct = next ? Math.min(100, Math.round((progress / span) * 100)) : 100;
+      const nextLabel = next ? `${next.min - total} order${next.min - total === 1 ? '' : 's'} to ${next.name}` : 'Top tier reached!';
+
+      ['ovTierName', 'rewardTierName'].forEach((id) => { document.getElementById(id).textContent = tier.name; });
+      ['ovProgressBar', 'rewardProgressBar'].forEach((id) => { document.getElementById(id).style.width = pct + '%'; });
+      ['ovTierNext', 'rewardTierNext'].forEach((id) => { document.getElementById(id).textContent = nextLabel; });
+    }
+
+    function renderThisMonth(orders) {
+      const now = new Date();
+      const count = orders.filter((o) => {
+        const d = new Date(o.placedAt);
+        return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+      }).length;
+      document.getElementById('statThisMonth').textContent = count;
+    }
+
+    function renderTodayCta(orders) {
+      const today = new Date().toDateString();
+      const orderedToday = orders.some((o) => new Date(o.placedAt).toDateString() === today);
+      const cta = document.getElementById('todayCta');
+      if (orderedToday) {
+        cta.innerHTML = '<i class="fa-solid fa-circle-check"></i> Ordered Today';
+        cta.classList.add('opacity-60', 'pointer-events-none');
+      }
+    }
+
+    /* ---------------------------- Sample-data charts ---------------------------- */
+    function renderWeeklyChart() {
+      const data = [3, 5, 4, 6, 5, 8];
+      const max = Math.max(...data);
+      document.getElementById('weeklyChart').innerHTML = data.map((v, i) => `
+        <div class="chart-bar-col">
+          <span class="chart-bar-value">${v}</span>
+          <div class="chart-bar ${i === data.length - 1 ? 'is-current' : ''}" style="height:${Math.round((v / max) * 100)}%"></div>
+          <span class="chart-bar-label">Wk ${i + 1}</span>
+        </div>`).join('');
+    }
+
+    function renderTrendChart() {
+      const data = [180, 210, 195, 260, 240, 310];
+      const labels = ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
+      const w = 600, h = 150, pad = 22;
+      const max = Math.max(...data), min = Math.min(...data);
+      const stepX = (w - pad * 2) / (data.length - 1);
+      const scaleY = (v) => h - pad - ((v - min) / (max - min || 1)) * (h - pad * 2);
+      const points = data.map((v, i) => [pad + i * stepX, scaleY(v)]);
+      const linePath = points.map((p, i) => (i === 0 ? 'M' : 'L') + p[0] + ',' + p[1]).join(' ');
+      const areaPath = linePath + ` L${points[points.length - 1][0]},${h - pad} L${points[0][0]},${h - pad} Z`;
+      const dots = points.map((p, i) => `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="var(--dash-accent)"><title>${labels[i]}: ${money(data[i])}</title></circle>`).join('');
+      document.getElementById('trendChart').innerHTML = `
+        <svg viewBox="0 0 ${w} ${h}" class="trend-svg" preserveAspectRatio="none" role="img" aria-label="Spending trend over the last 6 months, sample data">
+          <defs>
+            <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--dash-accent)" stop-opacity=".35"/>
+              <stop offset="100%" stop-color="var(--dash-accent)" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="${pad}" y1="${h - pad}" x2="${w - pad}" y2="${h - pad}" stroke="currentColor" stroke-opacity=".12" stroke-width="1"/>
+          <path d="${areaPath}" fill="url(#trendFill)" stroke="none"/>
+          <path d="${linePath}" fill="none" stroke="var(--dash-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          ${dots}
+        </svg>
+        <div class="trend-labels">${labels.map((l) => `<span>${l}</span>`).join('')}</div>`;
+    }
+
     function refresh() {
+      const orders = getOrders();
       renderActiveOrder();
       renderHistory();
+      renderStreak(orders);
+      renderRewards(orders);
+      renderThisMonth(orders);
+      renderTodayCta(orders);
     }
     refresh();
     setInterval(refresh, 4000);
+    renderWeeklyChart();
+    renderTrendChart();
+
+    // Static sidebar menu — tabs, no routing, just show/hide panels
+    const tabButtons = document.querySelectorAll('.dash-sidebar-link[data-tab]');
+    const panels = document.querySelectorAll('.dash-panel');
+    tabButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.dash-sidebar-link[data-tab]').forEach((b) => {
+          b.classList.toggle('is-active', b.dataset.tab === btn.dataset.tab);
+        });
+        panels.forEach((p) => p.classList.toggle('hidden', p.id !== 'tab-' + btn.dataset.tab));
+      });
+    });
 
     // Confirmation toast when arriving straight from checkout
     const params = new URLSearchParams(window.location.search);

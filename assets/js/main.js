@@ -76,8 +76,10 @@
     document.documentElement.setAttribute("dir", dir);
     document.documentElement.setAttribute("lang", dir === "rtl" ? "ar" : "en");
     localStorage.setItem(LS.dir, dir);
-    document.querySelectorAll(".dir-switch button").forEach((btn) => {
-      btn.setAttribute("aria-pressed", String(btn.dataset.dir === dir));
+    document.querySelectorAll(".dir-switch").forEach((btn) => {
+      const isRtl = dir === "rtl";
+      btn.setAttribute("aria-pressed", String(isRtl));
+      btn.setAttribute("aria-label", isRtl ? "Switch to English (LTR)" : "Switch to Arabic (RTL)");
     });
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -86,8 +88,11 @@
     });
   }
   function bindDirSwitches() {
-    document.querySelectorAll(".dir-switch button").forEach((btn) => {
-      btn.addEventListener("click", () => applyDir(btn.dataset.dir));
+    document.querySelectorAll(".dir-switch").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const current = document.documentElement.getAttribute("dir") || "ltr";
+        applyDir(current === "rtl" ? "ltr" : "rtl");
+      });
     });
   }
 
@@ -592,12 +597,12 @@
     const user = currentUser();
     document.querySelectorAll(".js-account-link").forEach((el) => {
       el.href = user ? "dashboard.html" : "login.html";
-      el.setAttribute("aria-label", user ? `Account: ${user.name}` : "Log in");
+      el.setAttribute("aria-label", user ? `Dashboard: ${user.name}` : "Log in");
       const icon = el.querySelector("i");
       if (icon) icon.className = user ? "fa-solid fa-user-check" : "fa-solid fa-user";
     });
     document.querySelectorAll(".js-account-label").forEach((el) => {
-      el.textContent = user ? "Account" : "Login";
+      el.textContent = user ? "Dashboard" : "Login";
     });
   }
 

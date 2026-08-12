@@ -37,12 +37,21 @@
   .spotlight-band .fade-v{position:absolute;inset:0;background:linear-gradient(to top, rgba(27,22,19,.92), rgba(27,22,19,.25) 60%, transparent);}
   .spotlight-band .fade-h{position:absolute;inset:0;background:linear-gradient(to right, rgba(27,22,19,.85), rgba(27,22,19,.35), transparent);}
   [dir="rtl"] .spotlight-band .fade-h{background:linear-gradient(to left, rgba(27,22,19,.85), rgba(27,22,19,.35), transparent);}
-  .pairing-card{display:flex;align-items:center;background:#fff;border-radius:1.5rem;box-shadow:var(--shadow-soft);overflow:hidden;}
+  .pairing-card{display:flex;flex-direction:column;align-items:center;text-align:center;background:#fff;border-radius:1.5rem;box-shadow:var(--shadow-soft);overflow:hidden;}
   .dark .pairing-card{background:var(--char-800);}
-  .pairing-photo{width:5.5rem;height:5.5rem;border-radius:9999px;object-fit:cover;flex-shrink:0;border:3px solid var(--cream-100);margin:1rem;}
+  .pairing-images{display:flex;align-items:center;margin:1.25rem 0 .25rem;}
+  .pairing-photo{width:5.5rem;height:5.5rem;border-radius:9999px;object-fit:cover;flex-shrink:0;border:3px solid var(--cream-100);margin:0 -.25rem;}
   .dark .pairing-photo{border-color:var(--char-700);}
-  .pairing-plus{width:2rem;height:2rem;border-radius:9999px;background:var(--gold-500);color:var(--char-900);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-inline:-.25rem;position:relative;z-index:2;box-shadow:0 0 0 3px #fff;}
+  .pairing-plus{width:2rem;height:2rem;border-radius:9999px;background:var(--gold-500);color:var(--char-900);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0;margin-inline:.25rem;position:relative;z-index:2;box-shadow:0 0 0 3px #fff;}
   .dark .pairing-plus{box-shadow:0 0 0 3px var(--char-800);}
+  /* Row layout only when the card is actually wide enough: single-column
+     mobile/tablet widths, or the xl+ breakpoint where the 3-up grid gives
+     each card enough room again. Between md and xl the grid is 3 columns
+     and each card is too narrow for a row layout, so it stays stacked. */
+  @media (min-width:480px) and (max-width:767.98px), (min-width:1280px){
+    .pairing-card{flex-direction:row;text-align:left;}
+    .pairing-images{margin:1rem;}
+  }
 </style>
 </head>
 <body class="font-body antialiased bg-cream-100 dark:bg-char-900 text-char-900 dark:text-char-50">
@@ -73,14 +82,12 @@
         <a href="gallery.html" class="nav-link">Gallery</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link js-dashboard-link">Dashboard</a>
       </nav>
       <div class="flex items-center gap-2 md:gap-3">
         <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
-          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-        </div>
-        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
+        <a href="login.html" class="js-account-link login-cta hidden md:inline-flex" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label">Login</span></a>
         <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
           <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
         </button>
@@ -140,7 +147,7 @@
 <!-- ============================== SIGNATURE DESSERTS ============================== -->
 <section id="signature" class="scroll-mt-32 py-16 lg:py-20">
   <div class="container mx-auto px-4 lg:px-8">
-    <div class="mb-10" data-aos="fade-up">
+    <div class="text-center max-w-xl mx-auto mb-10" data-aos="fade-up">
       <span class="badge-chalk mb-3">House-Made Daily</span>
       <h2 class="font-display text-2xl md:text-3xl">Signature Desserts</h2>
     </div>
@@ -206,7 +213,7 @@
 <!-- ============================== GELATO & FROZEN ============================== -->
 <section id="gelato" class="scroll-mt-32 py-16 lg:py-20 bg-cream-50 dark:bg-char-800/60">
   <div class="container mx-auto px-4 lg:px-8">
-    <div class="mb-10" data-aos="fade-up">
+    <div class="text-center max-w-xl mx-auto mb-10" data-aos="fade-up">
       <span class="badge-chalk mb-3">Cold &amp; Creamy</span>
       <h2 class="font-display text-2xl md:text-3xl">Gelato &amp; Frozen</h2>
     </div>
@@ -271,7 +278,7 @@
 <!-- ============================== COOKIES & SWEET BITES ============================== -->
 <section id="cookies" class="scroll-mt-32 py-16 lg:py-20">
   <div class="container mx-auto px-4 lg:px-8">
-    <div class="mb-10" data-aos="fade-up">
+    <div class="text-center max-w-xl mx-auto mb-10" data-aos="fade-up">
       <span class="badge-chalk mb-3">Grab &amp; Go</span>
       <h2 class="font-display text-2xl md:text-3xl">Cookies &amp; Sweet Bites</h2>
     </div>
@@ -367,7 +374,7 @@
 <!-- ============================== SEASONAL SPECIALS ============================== -->
 <section id="seasonal" class="scroll-mt-32 py-16 lg:py-20">
   <div class="container mx-auto px-4 lg:px-8">
-    <div class="mb-10" data-aos="fade-up">
+    <div class="text-center max-w-xl mx-auto mb-10" data-aos="fade-up">
       <span class="badge-chalk mb-3">Limited Run</span>
       <h2 class="font-display text-2xl md:text-3xl">Seasonal Specials</h2>
     </div>
@@ -440,30 +447,36 @@
     </div>
     <div class="grid md:grid-cols-3 gap-6">
       <div class="pairing-card" data-aos="fade-up">
-        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Tiramisu cup" class="pairing-photo">
-        <span class="pairing-plus"><i class="fa-solid fa-plus"></i></span>
-        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Cappuccino" class="pairing-photo">
-        <div class="p-4">
+        <div class="pairing-images">
+          <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Tiramisu cup" class="pairing-photo">
+          <span class="pairing-plus"><i class="fa-solid fa-plus"></i></span>
+          <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Cappuccino" class="pairing-photo">
+        </div>
+        <div class="p-4 min-w-0">
           <p class="font-extrabold text-sm">Tiramisu Cup</p>
           <p class="text-xs opacity-60 mb-1">+ Cappuccino</p>
           <p class="text-xs opacity-70">Espresso and mascarpone, twice — the classic Italian finish.</p>
         </div>
       </div>
       <div class="pairing-card" data-aos="fade-up" data-aos-delay="80">
-        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Chocolate lava calzone" class="pairing-photo">
-        <span class="pairing-plus"><i class="fa-solid fa-plus"></i></span>
-        <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Espresso shot" class="pairing-photo">
-        <div class="p-4">
+        <div class="pairing-images">
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Chocolate lava calzone" class="pairing-photo">
+          <span class="pairing-plus"><i class="fa-solid fa-plus"></i></span>
+          <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Espresso shot" class="pairing-photo">
+        </div>
+        <div class="p-4 min-w-0">
           <p class="font-extrabold text-sm">Chocolate Lava Calzone</p>
           <p class="text-xs opacity-60 mb-1">+ Espresso</p>
           <p class="text-xs opacity-70">A short, sharp shot cuts right through the warm chocolate.</p>
         </div>
       </div>
       <div class="pairing-card" data-aos="fade-up" data-aos-delay="160">
-        <img src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Limoncello meringue tart" class="pairing-photo">
-        <span class="pairing-plus"><i class="fa-solid fa-plus"></i></span>
-        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Iced vanilla latte" class="pairing-photo">
-        <div class="p-4">
+        <div class="pairing-images">
+          <img src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Limoncello meringue tart" class="pairing-photo">
+          <span class="pairing-plus"><i class="fa-solid fa-plus"></i></span>
+          <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=200&q=80" loading="lazy" alt="Iced vanilla latte" class="pairing-photo">
+        </div>
+        <div class="p-4 min-w-0">
           <p class="font-extrabold text-sm">Limoncello Meringue Tart</p>
           <p class="text-xs opacity-60 mb-1">+ Iced Vanilla Latte</p>
           <p class="text-xs opacity-70">Cool, creamy vanilla balances the tart's bright lemon curd.</p>
@@ -593,6 +606,7 @@
     <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="dashboard.html" class="nav-drawer-link js-dashboard-link"><span><i class="fa-solid fa-gauge"></i> Dashboard</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
   </nav>
   <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
@@ -602,10 +616,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span class="text-sm font-bold">Language / Direction</span>
-      <div class="dir-switch" role="group" aria-label="Text direction">
-        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-      </div>
+      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
     </div>
     <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
   </div>

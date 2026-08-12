@@ -30,9 +30,9 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
 <style>
-  .quick-tile{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.6rem .9rem;border-radius:1rem;white-space:nowrap;background:var(--cream-50);min-width:5.5rem;font-weight:800;font-size:.72rem;opacity:.7;border:1.5px solid transparent;}
+  .quick-tile{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.6rem .9rem;border-radius:1rem;white-space:nowrap;background:var(--cream-50);min-width:5.5rem;font-weight:800;font-size:.72rem;opacity:.7;border:1.5px solid transparent;text-align:center;}
   .dark .quick-tile{background:var(--char-800);}
-  .quick-tile i{font-size:1.05rem;color:var(--red-600);}
+  .quick-tile i{font-size:1.05rem;color:var(--red-600);width:1.25rem;display:inline-flex;align-items:center;justify-content:center;}
   .dark .quick-tile i{color:var(--gold-400);}
   .quick-tile.is-active{opacity:1;border-color:var(--red-600);background:var(--red-50,#fdf2f2);}
   .dark .quick-tile.is-active{border-color:var(--gold-500);background:rgba(232,163,61,.1);}
@@ -91,14 +91,12 @@
         <a href="gallery.html" class="nav-link">Gallery</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link js-dashboard-link">Dashboard</a>
       </nav>
       <div class="flex items-center gap-2 md:gap-3">
         <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
-          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-        </div>
-        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
+        <a href="login.html" class="js-account-link login-cta hidden md:inline-flex" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label">Login</span></a>
         <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
           <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
         </button>
@@ -140,9 +138,10 @@
 <!-- ============================== POPULAR THIS WEEK ============================== -->
 <section class="py-12 lg:py-14 bg-cream-50 dark:bg-char-800/60 border-b border-black/5 dark:border-white/10">
   <div class="container mx-auto px-4 lg:px-8">
-    <div class="flex items-center justify-between mb-6" data-aos="fade-up">
-      <h2 class="font-display text-xl"><i class="fa-solid fa-fire text-marinara-600 dark:text-gold-400 me-2"></i>Popular This Week</h2>
-      <div class="hidden sm:flex gap-2">
+    <div class="flex items-center justify-between gap-4 mb-6" data-aos="fade-up">
+      <div class="hidden sm:block w-20 shrink-0" aria-hidden="true"></div>
+      <h2 class="font-display text-xl text-center flex-1 sm:flex-initial"><i class="fa-solid fa-fire text-marinara-600 dark:text-gold-400 me-2"></i>Popular This Week</h2>
+      <div class="hidden sm:flex gap-2 shrink-0">
         <button class="popular-prev w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Previous"><i class="fa-solid fa-chevron-left rtl:rotate-180"></i></button>
         <button class="popular-next w-9 h-9 rounded-full bg-cream-200 dark:bg-char-700 flex items-center justify-center" aria-label="Next"><i class="fa-solid fa-chevron-right rtl:rotate-180"></i></button>
       </div>
@@ -209,6 +208,54 @@
             </div>
           </div>
         </div>
+        <div class="swiper-slide h-auto" style="width:220px">
+          <div class="bg-white dark:bg-char-900 rounded-2xl shadow-soft overflow-hidden h-full">
+            <img src="https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?auto=format&fit=crop&w=300&q=80" loading="lazy" alt="Diavola Rossa pizza" class="w-full h-32 object-cover ph-img">
+            <div class="p-4">
+              <p class="font-extrabold text-sm mb-1">Diavola Rossa</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mark text-marinara-600 dark:text-gold-400">$17.50</span>
+                <button class="w-8 h-8 rounded-full bg-marinara-600 text-white flex items-center justify-center hover:bg-marinara-700" data-add-to-cart data-id="diavola-rossa" data-name="Diavola Rossa" data-price="17.50" data-meta="Medium" data-img="https://images.unsplash.com/photo-1600628421066-f6bda6a7b976?auto=format&fit=crop&w=200&q=80" aria-label="Add Diavola Rossa to cart"><i class="fa-solid fa-plus text-xs"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide h-auto" style="width:220px">
+          <div class="bg-white dark:bg-char-900 rounded-2xl shadow-soft overflow-hidden h-full">
+            <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=300&q=80" loading="lazy" alt="BBQ Chicken Ember pizza" class="w-full h-32 object-cover ph-img">
+            <div class="p-4">
+              <p class="font-extrabold text-sm mb-1">BBQ Chicken Ember</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mark text-marinara-600 dark:text-gold-400">$17.50</span>
+                <button class="w-8 h-8 rounded-full bg-marinara-600 text-white flex items-center justify-center hover:bg-marinara-700" data-add-to-cart data-id="bbq-chicken" data-name="BBQ Chicken Ember" data-price="17.50" data-meta="Medium" data-img="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=200&q=80" aria-label="Add BBQ Chicken Ember to cart"><i class="fa-solid fa-plus text-xs"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide h-auto" style="width:220px">
+          <div class="bg-white dark:bg-char-900 rounded-2xl shadow-soft overflow-hidden h-full">
+            <img src="https://images.unsplash.com/photo-1552539618-7eec9b4d1796?auto=format&fit=crop&w=300&q=80" loading="lazy" alt="Four Cheese Forno pizza" class="w-full h-32 object-cover ph-img">
+            <div class="p-4">
+              <p class="font-extrabold text-sm mb-1">Four Cheese Forno</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mark text-marinara-600 dark:text-gold-400">$16.50</span>
+                <button class="w-8 h-8 rounded-full bg-marinara-600 text-white flex items-center justify-center hover:bg-marinara-700" data-add-to-cart data-id="four-cheese" data-name="Four Cheese Forno" data-price="16.50" data-meta="Medium" data-img="https://images.unsplash.com/photo-1552539618-7eec9b4d1796?auto=format&fit=crop&w=200&q=80" aria-label="Add Four Cheese Forno to cart"><i class="fa-solid fa-plus text-xs"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide h-auto" style="width:220px">
+          <div class="bg-white dark:bg-char-900 rounded-2xl shadow-soft overflow-hidden h-full">
+            <img src="https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?auto=format&fit=crop&w=300&q=80" loading="lazy" alt="Prosciutto and Arugula pizza" class="w-full h-32 object-cover ph-img">
+            <div class="p-4">
+              <p class="font-extrabold text-sm mb-1">Prosciutto &amp; Arugula</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mark text-marinara-600 dark:text-gold-400">$19.00</span>
+                <button class="w-8 h-8 rounded-full bg-marinara-600 text-white flex items-center justify-center hover:bg-marinara-700" data-add-to-cart data-id="prosciutto-arugula" data-name="Prosciutto &amp; Arugula" data-price="19.00" data-meta="Medium" data-img="https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?auto=format&fit=crop&w=200&q=80" aria-label="Add Prosciutto &amp; Arugula to cart"><i class="fa-solid fa-plus text-xs"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -216,7 +263,7 @@
 
 <!-- ============================== QUICK CATEGORY NAV ============================== -->
 <div class="sticky top-16 md:top-[4.5rem] z-30 bg-cream-100/95 dark:bg-char-900/95 backdrop-blur border-b border-black/5 dark:border-white/10">
-  <div class="container mx-auto px-4 lg:px-8 py-3 flex gap-3 overflow-x-auto no-scrollbar" id="quickNav">
+  <div class="container mx-auto px-4 lg:px-8 py-3 flex gap-3 justify-center overflow-x-auto no-scrollbar" id="quickNav">
     <a href="#signature" data-section="signature" class="quick-tile"><i class="fa-solid fa-crown"></i>Signature</a>
     <a href="#classic" data-section="classic" class="quick-tile"><i class="fa-solid fa-pizza-slice"></i>Classic</a>
     <a href="#build" data-section="build" class="quick-tile"><i class="fa-solid fa-sliders"></i>Build Your Own</a>
@@ -234,12 +281,10 @@
 <!-- ============================== SIGNATURE (featured layout) ============================== -->
 <section id="signature" class="scroll-mt-32 py-16 lg:py-20">
   <div class="container mx-auto px-4 lg:px-8">
-    <div class="flex flex-wrap items-end justify-between gap-4 mb-10" data-aos="fade-up">
-      <div>
-        <span class="badge-chalk mb-3">Chef's Specials</span>
-        <h2 class="font-display text-2xl md:text-3xl">Signature Pizzas</h2>
-        <p class="opacity-70 text-sm mt-2 max-w-md">Our four house-original pies — built around ingredients you won't find on the Classic board.</p>
-      </div>
+    <div class="text-center max-w-xl mx-auto mb-10" data-aos="fade-up">
+      <span class="badge-chalk mb-3">Chef's Specials</span>
+      <h2 class="font-display text-2xl md:text-3xl">Signature Pizzas</h2>
+      <p class="opacity-70 text-sm mt-2">Our four house-original pies — built around ingredients you won't find on the Classic board.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -309,7 +354,7 @@
 <!-- ============================== CLASSIC ============================== -->
 <section id="classic" class="scroll-mt-32 py-16 lg:py-20 bg-cream-50 dark:bg-char-800/60">
   <div class="container mx-auto px-4 lg:px-8">
-    <div class="mb-10" data-aos="fade-up">
+    <div class="text-center max-w-xl mx-auto mb-10" data-aos="fade-up">
       <span class="badge-chalk mb-3">Never Goes Out of Style</span>
       <h2 class="font-display text-2xl md:text-3xl">Classic Pizzas</h2>
     </div>
@@ -554,7 +599,7 @@
 <!-- ============================== SIDES & SALADS ============================== -->
 <section id="sides" class="scroll-mt-32 py-16 lg:py-20">
   <div class="container mx-auto px-4 lg:px-8">
-    <div class="mb-10" data-aos="fade-up">
+    <div class="text-center max-w-xl mx-auto mb-10" data-aos="fade-up">
       <span class="badge-chalk mb-3">Round It Out</span>
       <h2 class="font-display text-2xl md:text-3xl">Sides &amp; Salads</h2>
     </div>
@@ -614,13 +659,13 @@
 <!-- ============================== DIPS & EXTRAS ============================== -->
 <section id="extras" class="scroll-mt-32 py-16 lg:py-20 bg-cream-50 dark:bg-char-800/60">
   <div class="container mx-auto px-4 lg:px-8">
-    <div class="mb-10" data-aos="fade-up">
+    <div class="text-center max-w-xl mx-auto mb-10" data-aos="fade-up">
       <span class="badge-chalk mb-3">Small But Mighty</span>
       <h2 class="font-display text-2xl md:text-3xl">Dips &amp; Extras</h2>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
       <div class="extra-chip menu-item" data-name="garlic aioli" data-diet="veg vegan" data-aos="fade-up">
-        <i class="fa-solid fa-jar text-marinara-600 dark:text-gold-400 text-xl mb-2"></i>
+        <i class="fa-solid fa-mortar-pestle text-marinara-600 dark:text-gold-400 text-xl mb-2"></i>
         <p class="font-extrabold text-sm mb-1">Garlic Aioli</p>
         <div class="flex items-center justify-between">
           <span class="font-mark text-marinara-600 dark:text-gold-400">$1.00</span>
@@ -628,7 +673,7 @@
         </div>
       </div>
       <div class="extra-chip menu-item" data-name="ranch" data-diet="veg" data-aos="fade-up" data-aos-delay="40">
-        <i class="fa-solid fa-jar text-marinara-600 dark:text-gold-400 text-xl mb-2"></i>
+        <i class="fa-solid fa-bottle-droplet text-marinara-600 dark:text-gold-400 text-xl mb-2"></i>
         <p class="font-extrabold text-sm mb-1">Ranch</p>
         <div class="flex items-center justify-between">
           <span class="font-mark text-marinara-600 dark:text-gold-400">$1.00</span>
@@ -644,7 +689,7 @@
         </div>
       </div>
       <div class="extra-chip menu-item" data-name="chili oil" data-diet="spicy vegan" data-aos="fade-up" data-aos-delay="120">
-        <i class="fa-solid fa-droplet text-marinara-600 dark:text-gold-400 text-xl mb-2"></i>
+        <i class="fa-solid fa-pepper-hot text-marinara-600 dark:text-gold-400 text-xl mb-2"></i>
         <p class="font-extrabold text-sm mb-1">Chili Oil</p>
         <div class="flex items-center justify-between">
           <span class="font-mark text-marinara-600 dark:text-gold-400">$1.50</span>
@@ -652,7 +697,7 @@
         </div>
       </div>
       <div class="extra-chip menu-item" data-name="vegan ranch" data-diet="vegan" data-aos="fade-up" data-aos-delay="160">
-        <i class="fa-solid fa-jar text-marinara-600 dark:text-gold-400 text-xl mb-2"></i>
+        <i class="fa-solid fa-leaf text-marinara-600 dark:text-gold-400 text-xl mb-2"></i>
         <p class="font-extrabold text-sm mb-1">Vegan Ranch</p>
         <div class="flex items-center justify-between">
           <span class="font-mark text-marinara-600 dark:text-gold-400">$1.50</span>
@@ -871,6 +916,7 @@
     <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="dashboard.html" class="nav-drawer-link js-dashboard-link"><span><i class="fa-solid fa-gauge"></i> Dashboard</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
   </nav>
   <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
@@ -880,10 +926,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span class="text-sm font-bold">Language / Direction</span>
-      <div class="dir-switch" role="group" aria-label="Text direction">
-        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-      </div>
+      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
     </div>
     <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
   </div>
@@ -922,9 +965,18 @@
   })();
 
   new Swiper('.popular-swiper', {
-    slidesPerView: 'auto',
+    slidesPerView: 1.6,
     spaceBetween: 16,
+    rewind: true,
+    autoplay: { delay: 2200, disableOnInteraction: false, pauseOnMouseEnter: true },
+    speed: 600,
     navigation: { nextEl: '.popular-next', prevEl: '.popular-prev' },
+    breakpoints: {
+      480: { slidesPerView: 2.2 },
+      768: { slidesPerView: 3.2 },
+      1024: { slidesPerView: 4.2 },
+      1280: { slidesPerView: 4.6 },
+    },
   });
 
   /* ---- Quick-nav scroll spy ---- */

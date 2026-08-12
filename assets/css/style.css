@@ -329,14 +329,35 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 [dir="rtl"] .theme-switch .thumb{transform:translateX(0);}
 [dir="rtl"].dark .theme-switch .thumb, [dir="rtl"] .dark .theme-switch .thumb{transform:translateX(-1.55rem);}
 
-/* Direction switch: compact EN | AR pill */
+/* Direction switch: single RTL/LTR language-icon toggle */
 .dir-switch{
-  display:inline-flex; border-radius:9999px; overflow:hidden; border:1px solid rgba(27,22,19,.15); font-size:.72rem; font-weight:800;
+  width:2.25rem; height:2.25rem; border-radius:9999px; display:inline-flex; align-items:center; justify-content:center;
+  background:var(--cream-200); border:1px solid rgba(27,22,19,.15); color:inherit; opacity:.75; font-size:.85rem;
+  cursor:pointer; transition:background .2s ease, color .2s ease, opacity .2s ease;
 }
-.dark .dir-switch{border-color:rgba(239,230,219,.15);}
-.dir-switch button{padding:.35rem .55rem; background:transparent; color:inherit; opacity:.55;}
-.dir-switch button[aria-pressed="true"]{background:var(--red-600); color:#fff; opacity:1;}
-.dark .dir-switch button[aria-pressed="true"]{background:var(--gold-500); color:var(--char-900);}
+.dark .dir-switch{background:var(--char-700); border-color:rgba(239,230,219,.15);}
+.dir-switch[aria-pressed="true"]{background:var(--red-600); color:#fff; opacity:1; border-color:transparent;}
+.dark .dir-switch[aria-pressed="true"]{background:var(--gold-500); color:var(--char-900);}
+
+/* Login CTA (replaces old avatar-icon account link) */
+.login-cta{
+  align-items:center; gap:.45rem; padding:.55rem 1.1rem; border-radius:9999px;
+  font-weight:800; font-size:.85rem; border:2px solid var(--red-600); color:var(--red-600); background:transparent;
+  transition:background .2s ease, color .2s ease, transform .2s ease;
+}
+.dark .login-cta{color:var(--gold-400); border-color:var(--gold-400);}
+.login-cta:hover{background:var(--red-600); color:#fff; transform:translateY(-1px);}
+.dark .login-cta:hover{background:var(--gold-500); color:var(--char-900);}
+
+/* Back-to-site pill, used on chrome-less pages (auth, app shell) */
+.back-to-site-btn{
+  display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.1rem; border-radius:9999px;
+  font-weight:800; font-size:.85rem; border:2px solid rgba(27,22,19,.15); color:inherit; white-space:nowrap;
+  background:#fff; transition:background .2s ease;
+}
+.dark .back-to-site-btn{border-color:rgba(239,230,219,.18); background:var(--char-800);}
+.back-to-site-btn:hover{background:var(--cream-200);}
+.dark .back-to-site-btn:hover{background:var(--char-700);}
 
 /* ==========================================================================
    Nav drawer — standard hamburger-triggered vertical list menu, used for
@@ -374,6 +395,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .nav-drawer-link i:first-child{width:1.25rem; text-align:center; opacity:.6; font-size:.9rem;}
 .nav-drawer-link[aria-current="page"]{color:var(--red-600); background:rgba(193,39,45,.05);}
 .dark .nav-drawer-link[aria-current="page"]{color:var(--gold-400); background:rgba(232,163,61,.08);}
+.nav-drawer-link.hidden{display:none;}
 .nav-drawer-sub{padding-inline-start:2.9rem; font-size:.88rem; font-weight:700; opacity:.75;}
 
 /* ==========================================================================
@@ -494,11 +516,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media(min-width:768px){ .toast{bottom:1.5rem;} }
 
 .form-field label{font-weight:700; font-size:.85rem; display:block; margin-bottom:.35rem;}
-.form-field input, .form-field select, .form-field textarea{
+.form-field input:not([type="checkbox"]):not([type="radio"]), .form-field select, .form-field textarea{
   width:100%; padding:.7rem .9rem; border-radius:.75rem; border:1.5px solid rgba(27,22,19,.15);
   background:var(--cream-50); color:inherit;
 }
-.dark .form-field input, .dark .form-field select, .dark .form-field textarea{border-color:rgba(239,230,219,.18); background:var(--char-700);}
+.dark .form-field input:not([type="checkbox"]):not([type="radio"]), .dark .form-field select, .dark .form-field textarea{border-color:rgba(239,230,219,.18); background:var(--char-700);}
 .form-field input:focus, .form-field select:focus, .form-field textarea:focus{border-color:var(--red-600); outline:none;}
 .form-field .field-error{color:var(--red-600); font-size:.78rem; margin-top:.3rem; display:none;}
 .form-field.has-error input, .form-field.has-error select, .form-field.has-error textarea{border-color:var(--red-600);}

@@ -63,14 +63,12 @@
         <a href="gallery.html" class="nav-link">Gallery</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link js-dashboard-link">Dashboard</a>
       </nav>
       <div class="flex items-center gap-2 md:gap-3">
         <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
-          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-        </div>
-        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
+        <a href="login.html" class="js-account-link login-cta hidden md:inline-flex" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label">Login</span></a>
         <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
           <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
         </button>
@@ -410,7 +408,7 @@
 <!-- ============================== ACCOUNT / DASHBOARD CTA (split) ============================== -->
 <section class="py-20 lg:py-28 bg-cream-50 dark:bg-char-800/60">
   <div class="container mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
-    <div class="order-2 lg:order-1 rounded-3xl bg-char-900 text-cream-50 p-8" data-aos="fade-right">
+    <div class="order-2 lg:order-1 rounded-3xl bg-char-900 text-cream-50 p-8 text-center" data-aos="fade-right">
       <p class="text-xs uppercase tracking-widest text-gold-400 font-extrabold mb-4">Live Order Tracker</p>
       <div class="status-rail">
         <div class="status-node is-done"><div class="dot"><i class="fa-solid fa-receipt text-xs"></i></div><span class="text-[10px] opacity-70">Received</span></div>
@@ -595,6 +593,7 @@
     <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="dashboard.html" class="nav-drawer-link js-dashboard-link"><span><i class="fa-solid fa-gauge"></i> Dashboard</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
   </nav>
   <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
@@ -604,10 +603,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span class="text-sm font-bold">Language / Direction</span>
-      <div class="dir-switch" role="group" aria-label="Text direction">
-        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-      </div>
+      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
     </div>
     <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
   </div>

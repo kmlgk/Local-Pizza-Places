@@ -56,14 +56,12 @@
         <a href="gallery.html" class="nav-link">Gallery</a>
         <a href="about.html" class="nav-link">About</a>
         <a href="contact.html" class="nav-link">Contact</a>
+        <a href="dashboard.html" class="nav-link js-dashboard-link">Dashboard</a>
       </nav>
       <div class="flex items-center gap-2 md:gap-3">
         <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-        <div class="dir-switch hidden xl:inline-flex" role="group" aria-label="Text direction">
-          <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-          <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-        </div>
-        <a href="login.html" class="js-account-link hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-cream-200 dark:bg-char-700 hover:bg-gold-300 dark:hover:bg-char-600 transition" aria-label="My account"><i class="fa-solid fa-user"></i></a>
+        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
+        <a href="login.html" class="js-account-link login-cta hidden md:inline-flex" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label">Login</span></a>
         <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
           <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
         </button>
@@ -78,11 +76,14 @@
 <main id="main">
 
 <!-- ============================== HERO ============================== -->
-<section class="pt-32 pb-14 lg:pt-40 lg:pb-16 text-center bg-gradient-to-b from-gold-100/70 dark:from-char-800/70 to-cream-100 dark:to-char-900">
-  <div class="container mx-auto px-4 lg:px-8" data-aos="fade-up">
+<section class="relative pt-32 pb-14 lg:pt-40 lg:pb-16 text-white text-center overflow-hidden">
+  <img src="https://images.unsplash.com/photo-1548369937-47519962c11a?auto=format&fit=crop&w=1600&q=80" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover ph-img">
+  <div class="absolute inset-0 bg-char-900/75"></div>
+  <div class="relative container mx-auto px-4 lg:px-8" data-aos="fade-up">
+    <p class="text-xs opacity-80 mb-3"><a href="index.html" class="hover:underline">Home</a> / <span>Deals</span></p>
     <span class="badge-chalk mb-4">⏳ Here Today, Gone When the Timer Hits Zero</span>
     <h1 class="font-display text-3xl md:text-4xl mb-4">Deals &amp; Limited-Time Offers</h1>
-    <p class="opacity-75 max-w-lg mx-auto">Combo bundles built for real cravings, plus a few deals that show up on the same day every week.</p>
+    <p class="opacity-85 max-w-lg mx-auto">Combo bundles built for real cravings, plus a few deals that show up on the same day every week.</p>
   </div>
 </section>
 
@@ -477,6 +478,7 @@
     <a href="about.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-info"></i> About</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
+    <a href="dashboard.html" class="nav-drawer-link js-dashboard-link"><span><i class="fa-solid fa-gauge"></i> Dashboard</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
   </nav>
   <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
@@ -486,10 +488,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span class="text-sm font-bold">Language / Direction</span>
-      <div class="dir-switch" role="group" aria-label="Text direction">
-        <button type="button" data-dir="ltr" aria-pressed="true">EN</button>
-        <button type="button" data-dir="rtl" aria-pressed="false">AR</button>
-      </div>
+      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
     </div>
     <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
   </div>
