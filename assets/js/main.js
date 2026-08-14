@@ -80,6 +80,8 @@
       const isRtl = dir === "rtl";
       btn.setAttribute("aria-pressed", String(isRtl));
       btn.setAttribute("aria-label", isRtl ? "Switch to English (LTR)" : "Switch to Arabic (RTL)");
+      const label = btn.querySelector(".dir-switch-label");
+      if (label) label.textContent = isRtl ? "LTR" : "RTL";
     });
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {

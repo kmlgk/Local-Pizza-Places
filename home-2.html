@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ember &amp; Forno | Today's Chalkboard Specials</title>
-<meta name="description" content="Browse tonight's chalkboard specials at Ember & Forno — signature and classic wood-fired pizzas, combo deals, and a build-your-own pizza tool. Order online in minutes.">
+<meta name="description" content="Browse tonight's chalkboard specials at Ember & Forno â€” signature and classic wood-fired pizzas, combo deals, and a build-your-own pizza tool. Order online in minutes.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -60,8 +60,9 @@
       </nav>
       <div class="flex items-center gap-2 md:gap-3">
         <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
-        <a href="login.html" class="js-account-link login-cta hidden md:inline-flex" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label">Login</span></a>
+        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><span class="dir-switch-label" aria-hidden="true">RTL</span></button>
+        <a href="tel:+15035550192" class="login-cta hidden xl:inline-flex" aria-label="Call (503) 555-0192"><i class="fa-solid fa-phone"></i><span>(503) 555-0192</span></a>
+        <a href="login.html" class="js-account-link login-cta" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label hidden sm:inline">Login</span></a>
         <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
           <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
         </button>
@@ -75,7 +76,7 @@
 
 <main id="main">
 
-<!-- ============================== HERO — FULL-BLEED CHALKBOARD WALL ============================== -->
+<!-- ============================== HERO â€” FULL-BLEED CHALKBOARD WALL ============================== -->
 <section class="relative pt-32 lg:pt-40 text-cream-50 overflow-hidden">
   <!-- full-bleed background photo, dimmed under a dark chalkboard wash -->
   <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=1600&q=80" alt="" class="absolute inset-0 w-full h-full object-cover opacity-25" aria-hidden="true">
@@ -85,12 +86,12 @@
   <div class="absolute bottom-0 end-1/4 w-64 h-64 rounded-full bg-gold-400/10 blur-3xl" aria-hidden="true"></div>
 
   <div class="container mx-auto px-4 lg:px-8 relative text-center pb-14 lg:pb-16">
-    <p class="font-mark text-gold-300 text-xl mb-3" data-aos="fade-down">✦ Tonight's Chalkboard ✦</p>
+    <p class="font-mark text-gold-300 text-xl mb-3" data-aos="fade-down">âœ¦ Tonight's Chalkboard âœ¦</p>
     <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight mb-5 max-w-3xl mx-auto" data-aos="fade-up">
       Wood-Fired Specials, Written Fresh Daily
     </h1>
     <p class="max-w-xl mx-auto opacity-75 mb-9" data-aos="fade-up" data-aos-delay="100">
-      Every evening our kitchen chalks up a new set of deals. Here's what's on the board right now — grab tonight's pick before it's erased.
+      Every evening our kitchen chalks up a new set of deals. Here's what's on the board right now â€” grab tonight's pick before it's erased.
     </p>
     <div class="flex flex-wrap gap-4 justify-center mb-9" data-aos="zoom-in" data-aos-delay="150">
       <a href="deals.html" class="btn-crust"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-tags"></i> See All Deals</a>
@@ -102,7 +103,7 @@
       <span class="flex items-center gap-2"><i class="fa-solid fa-motorcycle text-gold-400"></i> ~20 min delivery</span>
     </div>
 
-    <!-- scattered "chalk ticket" cards — the board's actual specials, pinned at angles -->
+    <!-- scattered "chalk ticket" cards â€” the board's actual specials, pinned at angles -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto text-start">
       <div class="bg-cream-50/5 border-2 border-dashed border-white/20 rounded-xl p-4 rotate-2 hover:rotate-0 hover:bg-cream-50/10 transition" data-aos="fade-up" data-aos-delay="200">
         <i class="fa-solid fa-pizza-slice text-gold-400 mb-2"></i>
@@ -133,15 +134,15 @@
 
   <div class="relative border-t border-white/10 py-5 overflow-hidden" data-aos="fade-up">
     <div class="deal-ticker">
-      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-pizza-slice text-gold-400"></i><span class="chalk-price text-lg">Family Feast — $39.99</span></div>
-      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-utensils text-gold-400"></i><span class="chalk-price text-lg">Tuesday 2-Topping — $11.99</span></div>
-      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-mug-hot text-gold-400"></i><span class="chalk-price text-lg">Lunch Slice &amp; Salad — $9.99</span></div>
-      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-wine-glass text-gold-400"></i><span class="chalk-price text-lg">Date Night Duo — $34.99</span></div>
+      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-pizza-slice text-gold-400"></i><span class="chalk-price text-lg">Family Feast â€” $39.99</span></div>
+      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-utensils text-gold-400"></i><span class="chalk-price text-lg">Tuesday 2-Topping â€” $11.99</span></div>
+      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-mug-hot text-gold-400"></i><span class="chalk-price text-lg">Lunch Slice &amp; Salad â€” $9.99</span></div>
+      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-wine-glass text-gold-400"></i><span class="chalk-price text-lg">Date Night Duo â€” $34.99</span></div>
       <!-- duplicate set for seamless loop -->
-      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-pizza-slice text-gold-400"></i><span class="chalk-price text-lg">Family Feast — $39.99</span></div>
-      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-utensils text-gold-400"></i><span class="chalk-price text-lg">Tuesday 2-Topping — $11.99</span></div>
-      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-mug-hot text-gold-400"></i><span class="chalk-price text-lg">Lunch Slice &amp; Salad — $9.99</span></div>
-      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-wine-glass text-gold-400"></i><span class="chalk-price text-lg">Date Night Duo — $34.99</span></div>
+      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-pizza-slice text-gold-400"></i><span class="chalk-price text-lg">Family Feast â€” $39.99</span></div>
+      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-utensils text-gold-400"></i><span class="chalk-price text-lg">Tuesday 2-Topping â€” $11.99</span></div>
+      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-mug-hot text-gold-400"></i><span class="chalk-price text-lg">Lunch Slice &amp; Salad â€” $9.99</span></div>
+      <div class="flex items-center gap-3 shrink-0 px-6"><i class="fa-solid fa-wine-glass text-gold-400"></i><span class="chalk-price text-lg">Date Night Duo â€” $34.99</span></div>
     </div>
   </div>
 </section>
@@ -198,7 +199,7 @@
   </div>
 </section>
 
-<!-- ============================== FROM OVEN TO DOOR — horizontal photo timeline ============================== -->
+<!-- ============================== FROM OVEN TO DOOR â€” horizontal photo timeline ============================== -->
 <section class="py-20 lg:py-28">
   <div class="container mx-auto px-4 lg:px-8">
     <div class="text-center mb-14" data-aos="fade-up">
@@ -234,7 +235,7 @@
   </div>
 </section>
 
-<!-- ============================== REVIEWS — 3-card grid (distinct from Home 1 Swiper) ============================== -->
+<!-- ============================== REVIEWS â€” 3-card grid (distinct from Home 1 Swiper) ============================== -->
 <section class="py-20 lg:py-28 bg-char-900 text-cream-50">
   <div class="container mx-auto px-4 lg:px-8">
     <div class="text-center mb-14" data-aos="fade-up">
@@ -245,17 +246,17 @@
       <div class="bg-white/5 rounded-2xl p-6 border border-white/10" data-aos="fade-up">
         <p class="font-mark text-gold-300 text-lg mb-3">"Best crust in Riverside, hands down."</p>
         <p class="text-sm opacity-70 mb-4">The Four Cheese Forno with honey drizzle is unreal. Ordered three times this month already.</p>
-        <p class="text-sm font-extrabold">— Jordan Feld, Old Mill District</p>
+        <p class="text-sm font-extrabold">â€” Jordan Feld, Old Mill District</p>
       </div>
       <div class="bg-white/5 rounded-2xl p-6 border border-white/10" data-aos="fade-up" data-aos-delay="100">
         <p class="font-mark text-gold-300 text-lg mb-3">"Watching my pizza go from oven to door was oddly fun."</p>
-        <p class="text-sm opacity-70 mb-4">The live tracker is a nice touch — I knew exactly when to grab plates for the kids.</p>
-        <p class="text-sm font-extrabold">— Renee Okafor, Millbrook</p>
+        <p class="text-sm opacity-70 mb-4">The live tracker is a nice touch â€” I knew exactly when to grab plates for the kids.</p>
+        <p class="text-sm font-extrabold">â€” Renee Okafor, Millbrook</p>
       </div>
       <div class="bg-white/5 rounded-2xl p-6 border border-white/10" data-aos="fade-up" data-aos-delay="200">
         <p class="font-mark text-gold-300 text-lg mb-3">"The Tuesday deal is unbeatable."</p>
         <p class="text-sm opacity-70 mb-4">$11.99 for a two-topping medium is basically a standing weekly order at this point.</p>
-        <p class="text-sm font-extrabold">— Sam Torres, Riverside Heights</p>
+        <p class="text-sm font-extrabold">â€” Sam Torres, Riverside Heights</p>
       </div>
     </div>
   </div>
@@ -282,13 +283,13 @@
         <span class="w-10 h-10 rounded-full bg-marinara-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
         <span class="font-display text-base">Ember <span class="text-gold-400">&amp;</span> Forno</span>
       </a>
-      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900°F brick oven.</p>
+      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900Â°F brick oven.</p>
       <div class="flex gap-3 mb-4">
         <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
       </div>
-      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Mon–Sun: 11:00 AM – 11:00 PM</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Monâ€“Sun: 11:00 AM â€“ 11:00 PM</p>
       <p class="text-sm text-cream-100/70"><i class="fa-solid fa-location-dot w-4"></i> 214 Mill Street, Riverside</p>
     </div>
     <div>
@@ -328,7 +329,7 @@
   </div>
   <div class="border-t border-white/10 py-5">
     <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream-100/60">
-      <p>© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
+      <p>Â© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
       <div class="flex items-center gap-3 text-lg">
         <i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-cc-apple-pay"></i>
       </div>
@@ -385,7 +386,6 @@
     <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="dashboard.html" class="nav-drawer-link js-dashboard-link"><span><i class="fa-solid fa-gauge"></i> Dashboard</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
   </nav>
   <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
     <div class="flex items-center justify-between">
@@ -394,7 +394,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span class="text-sm font-bold">Language / Direction</span>
-      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
+      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><span class="dir-switch-label" aria-hidden="true">RTL</span></button>
     </div>
     <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
   </div>

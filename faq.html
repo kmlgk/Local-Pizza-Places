@@ -66,8 +66,9 @@
       </nav>
       <div class="flex items-center gap-2 md:gap-3">
         <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
-        <a href="login.html" class="js-account-link login-cta hidden md:inline-flex" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label">Login</span></a>
+        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><span class="dir-switch-label" aria-hidden="true">RTL</span></button>
+        <a href="tel:+15035550192" class="login-cta hidden xl:inline-flex" aria-label="Call (503) 555-0192"><i class="fa-solid fa-phone"></i><span>(503) 555-0192</span></a>
+        <a href="login.html" class="js-account-link login-cta" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label hidden sm:inline">Login</span></a>
         <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
           <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
         </button>
@@ -97,7 +98,7 @@
     <div class="relative max-w-lg mx-auto">
       <i class="fa-solid fa-magnifying-glass absolute top-1/2 -translate-y-1/2 start-5 opacity-60" aria-hidden="true"></i>
       <label for="faqSearch" class="sr-only">Search FAQs</label>
-      <input type="search" id="faqSearch" placeholder="Try “delivery”, “gluten-free”, “payment”…" class="w-full rounded-full py-4 ps-12 pe-5 text-char-900 bg-white dark:bg-cream-50 shadow-xl focus:outline-none focus:ring-4 focus:ring-gold-400/40">
+      <input type="search" id="faqSearch" placeholder="Try â€œdeliveryâ€, â€œgluten-freeâ€, â€œpaymentâ€â€¦" class="w-full rounded-full py-4 ps-12 pe-5 text-char-900 bg-white dark:bg-cream-50 shadow-xl focus:outline-none focus:ring-4 focus:ring-gold-400/40">
     </div>
   </div>
 </section>
@@ -138,7 +139,7 @@
             How do I track my order after I place it?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Once you check out, log in to your account and open your dashboard — you'll see a live status rail moving through Received, Preparing, In the Oven, Out for Delivery and Delivered, updated in real time.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Once you check out, log in to your account and open your dashboard â€” you'll see a live status rail moving through Received, Preparing, In the Oven, Out for Delivery and Delivered, updated in real time.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
@@ -154,7 +155,7 @@
             How long does delivery usually take?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Most orders arrive within 20–30 minutes of placing them, and you can watch every stage live from your dashboard once you're logged in.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Most orders arrive within 20â€“30 minutes of placing them, and you can watch every stage live from your dashboard once you're logged in.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
@@ -162,7 +163,7 @@
             What if my order arrives cold or incorrect?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Contact us right away through the Contact page or by phone — we'll re-fire a fresh pizza or issue a refund, no questions asked. We stand behind every order that leaves our oven.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Contact us right away through the Contact page or by phone â€” we'll re-fire a fresh pizza or issue a refund, no questions asked. We stand behind every order that leaves our oven.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
@@ -178,7 +179,7 @@
             Can I schedule an order for later instead of ASAP?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes — at checkout choose "Schedule for later" and pick a time up to 5 days ahead. We'll start baking right on time so it arrives hot.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes â€” at checkout choose "Schedule for later" and pick a time up to 5 days ahead. We'll start baking right on time so it arrives hot.</div></div>
         </div>
 
       </div>
@@ -197,7 +198,7 @@
             Do you offer gluten-friendly or dairy-free options?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes — every pizza can be made on a gluten-friendly crust or with dairy-free cheese for a small upcharge. Note that our kitchen isn't fully gluten-free, so trace cross-contact is possible.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes â€” every pizza can be made on a gluten-friendly crust or with dairy-free cheese for a small upcharge. Note that our kitchen isn't fully gluten-free, so trace cross-contact is possible.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
@@ -205,7 +206,7 @@
             How does the Build Your Own Pizza pricing work?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Every build starts from a base price for your chosen size and crust, then each topping adds a flat fee shown live as you tap — the running total updates instantly so there are never surprises at checkout.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Every build starts from a base price for your chosen size and crust, then each topping adds a flat fee shown live as you tap â€” the running total updates instantly so there are never surprises at checkout.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
@@ -264,15 +265,15 @@
             How does one-tap reorder work?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Open your order history in the dashboard, find a past order, and tap Reorder — the exact same pizzas, sizes and toppings are added straight to your cart.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Open your order history in the dashboard, find a past order, and tap Reorder â€” the exact same pizzas, sizes and toppings are added straight to your cart.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
           <button class="accordion-trigger w-full flex items-center justify-between p-5 text-left font-extrabold" data-accordion-trigger aria-expanded="false">
-            I forgot my password — what do I do?
+            I forgot my password â€” what do I do?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">On the Login page, select "Forgot password" and follow the prompts. If you still need help, our team can verify your account manually — just contact us.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">On the Login page, select "Forgot password" and follow the prompts. If you still need help, our team can verify your account manually â€” just contact us.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
@@ -299,7 +300,7 @@
             Is my payment information stored securely?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes — we never store full card numbers on our servers. Payments are processed through an encrypted, PCI-compliant checkout, the same standard used by major card networks.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes â€” we never store full card numbers on our servers. Payments are processed through an encrypted, PCI-compliant checkout, the same standard used by major card networks.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
@@ -315,7 +316,7 @@
             Can I use a coupon or deal code at checkout?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes — browse current offers on our Deals page, then enter the matching code at checkout to apply the discount before you pay.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">Yes â€” browse current offers on our Deals page, then enter the matching code at checkout to apply the discount before you pay.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
@@ -323,7 +324,7 @@
             What's your refund policy?
             <i class="fa-solid fa-chevron-down accordion-chevron"></i>
           </button>
-          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">If we get your order wrong or it doesn't meet our standards, we'll refund it in full or send a fresh pizza — whichever you prefer. Just reach out within 24 hours of delivery.</div></div>
+          <div class="accordion-panel"><div class="px-5 pb-5 text-sm opacity-75">If we get your order wrong or it doesn't meet our standards, we'll refund it in full or send a fresh pizza â€” whichever you prefer. Just reach out within 24 hours of delivery.</div></div>
         </div>
 
         <div class="bg-white dark:bg-char-800 rounded-2xl shadow-soft overflow-hidden" data-faq-item data-aos="fade-up">
@@ -344,7 +345,7 @@
 <section class="py-20 bg-gradient-to-r from-marinara-700 to-marinara-600 text-white text-center">
   <div class="container mx-auto px-4 lg:px-8" data-aos="zoom-in">
     <h2 class="font-display text-2xl md:text-4xl mb-4">Still Have Questions?</h2>
-    <p class="opacity-90 mb-8 max-w-lg mx-auto">Our team is happy to help with anything not covered above — usually within one business day.</p>
+    <p class="opacity-90 mb-8 max-w-lg mx-auto">Our team is happy to help with anything not covered above â€” usually within one business day.</p>
     <a href="contact.html" class="btn-crust !bg-white !text-marinara-700 hover:!bg-gold-100"><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><i class="fa-solid fa-envelope"></i> Contact Us</a>
   </div>
 </section>
@@ -359,13 +360,13 @@
         <span class="w-10 h-10 rounded-full bg-marinara-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
         <span class="font-display text-base">Ember <span class="text-gold-400">&amp;</span> Forno</span>
       </a>
-      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900°F brick oven.</p>
+      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900Â°F brick oven.</p>
       <div class="flex gap-3 mb-4">
         <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-marinara-600" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
       </div>
-      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Mon–Sun: 11:00 AM – 11:00 PM</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Monâ€“Sun: 11:00 AM â€“ 11:00 PM</p>
       <p class="text-sm text-cream-100/70"><i class="fa-solid fa-location-dot w-4"></i> 214 Mill Street, Riverside</p>
     </div>
     <div>
@@ -405,7 +406,7 @@
   </div>
   <div class="border-t border-white/10 py-5">
     <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream-100/60">
-      <p>© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
+      <p>Â© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
       <div class="flex items-center gap-3 text-lg">
         <i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-cc-apple-pay"></i>
       </div>
@@ -462,7 +463,6 @@
     <a href="faq.html" class="nav-drawer-link" aria-current="page"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="dashboard.html" class="nav-drawer-link js-dashboard-link"><span><i class="fa-solid fa-gauge"></i> Dashboard</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
   </nav>
   <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
     <div class="flex items-center justify-between">
@@ -471,7 +471,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span class="text-sm font-bold">Language / Direction</span>
-      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
+      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><span class="dir-switch-label" aria-hidden="true">RTL</span></button>
     </div>
     <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
   </div>

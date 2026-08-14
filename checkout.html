@@ -59,8 +59,9 @@
       </nav>
       <div class="flex items-center gap-2 md:gap-3">
         <button class="theme-switch hidden xl:inline-flex" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
-        <a href="login.html" class="js-account-link login-cta hidden md:inline-flex" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label">Login</span></a>
+        <button type="button" class="dir-switch hidden xl:inline-flex" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><span class="dir-switch-label" aria-hidden="true">RTL</span></button>
+        <a href="tel:+15035550192" class="login-cta hidden xl:inline-flex" aria-label="Call (503) 555-0192"><i class="fa-solid fa-phone"></i><span>(503) 555-0192</span></a>
+        <a href="login.html" class="js-account-link login-cta" aria-label="Log in"><i class="fa-solid fa-user"></i><span class="js-account-label hidden sm:inline">Login</span></a>
         <button id="cartOpenBtn" class="cart-pill" aria-haspopup="dialog" aria-controls="cartDrawer">
           <i class="fa-solid fa-bag-shopping"></i><span class="hidden sm:inline">Cart</span><span class="cart-count" style="display:none">0</span>
         </button>
@@ -129,7 +130,7 @@
             </div>
             <div class="form-field sm:col-span-2">
               <label for="ckNotes">Delivery Notes <span class="opacity-50 font-normal">(optional)</span></label>
-              <textarea id="ckNotes" name="notes" rows="2" placeholder="Gate code, leave at door, extra napkins…"></textarea>
+              <textarea id="ckNotes" name="notes" rows="2" placeholder="Gate code, leave at door, extra napkinsâ€¦"></textarea>
             </div>
           </div>
         </div>
@@ -193,8 +194,8 @@
         <span class="w-10 h-10 rounded-full bg-marinara-600 flex items-center justify-center"><i class="fa-solid fa-fire"></i></span>
         <span class="font-display text-base">Ember <span class="text-gold-400">&amp;</span> Forno</span>
       </a>
-      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900°F brick oven.</p>
-      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Mon–Sun: 11:00 AM – 11:00 PM</p>
+      <p class="text-sm text-cream-100/70 mb-4">Wood-fired pizza, hand-stretched daily and baked to order in our 900Â°F brick oven.</p>
+      <p class="text-sm text-cream-100/70"><i class="fa-solid fa-clock w-4"></i> Monâ€“Sun: 11:00 AM â€“ 11:00 PM</p>
       <p class="text-sm text-cream-100/70"><i class="fa-solid fa-location-dot w-4"></i> 214 Mill Street, Riverside</p>
     </div>
     <div>
@@ -218,13 +219,13 @@
     </div>
     <div>
       <p class="font-display text-sm mb-4">Need Help?</p>
-      <p class="text-sm text-cream-100/70 mb-2">We're here Mon–Sun, 11am–11pm.</p>
+      <p class="text-sm text-cream-100/70 mb-2">We're here Monâ€“Sun, 11amâ€“11pm.</p>
       <a href="tel:+15035550192" class="text-sm font-bold text-gold-400">(503) 555-0192</a>
     </div>
   </div>
   <div class="border-t border-white/10 py-5">
     <div class="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-cream-100/60">
-      <p>© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
+      <p>Â© <span class="js-year">2026</span> Ember &amp; Forno Wood-Fired Pizzeria. All rights reserved.</p>
       <div class="flex items-center gap-3 text-lg">
         <i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-cc-apple-pay"></i>
       </div>
@@ -279,7 +280,6 @@
     <a href="faq.html" class="nav-drawer-link"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="contact.html" class="nav-drawer-link"><span><i class="fa-solid fa-envelope"></i> Contact</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
     <a href="dashboard.html" class="nav-drawer-link js-dashboard-link"><span><i class="fa-solid fa-gauge"></i> Dashboard</span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
-    <a href="login.html" class="nav-drawer-link js-account-link"><span><i class="fa-solid fa-user"></i> <span class="js-account-label">Login</span></span><i class="fa-solid fa-chevron-right text-xs opacity-30 rtl:rotate-180"></i></a>
   </nav>
   <div class="p-5 border-t border-black/10 dark:border-white/10 space-y-4">
     <div class="flex items-center justify-between">
@@ -288,7 +288,7 @@
     </div>
     <div class="flex items-center justify-between">
       <span class="text-sm font-bold">Language / Direction</span>
-      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
+      <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><span class="dir-switch-label" aria-hidden="true">RTL</span></button>
     </div>
     <a href="tel:+15035550192" class="btn-crust-outline w-full justify-center !py-2.5 text-sm"><i class="fa-solid fa-phone"></i> Call (503) 555-0192</a>
   </div>
@@ -316,7 +316,7 @@
       itemsEl.innerHTML = cart.map((l) => `
         <div class="flex justify-between items-start text-sm gap-3">
           <div class="flex-1">
-            <p class="font-bold">${l.qty}× ${l.name}</p>
+            <p class="font-bold">${l.qty}Ã— ${l.name}</p>
             ${l.meta ? `<p class="text-xs opacity-60">${l.meta}</p>` : ''}
           </div>
           <span class="font-bold shrink-0">$${(l.price * l.qty).toFixed(2)}</span>

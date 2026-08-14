@@ -41,7 +41,7 @@
   /* App shell: dark sidebar + light content, independent of site theme toggle */
   .dash-sidebar{background:var(--char-900); color:var(--cream-100); flex-shrink:0;}
   .dash-logo-lockup{display:flex; align-items:center; gap:.65rem; padding:1.5rem 1.25rem;}
-  .dash-logo-lockup .mark{width:2.5rem; height:2.5rem; border-radius:.75rem; background:var(--red-600); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Alfa Slab One',serif; font-size:1.1rem; flex-shrink:0;}
+  .dash-logo-lockup .mark{width:2.5rem; height:2.5rem; border-radius:9999px; background:var(--red-600); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.05rem; flex-shrink:0; box-shadow:var(--shadow-soft);}
   .dash-logo-lockup .name{font-family:'Alfa Slab One',serif; font-size:.85rem; line-height:1.1; color:#fff;}
   .dash-logo-lockup .tag{font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; opacity:.55; color:var(--cream-100);}
 
@@ -64,13 +64,8 @@
   .dark .dash-icon-btn{background:var(--char-700);}
   .dash-icon-btn:hover{background:var(--gold-300);}
   .dark .dash-icon-btn:hover{background:var(--char-600);}
-  .dash-back-btn{display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.1rem; border-radius:9999px; font-weight:800; font-size:.85rem; border:2px solid rgba(27,22,19,.15); color:inherit; white-space:nowrap;}
-  .dark .dash-back-btn{border-color:rgba(239,230,219,.18);}
-  .dash-back-btn:hover{background:var(--cream-200);}
-  .dark .dash-back-btn:hover{background:var(--char-700);}
-  .dash-logout-btn{display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.2rem; border-radius:9999px; font-weight:800; font-size:.85rem; background:var(--red-600); color:#fff; white-space:nowrap; transition:transform .2s ease;}
-  .dark .dash-logout-btn{background:var(--gold-500); color:var(--char-900);}
-  .dash-logout-btn:hover{transform:translateY(-1px);}
+  .dash-sidebar-logout{color:#fca5a5;}
+  .dash-sidebar-logout:hover{opacity:1; background:rgba(220,38,38,.18); color:#fff;}
 
   /* Streak ring */
   .streak-ring{--pct:0; width:60px; height:60px; border-radius:50%; flex-shrink:0; position:relative; display:flex; align-items:center; justify-content:center; background:conic-gradient(var(--dash-accent) calc(var(--pct)*1%), var(--cream-200) 0);}
@@ -102,13 +97,13 @@
 <div id="dashContent" class="hidden lg:flex min-h-screen">
   <!-- Static sidebar menu (5 items, dark app shell) -->
   <aside class="dash-sidebar hidden lg:flex lg:flex-col lg:w-64 lg:sticky lg:top-0 lg:h-screen">
-    <div class="dash-logo-lockup">
-      <span class="mark">E</span>
+    <a href="index.html" class="dash-logo-lockup" aria-label="Ember & Forno home">
+      <span class="mark"><i class="fa-solid fa-fire"></i></span>
       <div>
-        <p class="name">Ember &amp; Forno</p>
+        <p class="name">Ember <span class="text-gold-400">&amp;</span> Forno</p>
         <p class="tag">Pizza Kitchen</p>
       </div>
-    </div>
+    </a>
     <nav class="flex-1 px-3 space-y-1" aria-label="Account">
       <button type="button" class="dash-sidebar-link is-active" data-tab="overview"><i class="fa-solid fa-gauge-high"></i> Overview</button>
       <a href="menu.html" class="dash-sidebar-link"><i class="fa-solid fa-plus"></i> New Order</a>
@@ -116,6 +111,9 @@
       <button type="button" class="dash-sidebar-link" data-tab="rewards"><i class="fa-solid fa-star"></i> Rewards</button>
       <button type="button" class="dash-sidebar-link" data-tab="settings"><i class="fa-solid fa-gear"></i> Account Settings</button>
     </nav>
+    <div class="px-3 pb-5 pt-3 mt-2 border-t border-white/10">
+      <button type="button" class="dash-sidebar-link dash-sidebar-logout js-logout-btn w-full"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+    </div>
   </aside>
 
   <div class="flex-1 min-w-0">
@@ -127,9 +125,8 @@
         </a>
         <div class="flex items-center gap-2 ms-auto">
           <button class="theme-switch" id="themeSwitch" role="switch" aria-checked="false" aria-label="Toggle dark mode"><span class="thumb"><i class="fa-solid fa-sun text-[10px]"></i></span></button>
-          <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><i class="fa-solid fa-language"></i></button>
-          <a href="index.html" class="dash-back-btn"><i class="fa-solid fa-arrow-left rtl:rotate-180"></i> <span class="hidden sm:inline">Back to Site</span></a>
-          <button id="logoutBtn" class="dash-logout-btn"><i class="fa-solid fa-right-from-bracket"></i> <span class="hidden sm:inline">Log Out</span></button>
+          <button type="button" class="dir-switch" aria-pressed="false" aria-label="Switch to Arabic (RTL)"><span class="dir-switch-label" aria-hidden="true">RTL</span></button>
+          <button type="button" id="profileBtn" class="dash-icon-btn" aria-label="Account profile"><i class="fa-solid fa-user"></i></button>
         </div>
       </div>
     </header>
@@ -142,6 +139,7 @@
         <button type="button" class="dash-sidebar-link" data-tab="orders"><i class="fa-solid fa-clock-rotate-left"></i> Order History</button>
         <button type="button" class="dash-sidebar-link" data-tab="rewards"><i class="fa-solid fa-star"></i> Rewards</button>
         <button type="button" class="dash-sidebar-link" data-tab="settings"><i class="fa-solid fa-gear"></i> Account Settings</button>
+        <button type="button" class="dash-sidebar-link dash-sidebar-logout js-logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
       </nav>
 
       <!-- Welcome row -->
@@ -370,16 +368,12 @@
     document.getElementById('welcomeName').textContent = firstName;
     document.getElementById('welcomeAvatar').textContent = user.name.split(' ').map((n) => n[0]).slice(0, 2).join('').toUpperCase();
 
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (isDemo) {
-      logoutBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> <span class="hidden sm:inline">Log In</span>';
-      logoutBtn.addEventListener('click', () => { window.location.href = 'login.html?redirect=dashboard.html'; });
-    } else {
-      logoutBtn.addEventListener('click', () => {
+    document.querySelectorAll('.js-logout-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
         window.EF.logoutUser();
         window.location.href = 'index.html';
       });
-    }
+    });
 
     function getOrders() {
       if (!isDemo) return window.EF.getOrders();
@@ -618,16 +612,17 @@
     renderTrendChart();
 
     // Static sidebar menu — tabs, no routing, just show/hide panels
-    const tabButtons = document.querySelectorAll('.dash-sidebar-link[data-tab]');
     const panels = document.querySelectorAll('.dash-panel');
-    tabButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.dash-sidebar-link[data-tab]').forEach((b) => {
-          b.classList.toggle('is-active', b.dataset.tab === btn.dataset.tab);
-        });
-        panels.forEach((p) => p.classList.toggle('hidden', p.id !== 'tab-' + btn.dataset.tab));
+    function activateTab(tab) {
+      document.querySelectorAll('.dash-sidebar-link[data-tab]').forEach((b) => {
+        b.classList.toggle('is-active', b.dataset.tab === tab);
       });
+      panels.forEach((p) => p.classList.toggle('hidden', p.id !== 'tab-' + tab));
+    }
+    document.querySelectorAll('.dash-sidebar-link[data-tab]').forEach((btn) => {
+      btn.addEventListener('click', () => activateTab(btn.dataset.tab));
     });
+    document.getElementById('profileBtn').addEventListener('click', () => activateTab('settings'));
 
     // Confirmation toast when arriving straight from checkout
     const params = new URLSearchParams(window.location.search);
