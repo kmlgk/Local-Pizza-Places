@@ -350,6 +350,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .login-cta:hover{background:var(--red-600); color:#fff; transform:translateY(-1px);}
 .dark .login-cta:hover{background:var(--gold-500); color:var(--char-900);}
 
+/* Phone CTA: icon-only circle variant of login-cta (number stays in aria-label) */
+.phone-cta{width:2.5rem; height:2.5rem; padding:0; gap:0; justify-content:center;}
+
 /* Back-to-site pill, used on chrome-less pages (auth, app shell) */
 .back-to-site-btn{
   display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.1rem; border-radius:9999px;
